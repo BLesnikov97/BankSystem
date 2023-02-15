@@ -1,0 +1,29 @@
+﻿<mah:MetroWindow x:Class="BankSystem.Client.WPF.UI.MainWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:BankSystem.Client.WPF.UI.MainWindow"
+        mc:Ignorable="d"
+        Title="BankSystem" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="1" Grid.Column="0" Content="Создание пользователя" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding AddUserCommand}"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="Пополнение \ Снятие" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding AddAndTakeCommand}" />
+        <Button Grid.Row="1" Grid.Column="0" Content="Переводы" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding TransferCommand}" />
+        <Button Grid.Row="1" Grid.Column="2" Content="Вклады" HorizontalAlignment="Left" VerticalAlignment="Bottom" Command="{Binding DepCommand}" />
+        <Button Grid.Row="1" Grid.Column="1" x:Name="StatusAccaunt" Content="Статус аккаунта" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding StausAccauntCommand}" />
+
+    </Grid>
+</mah:MetroWindow>
