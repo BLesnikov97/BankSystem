@@ -6,19 +6,21 @@ namespace BankSystem.DataAccess.BaseConnect
 {
     public class ApplicationContext : DbContext
     {
-        public ApplicationContext()
-        { 
-            
-        }
+        private ConnectionConfig _connectionConfig;
 
-        //private NameValueCollection _config = ConfigurationManager.AppSettings;
+        public ApplicationContext(ConnectionConfig config)
+        {
+            _connectionConfig = config;
+        }
 
         public DbSet<UserAccount> UserAccaunts { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseNpgsql($"Host={_config.Get("Host")};Port={_config.Get("Port")};Database={_config.Get("Database")};Username={_config.Get("Username")};Password={_config.Get("Password")}");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql($"Host={_connectionConfig.Host};Port={_connectionConfig.Port};" +
+                $"Database={_connectionConfig.Database};Username={_connectionConfig.UserName};Password={_connectionConfig.Password}");
+
+        }
     }
 
 

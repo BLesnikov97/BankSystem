@@ -9,8 +9,9 @@ using Castle.MicroKernel.Registration;
 using BankSystem.Client.WPF.Util;
 using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinesLogic.Services;
-using BankSystemWPF.UI.WindowAddUser;
 using BankSystem.BusinesLogic.Model;
+using BankSystem.Client.WPF.UI.WindowAddUser;
+using System.Configuration;
 
 namespace BankSystem.Client.WPF.UI.MainWindow
 {
@@ -28,7 +29,13 @@ namespace BankSystem.Client.WPF.UI.MainWindow
             container.Register(Component.For<IServiceDep>().ImplementedBy<ServiceDep>());
             container.Register(Component.For<IWindowManager>().ImplementedBy<WindowManager>());
 
-            container.Register(Component.For<ApplicationContext>());
+            container.Register(Component.For<ApplicationContext>().UsingFactoryMethod(() => { 
+                ConnectionConfig connectionConfig = new ConnectionConfig(ConfigurationManager.AppSettings.Get("Host"),
+                                                                         ConfigurationManager.AppSettings.Get("Port"),
+                                                                         ConfigurationManager.AppSettings.Get("Database"),
+                                                                         ConfigurationManager.AppSettings.Get("Username"),
+                                                                         ConfigurationManager.AppSettings.Get("Password"));
+                return new ApplicationContext(connectionConfig); } ));
 
             container.Register(Component.For<WindowAddUserViewModel>());
             container.Register(Component.For<AddAndTakeViewModel>());
@@ -38,7 +45,6 @@ namespace BankSystem.Client.WPF.UI.MainWindow
 
             container.Register(Component.For<UserAccount>());
 
-            container.Register(Component.For<ConnectionConfig>());
         }
 
         public MainWindowViewModel()

@@ -1,7 +1,7 @@
 ﻿using BankSystem.Client.WPF.Util;
 using BankSystem.BusinesLogic.Services;
 
-namespace BankSystemWPF.UI.WindowAddUser
+namespace BankSystem.Client.WPF.UI.WindowAddUser
 {
     public class WindowAddUserViewModel : BaseViewModel
     {
