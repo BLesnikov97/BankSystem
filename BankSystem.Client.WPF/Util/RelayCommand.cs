@@ -22,6 +22,7 @@ namespace BankSystem.Client.WPF.Util
         {
             this.execute = execute;
             this.canExecute = canExecute;
+
         }
 
         public bool CanExecute(object parameter)

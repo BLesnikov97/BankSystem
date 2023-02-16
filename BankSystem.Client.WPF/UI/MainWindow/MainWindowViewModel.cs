@@ -37,6 +37,8 @@ namespace BankSystem.Client.WPF.UI.MainWindow
             container.Register(Component.For<StatusAccountViewModel>());
 
             container.Register(Component.For<UserAccount>());
+
+            container.Register(Component.For<ConnectionConfig>());
         }
 
         public MainWindowViewModel()
