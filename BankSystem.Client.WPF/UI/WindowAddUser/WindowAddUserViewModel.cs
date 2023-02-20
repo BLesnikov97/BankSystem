@@ -48,5 +48,7 @@ namespace BankSystem.Client.WPF.UI.WindowAddUser
                 OnPropertyChanged("Cash");
             }
         }
+
+
     }
 }
