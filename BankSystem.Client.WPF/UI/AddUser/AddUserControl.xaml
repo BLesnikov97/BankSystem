@@ -17,5 +17,10 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LastName}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding FirstName}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Text="{Binding MiddleName}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Birthday}"/>
+        <TextBox Grid.Column="1" VerticalAlignment="Center" Text="{Binding Gender}"/>
     </Grid>
 </UserControl>

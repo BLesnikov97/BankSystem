@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
 
         <Button Grid.Row="1" Grid.Column="1" x:Name="AddUser" Content="Создать пользователя" HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding AddCommand}" />
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="FullName" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding FullName}" VerticalAlignment="Bottom" >
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="FullName" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Bottom" >
             <TextBox.Text>
             <Binding Path="FullName" ValidatesOnDataErrors="True">
                 <Binding.ValidationRules>
@@ -29,7 +29,7 @@
             </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Cash" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Cash}" VerticalAlignment="Top" >
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Cash" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" >
             <TextBox.Text>
                 <Binding Path="Cash" ValidatesOnDataErrors="True">
                     <Binding.ValidationRules>
