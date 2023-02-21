@@ -11,16 +11,31 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding LastName}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding FirstName}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Text="{Binding MiddleName}"/>
-        <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Birthday}"/>
-        <TextBox Grid.Column="1" VerticalAlignment="Center" Text="{Binding Gender}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding LastName}" />
+        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding FirstName}" />
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding MiddleName}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Birthday}" />
+
+        <ComboBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Gender}"/>
+
+        <TextBox Grid.Row="1" Grid.Column="0" Text="LastName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="2" Grid.Column="0" Text="FirstName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="3" Grid.Column="0" Text="MiddleName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="4" Grid.Column="0" Text="Birthday: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="5" Grid.Column="0" Text="Gender: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+        <Button Grid.Column="1" Content="Add User" Command="{Binding AddUser}" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Center" />
+        
     </Grid>
 </UserControl>

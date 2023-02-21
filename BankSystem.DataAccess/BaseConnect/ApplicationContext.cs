@@ -1,4 +1,5 @@
 ﻿using BankSystem.BusinesLogic.Model;
+using BankSystem.BusinessLogic.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Specialized;
 
@@ -13,7 +14,9 @@ namespace BankSystem.DataAccess.BaseConnect
             _connectionConfig = config;
         }
 
-        public DbSet<UserAccount> UserAccaunts { get; set; }
+        public DbSet<User> User { get; set; }
+
+        public DbSet<Account> Account { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,6 +24,7 @@ namespace BankSystem.DataAccess.BaseConnect
                 $"Database={_connectionConfig.Database};Username={_connectionConfig.UserName};Password={_connectionConfig.Password}");
 
         }
+
     }
 
 

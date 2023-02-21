@@ -2,7 +2,6 @@
 using BankSystem.Client.WPF.UI.Dep;
 using BankSystem.Client.WPF.UI.StatusAccaunt;
 using BankSystem.Client.WPF.UI.Transfer;
-using BankSystem.Client.WPF.UI.Util;
 using BankSystem.DataAccess.BaseConnect;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
@@ -12,6 +11,10 @@ using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinesLogic.Model;
 using BankSystem.Client.WPF.UI.WindowAddUser;
 using System.Configuration;
+using BankSystem.Client.WPF.WindowsManager;
+using BankSystem.Client.WPF.UI.AddUser;
+using BankSystem.Client.WPF.UI.AddAccount;
+using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.Client.WPF.UI.MainWindow
 {
@@ -42,8 +45,14 @@ namespace BankSystem.Client.WPF.UI.MainWindow
             container.Register(Component.For<TransferViewModel>());
             container.Register(Component.For<DepViewModel>());
             container.Register(Component.For<StatusAccountViewModel>());
+            container.Register(Component.For<AddUserViewModel>());
+            container.Register(Component.For<AddAccountViewModel>());
 
             container.Register(Component.For<UserAccount>());
+
+            container.Register(Component.For<User>());
+            container.Register(Component.For<Account>());
+            container.Register(Component.For<Gender>());
 
         }
 
@@ -129,6 +138,38 @@ namespace BankSystem.Client.WPF.UI.MainWindow
                         StatusAccountViewModel statusAccauntViewModel = container.Resolve<StatusAccountViewModel>();
 
                         _windowManager.WindowShow(statusAccauntViewModel);
+                    }));
+            }
+        }
+
+        private RelayCommand _addUser;
+
+        public RelayCommand AddUser
+        {
+            get
+            {
+                return _addUser ??
+                    (_addUser = new RelayCommand(obj =>
+                    {
+                        AddUserViewModel addUserViewModel = container.Resolve<AddUserViewModel>();
+
+                        _windowManager.WindowShow(addUserViewModel);
+                    }));
+            }
+        }
+
+        private RelayCommand _addAccount;
+
+        public RelayCommand AddAccount
+        {
+            get
+            {
+                return _addAccount ??
+                    (_addAccount = new RelayCommand(obj =>
+                    {
+                        AddAccountViewModel addAccountViewModel = container.Resolve<AddAccountViewModel>();
+
+                        _windowManager.WindowShow(addAccountViewModel);
                     }));
             }
         }

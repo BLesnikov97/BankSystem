@@ -1,6 +1,6 @@
 ﻿using BankSystem.Client.WPF.Util;
 
-namespace BankSystem.Client.WPF.UI.Util
+namespace BankSystem.Client.WPF.WindowsManager
 {
     public interface IWindowManager
     {

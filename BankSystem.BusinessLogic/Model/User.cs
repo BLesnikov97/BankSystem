@@ -18,7 +18,7 @@ namespace BankSystem.BusinessLogic.Model
 
         public DateTime Birthday { get; set; }
 
-        public Genders Gender { get; set; }
+        public Gender Gender { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
@@ -26,18 +26,13 @@ namespace BankSystem.BusinessLogic.Model
 
         public bool IsBlocked { get; set; }
 
-        public enum Genders
-        {
-            male,
-            female
-        }
 
         public User()
         {
 
         }
 
-        public User(string LastName, string FirstName, string MiddleName, DateTime Birthday, Genders Gender)
+        public User(string LastName, string FirstName, string MiddleName, DateTime Birthday, Gender Gender)
         {
             Random Id = new Random();
 

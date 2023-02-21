@@ -1,6 +1,8 @@
-﻿using BankSystem.Client.WPF.Util;
+﻿using BankSystem.Client.WPF.UI;
+using BankSystem.Client.WPF.Util;
+using BankSystem.Client.WPF.UI.AdditionalWindows;
 
-namespace BankSystem.Client.WPF.UI.Util
+namespace BankSystem.Client.WPF.WindowsManager
 {
     internal class WindowManager : IWindowManager
     {
