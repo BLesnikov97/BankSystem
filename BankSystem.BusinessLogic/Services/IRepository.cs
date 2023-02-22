@@ -1,4 +1,5 @@
 ﻿using BankSystem.BusinesLogic.Model;
+using BankSystem.BusinessLogic.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace BankSystem.BusinesLogic.BaseConnect
 {
     public interface IRepository
     {
-        List<UserAccount> GetUsersAccountList();
-        void Create(UserAccount user);
-        void Update(UserAccount user);
+        List<User> GetUsersAccountList();
+        void Create(User user);
+        void Update(User user);
         void Delete(int id);
         void Save();
     }

@@ -1,15 +1,7 @@
 ﻿using BankSystem.BusinesLogic.Model;
-using BankSystem.BusinesLogic.Services;
 using Microsoft.EntityFrameworkCore;
-using BankSystem.DataAccess.BaseConnect;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Threading.Tasks;
 using BankSystem.BusinesLogic.BaseConnect;
+using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.DataAccess.BaseConnect
 {
@@ -22,15 +14,15 @@ namespace BankSystem.DataAccess.BaseConnect
             _db = db;
         }
 
-        public void Create(UserAccount user)
+        public void Create(User user)
         {
-            _db.UserAccaunts.Add(user);
+            _db.Users.Add(user);
             Save();
         }
 
         public void Delete(int id)
         {
-            UserAccount userAccount = _db.UserAccaunts.Find(id);
+            User userAccount = _db.Users.Find(id);
 
             if (userAccount != null)
             {
@@ -38,9 +30,9 @@ namespace BankSystem.DataAccess.BaseConnect
             }
         }
 
-        public List<UserAccount> GetUsersAccountList()
+        public List<User> GetUsersAccountList()
         {
-            return _db.UserAccaunts.ToList();
+            return _db.Users.ToList();
         }
 
         public void Save()
@@ -48,7 +40,7 @@ namespace BankSystem.DataAccess.BaseConnect
             _db.SaveChanges();
         }
 
-        public void Update(UserAccount user)
+        public void Update(User user)
         {
             _db.Entry(user).State = EntityState.Modified;
         }

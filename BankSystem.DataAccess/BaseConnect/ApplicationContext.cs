@@ -1,7 +1,6 @@
 ﻿using BankSystem.BusinesLogic.Model;
 using BankSystem.BusinessLogic.Model;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Specialized;
 
 namespace BankSystem.DataAccess.BaseConnect
 {
@@ -14,7 +13,7 @@ namespace BankSystem.DataAccess.BaseConnect
             _connectionConfig = config;
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<Account> Account { get; set; }
 
@@ -25,6 +24,11 @@ namespace BankSystem.DataAccess.BaseConnect
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().ToTable("UserAccaunts");
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
 

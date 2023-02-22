@@ -1,11 +1,12 @@
 ﻿using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinesLogic.Model;
+using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
 {
     public class ServiceRepository : IServiceRepository
     {
-        private List<UserAccount> _userAccaunts;
+        private List<User> _userAccaunts;
 
         private IRepository _db;
 
@@ -25,7 +26,7 @@ namespace BankSystem.BusinesLogic.Services
 
         private bool ExistsList(string user)
         {
-            var resultSearch = _userAccaunts.Find(userList => userList.FullName == user);
+            var resultSearch = _userAccaunts.Find(userList => userList.FirstName == user);
 
             if (resultSearch != null)
             {
@@ -42,7 +43,7 @@ namespace BankSystem.BusinesLogic.Services
                 throw new Exception("Full name not filled");
             }
 
-            UserAccount user = new UserAccount(fullName, Convert.ToInt32(cash));
+            User user = new User();
 
             _db.Create(user);                        
         }
