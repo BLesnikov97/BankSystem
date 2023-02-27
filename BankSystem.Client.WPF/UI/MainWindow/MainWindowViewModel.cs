@@ -8,7 +8,6 @@ using Castle.MicroKernel.Registration;
 using BankSystem.Client.WPF.Util;
 using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinesLogic.Services;
-using BankSystem.BusinesLogic.Model;
 using BankSystem.Client.WPF.UI.WindowAddUser;
 using System.Configuration;
 using BankSystem.Client.WPF.WindowsManager;
@@ -47,8 +46,6 @@ namespace BankSystem.Client.WPF.UI.MainWindow
             container.Register(Component.For<StatusAccountViewModel>());
             container.Register(Component.For<AddUserViewModel>());
             container.Register(Component.For<AddAccountViewModel>());
-
-            container.Register(Component.For<UserAccount>());
 
             container.Register(Component.For<User>());
             container.Register(Component.For<Account>());

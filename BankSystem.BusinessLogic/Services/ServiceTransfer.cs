@@ -1,5 +1,5 @@
 ﻿using BankSystem.BusinesLogic.BaseConnect;
-using BankSystem.BusinesLogic.Model;
+using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
 {
@@ -12,12 +12,12 @@ namespace BankSystem.BusinesLogic.Services
             _db = db;
         }
 
-        public void Transfer(UserAccount user1, UserAccount user2)
+        public void Transfer(Account forAccount, Account toAccount)
         {
-            if (user1.Cash >= 100 & user1.FullName != user2.FullName)
+            if (forAccount.Amount >= 100 & toAccount.IsBlocked != true & forAccount.Description != toAccount.Description)
             {
-                user2.AddCash(user2);
-                user1.TakeCash(user1);
+                toAccount.Amount = toAccount.Amount + 100;
+                forAccount.Amount = forAccount.Amount - 100;
 
                 _db.Save();
             }

@@ -1,5 +1,4 @@
-﻿using BankSystem.BusinesLogic.Model;
-using BankSystem.BusinessLogic.Model;
+﻿using BankSystem.BusinessLogic.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankSystem.DataAccess.BaseConnect
@@ -15,7 +14,7 @@ namespace BankSystem.DataAccess.BaseConnect
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Account> Account { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using BankSystem.Client.WPF.Util;
-using BankSystem.BusinesLogic.Model;
 using BankSystem.BusinesLogic.BaseConnect;
+using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.Client.WPF.UI.StatusAccaunt
 {
@@ -10,15 +10,15 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
     {
         private string _сheckСash = "Остаток по счету: ";
 
-        private UserAccount _selectedUserAccaunt;
+        private Account _selectedAccount;
 
-        private List<UserAccount> _userAccaunts;
+        private List<Account> _Accounts;
 
         private RelayCommand statusCommand;
 
         public StatusAccountViewModel(IRepository db)
         {
-            _userAccaunts = db.GetUsersAccountList();
+            _Accounts = db.GetAccountsList();
         }
 
         public RelayCommand StatusCommand
@@ -28,31 +28,31 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
                 return statusCommand ??
                     (statusCommand = new RelayCommand(user =>
                     {
-                            СheckСash = Convert.ToString(SelectedUserAccaunt.Cash);
+                            СheckAmount = Convert.ToString(SelectedAccount.Amount);
                     }));
             }
         }
-        public List<UserAccount> UserAccaunts
+        public List<Account> Accounts
         {
-            get { return _userAccaunts; }
+            get { return _Accounts; }
             set
             {
-                _userAccaunts = value;
-                OnPropertyChanged("UserAccaunts");
+                _Accounts = value;
+                OnPropertyChanged("Accounts");
             }
         }
 
-        public UserAccount SelectedUserAccaunt
+        public Account SelectedAccount
         {
-            get { return _selectedUserAccaunt; }
+            get { return _selectedAccount; }
             set
             {
-                _selectedUserAccaunt = value;
-                OnPropertyChanged("SelectedUserAccaunt");
+                _selectedAccount = value;
+                OnPropertyChanged("SelectedAccount");
             }
         }
 
-        public string СheckСash
+        public string СheckAmount
         {
             get { return _сheckСash; }
             set

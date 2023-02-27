@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using BankSystem.BusinesLogic.BaseConnect;
-using BankSystem.BusinesLogic.Model;
 using BankSystem.BusinesLogic.Services;
+using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 
 namespace BankSystem.Client.WPF.UI.Dep
 {
     public class DepViewModel : BaseViewModel
     {
-        private UserAccount _selectedUser;
+        private Account _selectedAccount;
 
-        private List<UserAccount> _userAccaunts;
+        private List<Account> _Accounts;
 
         private IServiceDep _dep;
 
@@ -19,7 +19,7 @@ namespace BankSystem.Client.WPF.UI.Dep
         public DepViewModel(IRepository db, IServiceRepository serviceRepository, IServiceDep dep)
         {
             _dep = dep;
-            _userAccaunts = db.GetUsersAccountList();
+            _Accounts = db.GetAccountsList();
         }
 
         public RelayCommand DepCommand
@@ -29,28 +29,28 @@ namespace BankSystem.Client.WPF.UI.Dep
                 return depCommand ??
                     (depCommand = new RelayCommand(user =>
                     {
-                        _dep.Dep(SelectedUser);
+                        _dep.Dep(SelectedAccount);
                     }));
             }
         }
 
-        public List<UserAccount> UserAccaunts
+        public List<Account> Accounts
         {
-            get { return _userAccaunts; }
+            get { return _Accounts; }
             set
             {
-                _userAccaunts = value;
-                OnPropertyChanged("UserAccaunts");
+                _Accounts = value;
+                OnPropertyChanged("Accounts");
             }
         }
 
-        public UserAccount SelectedUser
+        public Account SelectedAccount
         {
-            get { return _selectedUser; }
+            get { return _selectedAccount; }
             set
             {
-                _selectedUser = value;
-                OnPropertyChanged("SelectedUser");
+                _selectedAccount = value;
+                OnPropertyChanged("SelectedAccount");
             }
         }
     }

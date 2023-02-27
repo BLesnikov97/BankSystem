@@ -18,8 +18,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="UserAccaunt" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="FullName" SelectedItem="{Binding SelectedUserAccaunt}" ItemsSource="{Binding UserAccaunts}" />
+        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="UserAccaunt" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="FullName" SelectedItem="{Binding SelectedAccount}" ItemsSource="{Binding Accounts}" />
         <Button Grid.Row="1" Grid.Column="1" x:Name="Info" Content="Проверить остаток" HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding StatusCommand}"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" x:Name="TextBlockInfo" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding СheckСash}" />
+        <TextBlock Grid.Row="2" Grid.Column="1" x:Name="TextBlockInfo" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding СheckAmount}" />
     </Grid>
 </UserControl>

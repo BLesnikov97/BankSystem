@@ -8,10 +8,10 @@ namespace BankSystem.Client.WPF.UI.Transfer
 {
     public class TransferViewModel : BaseViewModel
     {
-        private UserAccount _fromUser;
-        private UserAccount _toUser;
+        private Account _fromUser;
+        private Account _toUser;
 
-        private List<UserAccount> _userAccounts;
+        private List<Account> _userAccounts;
 
         private IServiceTransfer _serviceTransfer;
 
@@ -36,7 +36,7 @@ namespace BankSystem.Client.WPF.UI.Transfer
             }
         }
 
-        public UserAccount FromUser
+        public Account FromUser
         {
             get { return _fromUser; }
             set
@@ -46,7 +46,7 @@ namespace BankSystem.Client.WPF.UI.Transfer
             }
         }
 
-        public UserAccount ToUser
+        public Account ToUser
         {
             get { return _toUser; }
             set
@@ -56,7 +56,7 @@ namespace BankSystem.Client.WPF.UI.Transfer
             }
         }
 
-        public List<UserAccount> UserAccounts
+        public List<Account> UserAccounts
         {
             get { return _userAccounts; }
             set

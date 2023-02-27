@@ -1,5 +1,4 @@
-﻿using BankSystem.BusinesLogic.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinessLogic.Model;
 
@@ -14,7 +13,13 @@ namespace BankSystem.DataAccess.BaseConnect
             _db = db;
         }
 
-        public void Create(User user)
+        public void CreateAccount(Account account)
+        {
+            _db.Accounts.Add(account);
+            Save();
+        }
+
+        public void CreateUser(User user)
         {
             _db.Users.Add(user);
             Save();
@@ -22,15 +27,29 @@ namespace BankSystem.DataAccess.BaseConnect
 
         public void Delete(int id)
         {
-            User userAccount = _db.Users.Find(id);
+            User user = _db.Users.Find(id);
 
-            if (userAccount != null)
+            if (user != null)
             {
-                _db.Remove(userAccount);
+                _db.Remove(user);
             }
         }
 
-        public List<User> GetUsersAccountList()
+        public void DeleteAccount(User id)
+        {
+            Account account = _db.Accounts.Find(id);
+            if (account != null)
+            {
+                _db.Remove(account);
+            }
+        }
+
+        public List<Account> GetAccountsList()
+        {
+            return _db.Accounts.ToList();
+        }
+
+        public List<User> GetUsersList()
         {
             return _db.Users.ToList();
         }
@@ -40,7 +59,12 @@ namespace BankSystem.DataAccess.BaseConnect
             _db.SaveChanges();
         }
 
-        public void Update(User user)
+        public void UpdateAccount(Account account)
+        {
+            _db.Entry(account).State = EntityState.Modified;
+        }
+
+        public void UpdateUser(User user)
         {
             _db.Entry(user).State = EntityState.Modified;
         }

@@ -1,6 +1,6 @@
 ﻿using BankSystem.BusinesLogic.BaseConnect;
-using BankSystem.BusinesLogic.Model;
 using BankSystem.BusinesLogic.Services;
+using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 using System.Collections.Generic;
 
@@ -8,9 +8,9 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
 {
     public class AddAndTakeViewModel : BaseViewModel
     {
-        private UserAccount _selectedAccaunt;
+        private Account _selectedAccount;
 
-        private List<UserAccount> _usersAccount;
+        private List<Account> _Accounts;
 
         private IRepository _db;
 
@@ -21,7 +21,7 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             _db = db;
             _service = service;
 
-            _usersAccount = db.GetUsersAccountList();
+            _Accounts = db.GetAccountsList();
         }
 
         private RelayCommand addCashCommand;
@@ -33,7 +33,7 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                 return addCashCommand ??
                     (addCashCommand = new RelayCommand(obj =>
                     {
-                        SelectedAccaunt.AddCash(SelectedAccaunt);
+                        SelectedAccount.AddAmount_100(SelectedAccount);
 
                         _db.Save();
                     }));
@@ -49,31 +49,31 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                 return takeCashCommand ??
                     (takeCashCommand = new RelayCommand(user =>
                     {
-                        _service.CheckCash(SelectedAccaunt);
+                        _service.CheckCash(SelectedAccount);
 
-                        SelectedAccaunt.TakeCash(SelectedAccaunt);
+                        SelectedAccount.TakeAmount_100(SelectedAccount);
 
                         _db.Save();
                     }));
             }
         }
 
-        public UserAccount SelectedAccaunt
+        public Account SelectedAccount
         {
-            get { return _selectedAccaunt; }
+            get { return _selectedAccount; }
             set
             {
-                _selectedAccaunt = value;
-                OnPropertyChanged("SelectedAccaunt");
+                _selectedAccount = value;
+                OnPropertyChanged("SelectedAccount");
             }
         }
 
-        public List<UserAccount> UsersAccount
+        public List<Account> UsersAccount
         {
-            get { return _usersAccount; }
+            get { return _Accounts; }
             set
             {
-                _usersAccount = value;
+                _Accounts = value;
                 OnPropertyChanged("UsersAccount");
             }
 

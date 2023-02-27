@@ -1,32 +1,31 @@
 ﻿using BankSystem.BusinesLogic.BaseConnect;
-using BankSystem.BusinesLogic.Model;
 using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
 {
     public class ServiceRepository : IServiceRepository
     {
-        private List<User> _userAccaunts;
+        private List<User> _users;
 
         private IRepository _db;
 
         public ServiceRepository(IRepository repository)
         {
             _db = repository;
-            _userAccaunts = _db.GetUsersAccountList();
+            _users = _db.GetUsersList();
         }
 
-        public void CheckCash(UserAccount user)
+        public void CheckCash(Account account)
         {
-            if (user.Cash < 100)
+            if (account.Amount < 100)
             {
                 throw new Exception("Cash not filled");
             }
         }
 
-        private bool ExistsList(string user)
+        private bool ExistsList(string FirstName)
         {
-            var resultSearch = _userAccaunts.Find(userList => userList.FirstName == user);
+            var resultSearch = _users.Find(userList => userList.FirstName == FirstName);
 
             if (resultSearch != null)
             {
@@ -36,16 +35,28 @@ namespace BankSystem.BusinesLogic.Services
             return true; 
         }
 
-        public void AddUser(string fullName, string cash)
+        public void AddUser(string LastName, string FirstName, string MiddleName, DateTime Birthday, Gender Gender)
         {
-            if (fullName == "" & ExistsList(fullName))
+            if (FirstName == "" & ExistsList(FirstName))
             {
                 throw new Exception("Full name not filled");
             }
 
-            User user = new User();
+            User user = new User(LastName, FirstName, MiddleName, Birthday, Gender);
 
-            _db.Create(user);                        
+            _db.CreateUser(user);                        
+        }
+
+        public void AddAccount(User UserId, string Description, double Amount, string Currency)
+        {
+            if (UserId == null)
+            {
+                throw new Exception("User not filled");
+            }
+
+            Account account = new Account(UserId, Description, Amount, Currency);
+
+            _db.CreateAccount(account);
         }
     }
 }

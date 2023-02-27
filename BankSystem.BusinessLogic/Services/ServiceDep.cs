@@ -1,9 +1,4 @@
-﻿using BankSystem.BusinesLogic.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
 {
@@ -16,12 +11,9 @@ namespace BankSystem.BusinesLogic.Services
             _db = db;
         }
 
-        public void Dep(UserAccount user)
+        public void Dep(Account account)
         {
-            string depFullName = user.FullName + " / вклад 5%";
-            string depCash = Convert.ToString(user.Cash / 100 * 5);
-
-            _db.AddUser(depFullName, depCash);
+            _db.AddAccount(account.UserId, account.Description = "Вклад 5%", (account.Amount / 100 * 5), account.Currency);
         }
     }
 }

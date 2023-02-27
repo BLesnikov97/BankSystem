@@ -27,6 +27,8 @@ namespace BankSystem.BusinessLogic.Model
 
         }
 
+
+
         public Account(User UserId, string Description, double Amount, string Currency)
         {
             this.UserId = UserId;
@@ -36,6 +38,16 @@ namespace BankSystem.BusinessLogic.Model
             this.CreatedDate = DateTime.Now;
             this.ModifiedDate = null;
             this.IsBlocked = false;
+        }
+
+        public void AddAmount_100(Account account)
+        {
+            account.Amount = account.Amount + 100;
+        }
+
+        public void TakeAmount_100(Account account)
+        {
+            account.Amount = account.Amount - 100;
         }
     }
 }
