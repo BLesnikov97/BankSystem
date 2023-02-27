@@ -8,7 +8,6 @@ using Castle.MicroKernel.Registration;
 using BankSystem.Client.WPF.Util;
 using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinesLogic.Services;
-using BankSystem.Client.WPF.UI.WindowAddUser;
 using System.Configuration;
 using BankSystem.Client.WPF.WindowsManager;
 using BankSystem.Client.WPF.UI.AddUser;
@@ -39,7 +38,6 @@ namespace BankSystem.Client.WPF.UI.MainWindow
                                                                          ConfigurationManager.AppSettings.Get("Password"));
                 return new ApplicationContext(connectionConfig); } ));
 
-            container.Register(Component.For<WindowAddUserViewModel>());
             container.Register(Component.For<AddAndTakeViewModel>());
             container.Register(Component.For<TransferViewModel>());
             container.Register(Component.For<DepViewModel>());
@@ -57,22 +55,6 @@ namespace BankSystem.Client.WPF.UI.MainWindow
         {
             InstallCastleWindsor();
             _windowManager = container.Resolve<IWindowManager>();
-        }
-
-        private RelayCommand _addUserCommand;
-
-        public RelayCommand AddUserCommand
-        {
-            get
-            {
-                return _addUserCommand ??
-                    (_addUserCommand = new RelayCommand(obj =>
-                    {
-                        WindowAddUserViewModel addUserViewModel = container.Resolve<WindowAddUserViewModel>();
-
-                        _windowManager.WindowShow(addUserViewModel);
-                    }));
-            }
         }
 
         private RelayCommand _addAndTakeCommand;

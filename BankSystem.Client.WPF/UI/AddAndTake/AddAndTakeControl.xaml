@@ -20,7 +20,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="UserList" HorizontalAlignment="Stretch" VerticalAlignment="Top" DisplayMemberPath="fullName" SelectedItem="{Binding SelectedAccount}" ItemsSource="{Binding UsersAccount}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="UserList" HorizontalAlignment="Stretch" VerticalAlignment="Top" DisplayMemberPath="Description" SelectedItem="{Binding SelectedAccount}" ItemsSource="{Binding UsersAccount}"/>
         <Button Grid.Row="2" Grid.Column="1" x:Name="Add" Content="Пополнить 100$" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding AddCashCommand}" />
         <Button Grid.Row="2" Grid.Column="2" x:Name="Take" Content="Снять 100$" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding TakeCashCommand}" />
     </Grid>

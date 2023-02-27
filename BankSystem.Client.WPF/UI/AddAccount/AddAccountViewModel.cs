@@ -1,14 +1,8 @@
-﻿using Autofac.Core;
-using BankSystem.BusinesLogic.BaseConnect;
-using BankSystem.BusinesLogic.Model;
+﻿using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankSystem.Client.WPF.UI.AddAccount
 {

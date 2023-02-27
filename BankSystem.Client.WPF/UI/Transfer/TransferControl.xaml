@@ -20,8 +20,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="user1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="FullName" SelectedItem="{Binding FromAccount}" ItemsSource="{Binding Accounts}" />
-        <ComboBox Grid.Row="1" Grid.Column="2" x:Name="user2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="FullName" SelectedItem="{Binding ToAccount}" ItemsSource="{Binding Accounts}" />
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="user1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="Description" SelectedItem="{Binding FromAccount}" ItemsSource="{Binding Accounts}" />
+        <ComboBox Grid.Row="1" Grid.Column="2" x:Name="user2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="Description" SelectedItem="{Binding ToAccount}" ItemsSource="{Binding Accounts}" />
         <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="Перевести" HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding TransferCommand}" />
         <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="От:" VerticalAlignment="Center" />
         <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Кому:" VerticalAlignment="Center" />

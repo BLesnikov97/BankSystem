@@ -25,7 +25,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="1" Grid.Column="1" Content="Создание пользователя" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding AddUserCommand}"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="Создание пользователя" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding AddUser}"/>
         <Button Grid.Row="1" Grid.Column="2" Content="Пополнение \ Снятие" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding AddAndTakeCommand}" />
         <Button Grid.Row="2" Grid.Column="2" Content="Переводы" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding TransferCommand}" />
         <Button Grid.Row="3" Grid.Column="2" Content="Вклады" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding DepCommand}" />
