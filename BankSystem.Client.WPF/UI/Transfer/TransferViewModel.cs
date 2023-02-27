@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using BankSystem.Client.WPF.Util;
-using BankSystem.BusinesLogic.Model;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinesLogic.BaseConnect;
+using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.Client.WPF.UI.Transfer
 {
     public class TransferViewModel : BaseViewModel
     {
-        private Account _fromUser;
-        private Account _toUser;
+        private Account _fromAccount;
+        private Account _toAccount;
 
-        private List<Account> _userAccounts;
+        private List<Account> _Accounts;
 
         private IServiceTransfer _serviceTransfer;
 
@@ -19,7 +19,7 @@ namespace BankSystem.Client.WPF.UI.Transfer
         {
             _serviceTransfer = serviceTransfer;
 
-            _userAccounts = db.GetUsersAccountList();
+            _Accounts = db.GetAccountsList();
         }
 
         private RelayCommand transferCommand;
@@ -31,38 +31,38 @@ namespace BankSystem.Client.WPF.UI.Transfer
                 return transferCommand ??
                     (transferCommand = new RelayCommand(obj =>
                     {
-                        _serviceTransfer.Transfer(FromUser, ToUser);
+                        _serviceTransfer.Transfer(FromAccount, ToAccount);
                     }));
             }
         }
 
-        public Account FromUser
+        public Account FromAccount
         {
-            get { return _fromUser; }
+            get { return _fromAccount; }
             set
             {
-                _fromUser = value;
-                OnPropertyChanged("FromUser");
+                _fromAccount = value;
+                OnPropertyChanged("FromAccount");
             }
         }
 
-        public Account ToUser
+        public Account ToAccount
         {
-            get { return _toUser; }
+            get { return _toAccount; }
             set
             {
-                _toUser = value;
-                OnPropertyChanged("ToUser");
+                _toAccount = value;
+                OnPropertyChanged("ToAccount");
             }
         }
 
-        public List<Account> UserAccounts
+        public List<Account> Accounts
         {
-            get { return _userAccounts; }
+            get { return _Accounts; }
             set
             {
-                _userAccounts = value;
-                OnPropertyChanged("UserAccounts");
+                _Accounts = value;
+                OnPropertyChanged("Accounts");
             }
         }
 
