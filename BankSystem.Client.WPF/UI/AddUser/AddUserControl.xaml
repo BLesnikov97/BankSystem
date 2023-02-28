@@ -27,7 +27,7 @@
         <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding MiddleName}"/>
         <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Birthday}" />
 
-        <ComboBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Gender}"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Gender." ItemsSource="{Binding Gender}"/>
 
         <TextBox Grid.Row="1" Grid.Column="0" Text="LastName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <TextBox Grid.Row="2" Grid.Column="0" Text="FirstName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>

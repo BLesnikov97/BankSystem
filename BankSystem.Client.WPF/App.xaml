@@ -6,7 +6,8 @@
              xmlns:dep="clr-namespace:BankSystem.Client.WPF.UI.Dep"
              xmlns:sa="clr-namespace:BankSystem.Client.WPF.UI.StatusAccaunt"
              xmlns:t="clr-namespace:BankSystem.Client.WPF.UI.Transfer"
-             xmlns:wau="clr-namespace:BankSystem.Client.WPF.UI.WindowAddUser"
+             xmlns:au="clr-namespace:BankSystem.Client.WPF.UI.AddUser"
+             xmlns:aa="clr-namespace:BankSystem.Client.WPF.UI.AddAccount"
              StartupUri="UI\MainWindow\MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -35,8 +36,12 @@
                         <t:TransferControl/>
                     </DataTemplate>
 
-                    <DataTemplate DataType = "{x:Type wau:WindowAddUserViewModel}">
-                        <wau:WindowAddUserControl/>
+                    <DataTemplate DataType = "{x:Type au:AddUserViewModel}">
+                        <au:AddUserControl/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType = "{x:Type aa:AddAccountViewModel}">
+                        <aa:AddAccountControl/>
                     </DataTemplate>
 
                 </ResourceDictionary>
