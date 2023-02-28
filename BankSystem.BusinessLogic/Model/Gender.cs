@@ -12,7 +12,7 @@ namespace BankSystem.BusinessLogic.Model
 
         public enum Genders
         {
-            male,
+            Male,
             female
         }
 
