@@ -1,7 +1,5 @@
 ﻿using BankSystem.BusinessLogic.Model;
 using Microsoft.EntityFrameworkCore;
-using System.Numerics;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace BankSystem.DataAccess.BaseConnect
 {
@@ -30,7 +28,7 @@ namespace BankSystem.DataAccess.BaseConnect
             modelBuilder.Entity<User>().HasKey(p => p.Id);
             modelBuilder.Entity<Account>().HasKey(p => p.Id);
 
-            modelBuilder.Entity<User>().HasMany(a => a.Accounts).WithRequired(a => a.UserId);
+            modelBuilder.Entity<User>().HasMany(a => a.Accounts).WithOne(a => a.User).HasForeignKey(a => a.UserId);
 
             modelBuilder.Entity<User>().Property(u => u.Id).HasColumnName("Id");
             modelBuilder.Entity<User>().Property(u => u.FirstName).HasColumnName("FullName");
