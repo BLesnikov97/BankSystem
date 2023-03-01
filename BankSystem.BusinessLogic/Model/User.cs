@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,8 @@ namespace BankSystem.BusinessLogic.Model
 
         public bool IsBlocked { get; set; }
 
+        public ICollection<Account> Accounts { get; set; }
+
 
         public User()
         {
@@ -47,6 +50,8 @@ namespace BankSystem.BusinessLogic.Model
             this.CreatedDate = DateTime.Now;
             this.ModifiedDate = null;
             this.IsBlocked = false;
+
+            Accounts = new List<Account>();
 
         }
     }

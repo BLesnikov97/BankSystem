@@ -6,6 +6,16 @@
              xmlns:gend="clr-namespace:BankSystem.BusinessLogic.Model;assembly=BankSystem.BusinessLogic"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="GenderDataSource"
+                            ObjectType="{x:Type gend:Gender}"
+                            MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="HorizontalAlignment" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -27,17 +37,7 @@
         <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding MiddleName}"/>
         <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Birthday}" />
 
-        <ComboBox Name="myComboBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Gender" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}">
-            <ComboBox.Resources>
-                <ObjectDataProvider x:Key="GenderDataSource"
-                            ObjectType="{x:Type gend:Gender}"
-                            MethodName="GetValues">
-                    <ObjectDataProvider.MethodParameters>
-                        <x:Type TypeName="HorizontalAlignment" />
-                    </ObjectDataProvider.MethodParameters>
-                </ObjectDataProvider>
-            </ComboBox.Resources>
-        </ComboBox>
+        <ComboBox Name="myComboBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Gender" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}" />
 
         <TextBox Grid.Row="1" Grid.Column="0" Text="LastName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <TextBox Grid.Row="2" Grid.Column="0" Text="FirstName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>

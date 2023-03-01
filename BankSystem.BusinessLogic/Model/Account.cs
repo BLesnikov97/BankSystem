@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace BankSystem.BusinessLogic.Model
 {
     public class Account
-    {
+    {   
+        public int Id { get; set; }
+
         public User UserId { get; set; }
 
         public string Description { get; set; }

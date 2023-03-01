@@ -27,7 +27,10 @@ namespace BankSystem.DataAccess.BaseConnect
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Account>().HasMany(a => a.UserId).WithRequired(a => a.UserId);
+            modelBuilder.Entity<User>().HasKey(p => p.Id);
+            modelBuilder.Entity<Account>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<User>().HasMany(a => a.Accounts).WithRequired(a => a.UserId);
 
             modelBuilder.Entity<User>().Property(u => u.Id).HasColumnName("Id");
             modelBuilder.Entity<User>().Property(u => u.FirstName).HasColumnName("FullName");
