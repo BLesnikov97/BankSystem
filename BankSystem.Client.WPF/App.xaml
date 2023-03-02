@@ -1,7 +1,6 @@
 ﻿<Application x:Class="BankSystem.Client.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:UI="clr-namespace:BankSystem.Client.WPF.UI"
              xmlns:aat="clr-namespace:BankSystem.Client.WPF.UI.AddAndTake"
              xmlns:dep="clr-namespace:BankSystem.Client.WPF.UI.Dep"
              xmlns:sa="clr-namespace:BankSystem.Client.WPF.UI.StatusAccaunt"
