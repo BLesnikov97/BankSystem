@@ -47,7 +47,7 @@ namespace BankSystem.Client.WPF.UI.MainWindow
 
             container.Register(Component.For<User>());
             container.Register(Component.For<Account>());
-            container.Register(Component.For<Gender>());
+            //container.Register(Component.For<Gender>());
 
         }
 

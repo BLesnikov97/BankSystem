@@ -4,15 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gend="clr-namespace:BankSystem.BusinessLogic.Model;assembly=BankSystem.BusinessLogic"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
         <ObjectDataProvider x:Key="GenderDataSource"
-                            ObjectType="{x:Type gend:Gender}"
+                            ObjectType="{x:Type sys:Enum}"
                             MethodName="GetValues">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="HorizontalAlignment" />
+                <x:Type TypeName="gend:Gender" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
@@ -37,7 +38,7 @@
         <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding MiddleName}"/>
         <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Birthday}" />
 
-        <ComboBox Name="myComboBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Gender" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}" />
+        <ComboBox Name="myComboBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}" />
 
         <TextBox Grid.Row="1" Grid.Column="0" Text="LastName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <TextBox Grid.Row="2" Grid.Column="0" Text="FirstName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>

@@ -6,24 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankSystem.BusinessLogic.Model
 {
-    public class Gender
-    {
-        public Genders GenderResult { get; set; }
-
-        public enum Genders
+        public enum Gender
         {
             Male,
             Female
         }
-
-        public Gender()
-        {
-            
-        }
-
-        public Gender(Genders gender)
-        { 
-            this.GenderResult = gender;
-        }
-    }
 }

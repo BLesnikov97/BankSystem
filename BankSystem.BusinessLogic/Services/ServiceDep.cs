@@ -13,7 +13,7 @@ namespace BankSystem.BusinesLogic.Services
 
         public void Dep(Account account)
         {
-            _db.AddAccount(account.UserId, account.Description = Convert.ToString(account.UserId.Id + " Вклад 5%"), (account.Amount / 100 * 5), account.Currency = "Рублевый");
+            //_db.AddAccount(account.UserId, account.Description = Convert.ToString(account.UserId.Id + " Вклад 5%"), (account.Amount / 100 * 5), account.Currency = "Рублевый");
         }
     }
 }

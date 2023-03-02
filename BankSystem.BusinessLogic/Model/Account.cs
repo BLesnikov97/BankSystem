@@ -10,7 +10,9 @@ namespace BankSystem.BusinessLogic.Model
     {   
         public int Id { get; set; }
 
-        public User UserId { get; set; }
+        public int UserId { get; set; }
+
+        public User Owner { get; set; }
 
         public string Description { get; set; }
 
@@ -31,15 +33,18 @@ namespace BankSystem.BusinessLogic.Model
 
 
 
-        public Account(User UserId, string Description, double Amount, string Currency)
+        public Account(User owner, string Description, double Amount, string Currency)
         {
-            this.UserId = UserId;
+            UserId = owner.Id;
+
+            Owner = owner;
             this.Description = Description;
             this.Amount = Amount;
             this.Currency = Currency;
             this.CreatedDate = DateTime.Now;
             this.ModifiedDate = null;
             this.IsBlocked = false;
+            
         }
 
         public void AddAmount_100(Account account)
