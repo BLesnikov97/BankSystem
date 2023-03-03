@@ -9,8 +9,10 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
     public class AddAndTakeViewModel : BaseViewModel
     {
         private Account _selectedAccount;
+        private List<Account> _accounts;
 
-        private List<Account> _Accounts;
+        private List<User> _users;
+        private User _selectedUser;
 
         private IRepository _db;
 
@@ -21,7 +23,8 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             _db = db;
             _service = service;
 
-            _Accounts = db.GetAccountsList();
+            _accounts = db.GetAccountsList();
+            _users = db.GetUsersList();
         }
 
         private RelayCommand addCashCommand;
@@ -68,13 +71,34 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             }
         }
 
-        public List<Account> UsersAccount
+        public List<Account> Accounts
         {
-            get { return _Accounts; }
+            get { return _accounts; }
             set
             {
-                _Accounts = value;
-                OnPropertyChanged("UsersAccount");
+                _accounts = value;
+                OnPropertyChanged("Accounts");
+            }
+
+        }
+
+        public User SelectedUser
+        {
+            get { return _selectedUser; }
+            set
+            {
+                _selectedUser = value;
+                OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        public List<User> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+                OnPropertyChanged("Users");
             }
 
         }

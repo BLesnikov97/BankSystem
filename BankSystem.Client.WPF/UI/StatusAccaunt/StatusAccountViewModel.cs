@@ -8,17 +8,20 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
 {
     public class StatusAccountViewModel : BaseViewModel
     {
-        private string _сheckСash = "Остаток по счету: ";
+        private string _сheckСash;
 
         private Account _selectedAccount;
+        private List<Account> _accounts;
 
-        private List<Account> _Accounts;
+        private List<User> _users;
+        private User _selectedUser;
 
         private RelayCommand statusCommand;
 
         public StatusAccountViewModel(IRepository db)
         {
-            _Accounts = db.GetAccountsList();
+            _accounts = db.GetAccountsList();
+            _users = db.GetUsersList();
         }
 
         public RelayCommand StatusCommand
@@ -34,10 +37,10 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
         }
         public List<Account> Accounts
         {
-            get { return _Accounts; }
+            get { return _accounts; }
             set
             {
-                _Accounts = value;
+                _accounts = value;
                 OnPropertyChanged("Accounts");
             }
         }
@@ -59,6 +62,26 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
             {
                 _сheckСash = value;
                 OnPropertyChanged("СheckСash");
+            }
+        }
+
+        public List<User> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+                OnPropertyChanged("Accounts");
+            }
+        }
+
+        public User SelectedUser
+        {
+            get { return _selectedUser; }
+            set
+            {
+                _selectedUser = value;
+                OnPropertyChanged("SelectedAccount");
             }
         }
     }

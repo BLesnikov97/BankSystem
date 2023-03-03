@@ -28,13 +28,12 @@
         <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount}" />
         <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Currency}"  />
 
-        <TextBox Grid.Row="1" Grid.Column="0" Text="Users: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="2" Grid.Column="0" Text="Description: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="3" Grid.Column="0" Text="Amount: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="4" Grid.Column="0" Text="Currency: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Users: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Description: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Amount: " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Currency: " Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
-        <Button Grid.Row="5" Grid.Column="1" Content="Add Account" Command="{Binding AddAccount}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-
+        <Button Grid.Row="5" Grid.Column="1" Content="Add Account" Command="{Binding AddAccount}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
 
     </Grid>
 </UserControl>

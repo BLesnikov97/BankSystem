@@ -40,13 +40,14 @@
 
         <ComboBox Name="myComboBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}" />
 
-        <TextBox Grid.Row="1" Grid.Column="0" Text="LastName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="2" Grid.Column="0" Text="FirstName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="3" Grid.Column="0" Text="MiddleName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="4" Grid.Column="0" Text="Birthday: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="5" Grid.Column="0" Text="Gender: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <!--<TextBox Grid.Row="1" Grid.Column="0" Text="LastName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>-->
+        <Label Content="LastName: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <Label Content="FirstName: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="MiddleName: " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Birthday: " Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Gender: " Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
         <Button Grid.Column="1" Content="Add User" Command="{Binding AddUser}" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Center"/>
-        
+
     </Grid>
 </UserControl>

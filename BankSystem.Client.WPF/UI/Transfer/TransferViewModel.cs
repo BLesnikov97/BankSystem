@@ -8,6 +8,12 @@ namespace BankSystem.Client.WPF.UI.Transfer
 {
     public class TransferViewModel : BaseViewModel
     {
+        private List<User> _users;
+        private User _fromUser;
+        private User _toUser;
+
+        private List<Account> _fromAccounts;
+        private List<Account> _toAccounts;
         private Account _fromAccount;
         private Account _toAccount;
 
@@ -31,8 +37,38 @@ namespace BankSystem.Client.WPF.UI.Transfer
                 return transferCommand ??
                     (transferCommand = new RelayCommand(obj =>
                     {
-                        _serviceTransfer.Transfer(FromAccount, ToAccount);
+                        //_serviceTransfer.Transfer(FromAccount, ToAccount);
                     }));
+            }
+        }
+
+        public List<User> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+                OnPropertyChanged("ToAccounts");
+            }
+        }
+
+        public User FromUser
+        {
+            get { return _fromUser; }
+            set
+            {
+                _fromUser = value;
+                OnPropertyChanged("FromUser");
+            }
+        }
+
+        public User ToUser
+        {
+            get { return _toUser; }
+            set
+            {
+                _toUser = value;
+                OnPropertyChanged("ToUser");
             }
         }
 
@@ -56,17 +92,24 @@ namespace BankSystem.Client.WPF.UI.Transfer
             }
         }
 
-        public List<Account> Accounts
+        public List<Account> FromAccounts
         {
-            get { return _Accounts; }
+            get { return _fromAccounts; }
             set
             {
-                _Accounts = value;
-                OnPropertyChanged("Accounts");
+                _fromAccounts = value;
+                OnPropertyChanged("FromAccounts");
             }
         }
 
-
-
+        public List<Account> ToAccounts
+        {
+            get { return _toAccounts; }
+            set
+            {
+                _toAccounts = value;
+                OnPropertyChanged("ToAccounts");
+            }
+        }      
     }
 }
