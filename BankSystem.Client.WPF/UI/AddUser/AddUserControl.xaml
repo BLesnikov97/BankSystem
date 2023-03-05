@@ -40,7 +40,6 @@
 
         <ComboBox Name="myComboBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}" />
 
-        <!--<TextBox Grid.Row="1" Grid.Column="0" Text="LastName: " VerticalAlignment="Center" HorizontalAlignment="Right"/>-->
         <Label Content="LastName: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <Label Content="FirstName: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
         <Label Content="MiddleName: " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />

@@ -38,7 +38,7 @@ namespace BankSystem.Client.WPF.UI.AddUser
                 return addUser ??
                     (addUser = new RelayCommand(obj =>
                     {
-                        ;
+                        _service.AddUser(LastName, FirstName, MiddleName, Birthday, Gender);   
                     }));
             }
         }
@@ -78,7 +78,7 @@ namespace BankSystem.Client.WPF.UI.AddUser
         {
             get { return _birthday; }
             set
-            {
+            {   
                 _birthday = value;
                 OnPropertyChanged("Birthday");
             }
