@@ -18,7 +18,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Description" SelectedItem="{Binding SelectedUser}" ItemsSource="{Binding Users}" />
+        <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="LastName" SelectedItem="{Binding SelectedUser}" ItemsSource="{Binding Users}" />
         <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="Description" SelectedItem="{Binding SelectedAccount}" ItemsSource="{Binding Accounts}" />
 
         <Button Grid.Row="1" Grid.Column="1" x:Name="Info" Content="Check" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Command="{Binding StatusCommand}"/>
