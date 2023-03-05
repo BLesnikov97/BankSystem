@@ -45,13 +45,15 @@ namespace BankSystem.BusinessLogic.Model
             this.LastName = LastName;
             this.FirstName = FirstName;
             this.MiddleName = MiddleName;
-            this.Birthday = Birthday;
+            this.Birthday = Birthday.ToUniversalTime();
             this.Gender = Gender;
-            this.CreatedDate = DateTime.Now;
+            this.CreatedDate = DateTime.Now.ToUniversalTime();
             this.ModifiedDate = null;
             this.IsBlocked = false;
 
             Accounts = new List<Account>();
+
+
 
         }
     }
