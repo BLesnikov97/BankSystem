@@ -8,7 +8,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
 {
     public class StatusAccountViewModel : BaseViewModel
     {
-        private string _сheckСash;
+        private double _сheckСash;
 
         private Account _selectedAccount;
         private ICollection<Account> _accounts;
@@ -30,7 +30,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
                 return statusCommand ??
                     (statusCommand = new RelayCommand(user =>
                     {
-                        СheckAmount = Convert.ToString(SelectedAccount.Amount);
+                        СheckAmount = SelectedAccount.Amount;
                     }));
             }
 
@@ -59,13 +59,13 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
             }
         }
 
-        public string СheckAmount
+        public double СheckAmount
         {
             get { return _сheckСash; }
             set
             {
                 _сheckСash = value;
-                OnPropertyChanged("СheckСash");
+                OnPropertyChanged("СheckAmount");
             }
         }
 
