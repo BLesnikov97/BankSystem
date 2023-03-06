@@ -8,9 +8,13 @@ namespace BankSystem.Client.WPF.UI.Dep
 {
     public class DepViewModel : BaseViewModel
     {
-        private Account _selectedAccount;
+        private User _selectedUser;
 
-        private List<Account> _Accounts;
+        private List<User> _users;
+
+        private ICollection<Account> _accounts;
+
+        private Account _selectedAccount;
 
         private IServiceDep _dep;
 
@@ -19,7 +23,8 @@ namespace BankSystem.Client.WPF.UI.Dep
         public DepViewModel(IRepository db, IServiceRepository serviceRepository, IServiceDep dep)
         {
             _dep = dep;
-            _Accounts = db.GetAccountsList();
+            _users = db.GetUsersList();
+            //_accounts = _selectedUser.Accounts;
         }
 
         public RelayCommand DepCommand
@@ -29,18 +34,39 @@ namespace BankSystem.Client.WPF.UI.Dep
                 return depCommand ??
                     (depCommand = new RelayCommand(user =>
                     {
-                        _dep.Dep(SelectedAccount);
+                        _accounts = _selectedUser.Accounts;
+                        _dep.Dep(SelectedUser, SelectedAccount);
                     }));
             }
         }
 
-        public List<Account> Accounts
+        public List<User> Users
         {
-            get { return _Accounts; }
+            get { return _users; }
             set
             {
-                _Accounts = value;
-                OnPropertyChanged("Accounts");
+                _users = value;
+                OnPropertyChanged("Users");
+            }
+        }
+
+        public User SelectedUser
+        {
+            get { return _selectedUser; }
+            set
+            {
+                _selectedUser = value;
+                OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        public ICollection<Account> Accounts
+        {
+            get { return _accounts; }
+            set
+            {
+                _accounts = value;
+                OnPropertyChanged("Account");
             }
         }
 

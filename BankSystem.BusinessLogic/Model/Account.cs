@@ -41,7 +41,7 @@ namespace BankSystem.BusinessLogic.Model
             this.Description = Description;
             this.Amount = Amount;
             this.Currency = Currency;
-            this.CreatedDate = DateTime.Now;
+            this.CreatedDate = DateTime.Now.ToUniversalTime(); 
             this.ModifiedDate = null;
             this.IsBlocked = false;
             

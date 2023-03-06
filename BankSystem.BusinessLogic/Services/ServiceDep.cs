@@ -11,9 +11,9 @@ namespace BankSystem.BusinesLogic.Services
             _db = db;
         }
 
-        public void Dep(Account account)
+        public void Dep(User SelectedUser, Account SelectedAccount)
         {
-            //_db.AddAccount(account.UserId, account.Description = Convert.ToString(account.UserId.Id + " Вклад 5%"), (account.Amount / 100 * 5), account.Currency = "Рублевый");
+            _db.AddAccount(SelectedUser, "Deposit 5%", SelectedAccount.Amount / 100 * 5, "Рублевый");
         }
     }
 }

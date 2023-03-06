@@ -4,6 +4,6 @@ namespace BankSystem.BusinesLogic.Services
 {
     public interface IServiceDep
     {
-        void Dep(Account user);
+        void Dep(User SelectedUser, Account SelectedAccount);
     }
 }

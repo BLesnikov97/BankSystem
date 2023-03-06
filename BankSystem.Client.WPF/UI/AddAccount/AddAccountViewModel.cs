@@ -26,6 +26,7 @@ namespace BankSystem.Client.WPF.UI.AddAccount
         {
             _service = serviceRepository;
             _db = repository;
+            _usersId = _db.GetUsersList();
         }
 
 
@@ -38,7 +39,7 @@ namespace BankSystem.Client.WPF.UI.AddAccount
                 return addAccount ??
                     (addAccount = new RelayCommand(obj =>
                     {
-                        ;
+                        _service.AddAccount(SelectedUser, Description, Amount, Currency);
                     }));
             }
         }

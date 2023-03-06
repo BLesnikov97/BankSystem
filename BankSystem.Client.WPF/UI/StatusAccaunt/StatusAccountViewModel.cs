@@ -11,7 +11,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
         private string _сheckСash;
 
         private Account _selectedAccount;
-        private List<Account> _accounts;
+        private ICollection<Account> _accounts;
 
         private List<User> _users;
         private User _selectedUser;
@@ -20,8 +20,9 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
 
         public StatusAccountViewModel(IRepository db)
         {
-            _accounts = db.GetAccountsList();
+            //_accounts = db.GetAccountsList();
             _users = db.GetUsersList();
+            Accounts = SelectedUser.Accounts;
         }
 
         public RelayCommand StatusCommand
@@ -35,7 +36,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
                     }));
             }
         }
-        public List<Account> Accounts
+        public ICollection<Account> Accounts
         {
             get { return _accounts; }
             set
