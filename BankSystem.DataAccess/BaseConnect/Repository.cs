@@ -51,7 +51,7 @@ namespace BankSystem.DataAccess.BaseConnect
 
         public List<User> GetUsersList()
         {
-            return _db.Users.ToList();
+            return _db.Users.Include(x => x.Accounts).ToList();
         }
 
         public void Save()

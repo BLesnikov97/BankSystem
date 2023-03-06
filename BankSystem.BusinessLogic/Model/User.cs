@@ -32,10 +32,10 @@ namespace BankSystem.BusinessLogic.Model
 
         public User()
         {
-
+            Accounts = new List<Account>();
         }
 
-        public User(string LastName, string FirstName, string MiddleName, DateTime Birthday, Gender Gender)
+        public User(string LastName, string FirstName, string MiddleName, DateTime Birthday, Gender Gender) : this()
         {
             Random Id = new Random();
 
@@ -50,11 +50,6 @@ namespace BankSystem.BusinessLogic.Model
             this.CreatedDate = DateTime.Now.ToUniversalTime();
             this.ModifiedDate = null;
             this.IsBlocked = false;
-
-            Accounts = new List<Account>();
-
-
-
         }
     }
 }

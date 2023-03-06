@@ -33,13 +33,17 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
                         СheckAmount = Convert.ToString(SelectedAccount.Amount);
                     }));
             }
+
+            set
+            {
+                
+            }
         }
         public ICollection<Account> Accounts
         {
             get { return _accounts; }
             set
             {
-                _accounts = SelectedUser.Accounts;
                 _accounts = value;
                 OnPropertyChanged("Accounts");
             }
@@ -71,17 +75,21 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
             set
             {
                 _users = value;
-                OnPropertyChanged("Accounts");
+                OnPropertyChanged("Users");
             }
         }
 
         public User SelectedUser
         {
-            get { return _selectedUser; }
+            get 
+            {   
+                return _selectedUser; 
+            }
             set
             {
                 _selectedUser = value;
                 OnPropertyChanged("SelectedAccount");
+                Accounts = SelectedUser.Accounts;
             }
         }
     }

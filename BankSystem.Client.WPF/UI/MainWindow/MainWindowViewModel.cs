@@ -41,13 +41,12 @@ namespace BankSystem.Client.WPF.UI.MainWindow
             container.Register(Component.For<AddAndTakeViewModel>());
             container.Register(Component.For<TransferViewModel>());
             container.Register(Component.For<DepViewModel>());
-            container.Register(Component.For<StatusAccountViewModel>());
+            container.Register(Component.For<StatusAccountViewModel>().LifeStyle.Transient);
             container.Register(Component.For<AddUserViewModel>());
             container.Register(Component.For<AddAccountViewModel>());
 
             container.Register(Component.For<User>());
             container.Register(Component.For<Account>());
-            //container.Register(Component.For<Gender>());
 
         }
 
