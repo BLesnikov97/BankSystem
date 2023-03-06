@@ -20,11 +20,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" DisplayMemberPath="LastName" SelectedItem="{Binding FromUser}" ItemsSource="{Binding Users}" />
+        <ComboBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" DisplayMemberPath="LastName" SelectedItem="{Binding ToUser}" ItemsSource="{Binding Users}" />
+
         <ComboBox Grid.Row="1" Grid.Column="1" x:Name="user1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="Description" SelectedItem="{Binding FromAccount}" ItemsSource="{Binding FromAccounts}" />
         <ComboBox Grid.Row="1" Grid.Column="2" x:Name="user2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" DisplayMemberPath="Description" SelectedItem="{Binding ToAccount}" ItemsSource="{Binding ToAccounts}" />
-
-        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" DisplayMemberPath="Description" SelectedItem="{Binding FromUser}" ItemsSource="{Binding Users}" />
-        <ComboBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" DisplayMemberPath="Description" SelectedItem="{Binding ToUser}" ItemsSource="{Binding Users}" />
 
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="From user:" VerticalAlignment="Bottom"  Grid.Column="1" Height="40" Width="40" />
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="To user:" VerticalAlignment="Bottom" Height="40" Width="40" />

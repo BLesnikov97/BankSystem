@@ -88,6 +88,7 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             {
                 _selectedUser = value;
                 OnPropertyChanged("SelectedUser");
+                Accounts = SelectedUser.Accounts;
             }
         }
 

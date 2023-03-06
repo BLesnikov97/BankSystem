@@ -89,6 +89,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
             {
                 _selectedUser = value;
                 OnPropertyChanged("SelectedAccount");
+
                 Accounts = SelectedUser.Accounts;
             }
         }

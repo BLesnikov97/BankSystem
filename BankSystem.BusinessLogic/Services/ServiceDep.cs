@@ -1,13 +1,17 @@
-﻿using BankSystem.BusinessLogic.Model;
+﻿using BankSystem.BusinesLogic.BaseConnect;
+using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
 {
     public class ServiceDep : IServiceDep
     {
-        private IServiceRepository _db;
+        private IServiceRepository _service;
 
-        public ServiceDep(IServiceRepository db)
+        private IRepository _db;
+
+        public ServiceDep(IRepository db , IServiceRepository service)
         {
+            _service = service;
             _db = db;
         }
 
@@ -19,7 +23,8 @@ namespace BankSystem.BusinesLogic.Services
 
             string Currency = SelectedAccount.Currency;
 
-            _db.AddAccount(SelectedUser, Description, Amount, Currency);
+            _service.AddAccount(SelectedUser, Description, Amount, Currency);
+            _db.Save();
         }
     }
 }

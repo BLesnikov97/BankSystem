@@ -40,6 +40,7 @@ namespace BankSystem.Client.WPF.UI.AddAccount
                     (addAccount = new RelayCommand(obj =>
                     {
                         _service.AddAccount(SelectedUser, Description, Amount, Currency);
+                        _db.Save();
                     }));
             }
         }
