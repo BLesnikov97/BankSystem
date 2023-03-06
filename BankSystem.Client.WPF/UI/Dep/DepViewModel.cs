@@ -33,7 +33,6 @@ namespace BankSystem.Client.WPF.UI.Dep
                 return depCommand ??
                     (depCommand = new RelayCommand(user =>
                     {
-                        _accounts = _selectedUser.Accounts;
                         _dep.Dep(SelectedUser, SelectedAccount);
                     }));
             }
@@ -56,6 +55,7 @@ namespace BankSystem.Client.WPF.UI.Dep
             {
                 _selectedUser = value;
                 OnPropertyChanged("SelectedUser");
+                Accounts = _selectedUser.Accounts;
             }
         }
 
@@ -65,7 +65,7 @@ namespace BankSystem.Client.WPF.UI.Dep
             set
             {
                 _accounts = value;
-                OnPropertyChanged("Account");
+                OnPropertyChanged("Accounts");
             }
         }
 

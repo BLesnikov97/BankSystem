@@ -13,7 +13,13 @@ namespace BankSystem.BusinesLogic.Services
 
         public void Dep(User SelectedUser, Account SelectedAccount)
         {
-            _db.AddAccount(SelectedUser, "Deposit 5%", SelectedAccount.Amount / 100 * 5, "Рублевый");
+            string Description = "Deposit 5%";
+
+            double Amount = SelectedAccount.Amount / 100 * 5;
+
+            string Currency = SelectedAccount.Currency;
+
+            _db.AddAccount(SelectedUser, Description, Amount, Currency);
         }
     }
 }
