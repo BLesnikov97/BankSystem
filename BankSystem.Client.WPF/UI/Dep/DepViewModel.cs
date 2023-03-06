@@ -24,7 +24,6 @@ namespace BankSystem.Client.WPF.UI.Dep
         {
             _dep = dep;
             _users = db.GetUsersList();
-            //_accounts = _selectedUser.Accounts;
         }
 
         public RelayCommand DepCommand

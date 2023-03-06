@@ -12,8 +12,8 @@ namespace BankSystem.Client.WPF.UI.Transfer
         private User _fromUser;
         private User _toUser;
 
-        private List<Account> _fromAccounts;
-        private List<Account> _toAccounts;
+        private ICollection<Account> _fromAccounts;
+        private ICollection<Account> _toAccounts;
         private Account _fromAccount;
         private Account _toAccount;
 
@@ -25,7 +25,6 @@ namespace BankSystem.Client.WPF.UI.Transfer
         {
             _serviceTransfer = serviceTransfer;
 
-            _Accounts = db.GetAccountsList();
         }
 
         private RelayCommand transferCommand;
@@ -36,8 +35,9 @@ namespace BankSystem.Client.WPF.UI.Transfer
             {
                 return transferCommand ??
                     (transferCommand = new RelayCommand(obj =>
-                    {
-                        //_serviceTransfer.Transfer(FromAccount, ToAccount);
+                    {   
+
+                        _serviceTransfer.Transfer(FromAccount, ToAccount);
                     }));
             }
         }
@@ -92,7 +92,7 @@ namespace BankSystem.Client.WPF.UI.Transfer
             }
         }
 
-        public List<Account> FromAccounts
+        public ICollection<Account> FromAccounts
         {
             get { return _fromAccounts; }
             set
@@ -102,7 +102,7 @@ namespace BankSystem.Client.WPF.UI.Transfer
             }
         }
 
-        public List<Account> ToAccounts
+        public ICollection<Account> ToAccounts
         {
             get { return _toAccounts; }
             set

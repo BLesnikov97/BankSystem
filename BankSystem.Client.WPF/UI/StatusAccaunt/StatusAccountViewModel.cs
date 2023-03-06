@@ -20,9 +20,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
 
         public StatusAccountViewModel(IRepository db)
         {
-            //_accounts = db.GetAccountsList();
             _users = db.GetUsersList();
-            Accounts = SelectedUser.Accounts;
         }
 
         public RelayCommand StatusCommand
@@ -32,7 +30,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
                 return statusCommand ??
                     (statusCommand = new RelayCommand(user =>
                     {
-                            СheckAmount = Convert.ToString(SelectedAccount.Amount);
+                        СheckAmount = Convert.ToString(SelectedAccount.Amount);
                     }));
             }
         }
@@ -41,6 +39,7 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
             get { return _accounts; }
             set
             {
+                _accounts = SelectedUser.Accounts;
                 _accounts = value;
                 OnPropertyChanged("Accounts");
             }

@@ -9,7 +9,7 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
     public class AddAndTakeViewModel : BaseViewModel
     {
         private Account _selectedAccount;
-        private List<Account> _accounts;
+        private ICollection<Account> _accounts;
 
         private List<User> _users;
         private User _selectedUser;
@@ -23,7 +23,6 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             _db = db;
             _service = service;
 
-            _accounts = db.GetAccountsList();
             _users = db.GetUsersList();
         }
 
@@ -71,7 +70,7 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             }
         }
 
-        public List<Account> Accounts
+        public ICollection<Account> Accounts
         {
             get { return _accounts; }
             set

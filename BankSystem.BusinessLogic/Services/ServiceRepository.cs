@@ -54,9 +54,9 @@ namespace BankSystem.BusinesLogic.Services
                 throw new Exception("User not filled");
             }
 
-            Account account = new Account(UserId, Description, Amount, Currency);
+            UserId.Accounts.Add(new Account(UserId, Description, Amount, Currency));         
 
-            _db.CreateAccount(account);
+            _db.UpdateUser(UserId);
         }
     }
 }
