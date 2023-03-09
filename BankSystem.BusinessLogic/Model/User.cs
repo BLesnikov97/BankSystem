@@ -35,21 +35,34 @@ namespace BankSystem.BusinessLogic.Model
             Accounts = new List<Account>();
         }
 
-        public User(string LastName, string FirstName, string MiddleName, DateTime Birthday, Gender Gender) : this()
+        public User(string lastName, string firstName, string middleName, DateTime birthday, Gender gender) : this()
         {
             Random Id = new Random();
 
             int value = Id.Next(0, 99999);
 
             this.Id = value;
-            this.LastName = LastName;
-            this.FirstName = FirstName;
-            this.MiddleName = MiddleName;
-            this.Birthday = Birthday.ToUniversalTime();
-            this.Gender = Gender;
+            this.LastName = lastName;
+            this.FirstName = firstName;
+            this.MiddleName = middleName;
+            this.Birthday = birthday.ToUniversalTime();
+            this.Gender = gender;
             this.CreatedDate = DateTime.Now.ToUniversalTime();
             this.ModifiedDate = null;
             this.IsBlocked = false;
+
+            if (LastName == "")
+            {
+                throw new Exception("LastName not filled");
+            }
+            if (FirstName == "")
+            {
+                throw new Exception("FirstName not filled");
+            }
+            if (MiddleName == "")
+            {
+                throw new Exception("MiddleName not filled");
+            }
         }
     }
 }

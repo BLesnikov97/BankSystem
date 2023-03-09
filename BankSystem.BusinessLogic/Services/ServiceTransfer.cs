@@ -5,11 +5,11 @@ namespace BankSystem.BusinesLogic.Services
 {
     public class ServiceTransfer : IServiceTransfer
     {
-        private IRepository _db;
+        private IRepository _repository;
 
         public ServiceTransfer(IRepository db)
         {
-            _db = db;
+            _repository = db;
         }
 
         public void Transfer(Account forAccount, Account toAccount)
@@ -19,7 +19,7 @@ namespace BankSystem.BusinesLogic.Services
                 toAccount.Amount = toAccount.Amount + 100;
                 forAccount.Amount = forAccount.Amount - 100;
 
-                _db.Save();
+                _repository.Save();
             }
             else
             {

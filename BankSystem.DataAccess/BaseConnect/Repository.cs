@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinessLogic.Model;
+using BankSystem.BusinesLogic.Repositories;
 
 namespace BankSystem.DataAccess.BaseConnect
 {
@@ -68,5 +69,16 @@ namespace BankSystem.DataAccess.BaseConnect
         {
             _db.Entry(user).State = EntityState.Modified;
         }
+
+        private bool CheckUser(int id)
+        {
+            var resultSearch = _users.Find(userList => userList.Id == Id);
+
+            if (resultSearch != null)
+            {
+                throw new Exception("Existing user");
+            }
+
+            return true;
+        }
     }
-}

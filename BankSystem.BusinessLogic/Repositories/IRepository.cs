@@ -1,6 +1,6 @@
 ﻿using BankSystem.BusinessLogic.Model;
 
-namespace BankSystem.BusinesLogic.BaseConnect
+namespace BankSystem.BusinesLogic.Repositories
 {
     public interface IRepository
     {

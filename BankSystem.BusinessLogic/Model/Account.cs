@@ -26,25 +26,37 @@ namespace BankSystem.BusinessLogic.Model
 
         public bool IsBlocked { get; set; }
 
-        public Account()
+        protected Account()
         {
 
         }
 
 
 
-        public Account(User owner, string Description, double Amount, string Currency)
+        public Account(User owner, string description, double amount, string currency)
         {
             UserId = owner.Id;
 
             Owner = owner;
-            this.Description = Description;
-            this.Amount = Amount;
-            this.Currency = Currency;
+            this.Description = description;
+            this.Amount = amount;
+            this.Currency = currency;
             this.CreatedDate = DateTime.Now.ToUniversalTime(); 
             this.ModifiedDate = null;
             this.IsBlocked = false;
-            
+
+            if (Description == "")
+            {
+                throw new Exception("Description not filled");
+            }
+            if (Amount == "")
+            {
+                throw new Exception("Amount not filled");
+            }
+            if (Currency == "")
+            {
+                throw new Exception("Currency not filled");
+            }
         }
 
         public void AddAmount_100(Account account)

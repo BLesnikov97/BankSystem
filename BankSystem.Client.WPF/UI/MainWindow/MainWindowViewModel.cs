@@ -13,6 +13,7 @@ using BankSystem.Client.WPF.WindowsManager;
 using BankSystem.Client.WPF.UI.AddUser;
 using BankSystem.Client.WPF.UI.AddAccount;
 using BankSystem.BusinessLogic.Model;
+using BankSystem.BusinessLogic.Repositories;
 
 namespace BankSystem.Client.WPF.UI.MainWindow
 {
@@ -25,7 +26,7 @@ namespace BankSystem.Client.WPF.UI.MainWindow
         public  void InstallCastleWindsor()
         {
             container.Register(Component.For<IRepository>().ImplementedBy<Repository>());
-            container.Register(Component.For<IServiceRepository>().ImplementedBy<ServiceRepository>());
+            container.Register(Component.For<IService>().ImplementedBy<ServiceRepository>());
             container.Register(Component.For<IServiceTransfer>().ImplementedBy<ServiceTransfer>());
             container.Register(Component.For<IServiceDep>().ImplementedBy<ServiceDep>());
             container.Register(Component.For<IWindowManager>().ImplementedBy<WindowManager>());
