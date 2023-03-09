@@ -42,14 +42,18 @@ namespace BankSystem.BusinessLogic.Model
             this.Amount = amount;
             this.Currency = currency;
             this.CreatedDate = DateTime.Now.ToUniversalTime(); 
-            this.ModifiedDate = null;
+            this.ModifiedDate = DateTime.Now.ToUniversalTime();
             this.IsBlocked = false;
 
+            if (Owner == null)
+            {
+                throw new Exception("Owner is empty");
+            }
             if (Description == "")
             {
                 throw new Exception("Description not filled");
             }
-            if (Amount == "")
+            if (Amount == "" & Amount > 0)
             {
                 throw new Exception("Amount not filled");
             }
@@ -57,16 +61,19 @@ namespace BankSystem.BusinessLogic.Model
             {
                 throw new Exception("Currency not filled");
             }
+                
         }
 
         public void AddAmount_100(Account account)
         {
             account.Amount = account.Amount + 100;
+            account.ModifiedDate = DateTime.Now.ToUniversalTime();
         }
 
         public void TakeAmount_100(Account account)
         {
             account.Amount = account.Amount - 100;
+            account.ModifiedDate = DateTime.Now.ToUniversalTime();
         }
     }
 }

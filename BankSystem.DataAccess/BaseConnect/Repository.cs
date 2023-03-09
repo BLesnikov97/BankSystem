@@ -60,17 +60,7 @@ namespace BankSystem.DataAccess.BaseConnect
             _db.SaveChanges();
         }
 
-        public void UpdateAccount(Account account)
-        {
-            _db.Entry(account).State = EntityState.Modified;
-        }
-
-        public void UpdateUser(User user)
-        {
-            _db.Entry(user).State = EntityState.Modified;
-        }
-
-        private bool CheckUser(int id)
+        public bool CheckUser(int id)
         {
             var resultSearch = _users.Find(userList => userList.Id == Id);
 

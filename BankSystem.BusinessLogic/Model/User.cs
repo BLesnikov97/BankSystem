@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace BankSystem.BusinessLogic.Model
             this.Birthday = birthday.ToUniversalTime();
             this.Gender = gender;
             this.CreatedDate = DateTime.Now.ToUniversalTime();
-            this.ModifiedDate = null;
+            this.ModifiedDate = DateTime.Now.ToUniversalTime();
             this.IsBlocked = false;
 
             if (LastName == "")
@@ -62,6 +63,11 @@ namespace BankSystem.BusinessLogic.Model
             if (MiddleName == "")
             {
                 throw new Exception("MiddleName not filled");
+            }
+
+            public void AddAccount()
+            {
+
             }
         }
     }

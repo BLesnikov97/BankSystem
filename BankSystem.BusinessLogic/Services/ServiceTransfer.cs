@@ -17,7 +17,10 @@ namespace BankSystem.BusinesLogic.Services
             if (forAccount.Amount >= 100 & toAccount.IsBlocked != true & forAccount.Description != toAccount.Description)
             {
                 toAccount.Amount = toAccount.Amount + 100;
+                toAccount.ModifiedDate = DateTime.Now.ToUniversalTime();
+
                 forAccount.Amount = forAccount.Amount - 100;
+                forAccount.ModifiedDate = DateTime.Now.ToUniversalTime();
 
                 _repository.Save();
             }
