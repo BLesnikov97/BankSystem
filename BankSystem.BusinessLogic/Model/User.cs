@@ -30,7 +30,7 @@ namespace BankSystem.BusinessLogic.Model
         public ICollection<Account> Accounts { get; set; }
 
 
-        public User()
+        protected User()
         {
             Accounts = new List<Account>();
         }
