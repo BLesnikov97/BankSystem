@@ -24,7 +24,6 @@ namespace BankSystem.BusinesLogic.Services
             string Currency = selectedAccount.Currency;
 
             _service.AddAccount(selectedUser, Description, Amount, Currency);
-            _repository.Save();
         }
     }
 }

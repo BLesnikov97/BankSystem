@@ -16,13 +16,13 @@ namespace BankSystem.BusinesLogic.Services
             _users = _repository.GetUsersList();
         }
 
-        public void CheckCash(Account account)
-        {
-            if (account.Amount < 100)
-            {
-                throw new Exception("Cash not filled");
-            }
-        }
+        //public void CheckCash(Account account)
+        //{
+        //    if (account.Amount < 100)
+        //    {
+        //        throw new Exception("Cash not filled");
+        //    }
+        //}
 
         public void AddUser(string lastName, string firstName, string middleName, DateTime birthday, Gender gender)
         {
@@ -37,7 +37,7 @@ namespace BankSystem.BusinesLogic.Services
 
             user.Accounts.Add(new Account(user, description, amount, currency));         
 
-            _repository.UpdateUser(user);
+            _repository.Save();
         }
     }
 }

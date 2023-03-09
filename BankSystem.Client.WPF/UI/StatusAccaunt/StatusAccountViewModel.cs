@@ -12,7 +12,6 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
 
         private Account _selectedAccount;
         private ICollection<Account> _accounts;
-
         private List<User> _users;
         private User _selectedUser;
 

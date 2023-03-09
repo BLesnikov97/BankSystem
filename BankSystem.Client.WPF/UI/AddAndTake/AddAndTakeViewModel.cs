@@ -53,7 +53,10 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                     {
                         _service.CheckCash(SelectedAccount);
 
-                        SelectedAccount.TakeAmount_100(SelectedAccount);
+                        if (SelectedAccount.Amount >= 100)
+                        {
+                            SelectedAccount.TakeAmount_100(SelectedAccount);
+                        }
 
                         _db.Save();
                     }));
