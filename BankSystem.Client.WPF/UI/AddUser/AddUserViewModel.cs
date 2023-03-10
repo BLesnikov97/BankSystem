@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BankSystem.Client.WPF.Util;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
-using System.Security.Policy;
 
 namespace BankSystem.Client.WPF.UI.AddUser
 {
@@ -22,9 +17,9 @@ namespace BankSystem.Client.WPF.UI.AddUser
 
         private Gender _genders;
 
-        private IServiceRepository _service;
+        private IService _service;
 
-        public AddUserViewModel(IServiceRepository serviceRepository)
+        public AddUserViewModel(IService serviceRepository)
         {
             _service = serviceRepository;
         }

@@ -6,14 +6,15 @@ using BankSystem.DataAccess.BaseConnect;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using BankSystem.Client.WPF.Util;
-using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinesLogic.Services;
 using System.Configuration;
 using BankSystem.Client.WPF.WindowsManager;
 using BankSystem.Client.WPF.UI.AddUser;
 using BankSystem.Client.WPF.UI.AddAccount;
 using BankSystem.BusinessLogic.Model;
-using BankSystem.BusinessLogic.Repositories;
+using BankSystem.BusinesLogic.Repositories;
+using BankSystem.Client.WPF.UI.EditUser;
+using BankSystem.Client.WPF.UI.EditAccount;
 
 namespace BankSystem.Client.WPF.UI.MainWindow
 {
@@ -26,7 +27,7 @@ namespace BankSystem.Client.WPF.UI.MainWindow
         public  void InstallCastleWindsor()
         {
             container.Register(Component.For<IRepository>().ImplementedBy<Repository>());
-            container.Register(Component.For<IService>().ImplementedBy<ServiceRepository>());
+            container.Register(Component.For<IService>().ImplementedBy<Service>());
             container.Register(Component.For<IServiceTransfer>().ImplementedBy<ServiceTransfer>());
             container.Register(Component.For<IServiceDep>().ImplementedBy<ServiceDep>());
             container.Register(Component.For<IWindowManager>().ImplementedBy<WindowManager>());
@@ -45,6 +46,8 @@ namespace BankSystem.Client.WPF.UI.MainWindow
             container.Register(Component.For<StatusAccountViewModel>().LifeStyle.Transient);
             container.Register(Component.For<AddUserViewModel>());
             container.Register(Component.For<AddAccountViewModel>());
+            container.Register(Component.For<EditUserViewModel>());
+            container.Register(Component.For<EditAccountViewModel>());
 
             container.Register(Component.For<User>());
             container.Register(Component.For<Account>());

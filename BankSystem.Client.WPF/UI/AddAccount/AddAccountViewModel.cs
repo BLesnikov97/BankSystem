@@ -1,4 +1,4 @@
-﻿using BankSystem.BusinesLogic.BaseConnect;
+﻿using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
@@ -8,9 +8,9 @@ namespace BankSystem.Client.WPF.UI.AddAccount
 {
     public class AddAccountViewModel : BaseViewModel
     {
-        private List<User> _usersId;
+        private List<User> _users;
 
-        private User _selectedUserId;
+        private User _selectedUser;
 
         private string _description;
 
@@ -18,15 +18,15 @@ namespace BankSystem.Client.WPF.UI.AddAccount
 
         private string _currency;
 
-        private IServiceRepository _service;
+        private IService _service;
 
         private IRepository _db;
 
-        public AddAccountViewModel(IServiceRepository serviceRepository, IRepository repository)
+        public AddAccountViewModel(IService serviceRepository, IRepository repository)
         {
             _service = serviceRepository;
             _db = repository;
-            _usersId = _db.GetUsersList();
+            _users = _db.GetUsersList();
         }
 
 
@@ -77,20 +77,20 @@ namespace BankSystem.Client.WPF.UI.AddAccount
 
         public List<User> Users
         {
-            get { return _usersId; }
+            get { return _users; }
             set
             {
-                _usersId = value;
+                _users = value;
                 OnPropertyChanged("Users");
             }
         }
 
         public User SelectedUser
         {
-            get { return _selectedUserId; }
+            get { return _selectedUser; }
             set
             {
-                _selectedUserId = value;
+                _selectedUser = value;
                 OnPropertyChanged("SelectedUser");
             }
         }
