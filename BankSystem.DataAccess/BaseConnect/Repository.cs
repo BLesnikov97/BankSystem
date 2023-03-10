@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.BusinesLogic.Repositories;
 
@@ -60,9 +59,10 @@ namespace BankSystem.DataAccess.BaseConnect
             _db.SaveChanges();
         }
 
-        public bool CheckUser(int id)
+        public bool CheckUser(User user)
         {
-            var resultSearch = _users.Find(userList => userList.Id == Id);
+            var _users = GetUsersList();
+            var resultSearch = _users.Find(userList => userList.Id == user.Id);
 
             if (resultSearch != null)
             {
@@ -72,3 +72,4 @@ namespace BankSystem.DataAccess.BaseConnect
             return true;
         }
     }
+}

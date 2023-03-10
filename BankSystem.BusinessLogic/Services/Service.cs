@@ -1,6 +1,5 @@
-﻿using BankSystem.BusinesLogic.BaseConnect;
+﻿using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinessLogic.Model;
-using BankSystem.BusinessLogic.Repositories;
 
 namespace BankSystem.BusinesLogic.Services
 {
@@ -15,14 +14,6 @@ namespace BankSystem.BusinesLogic.Services
             _repository = repository;
             _users = _repository.GetUsersList();
         }
-
-        //public void CheckCash(Account account)
-        //{
-        //    if (account.Amount < 100)
-        //    {
-        //        throw new Exception("Cash not filled");
-        //    }
-        //}
 
         public void AddUser(string lastName, string firstName, string middleName, DateTime birthday, Gender gender)
         {

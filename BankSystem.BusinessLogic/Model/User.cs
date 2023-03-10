@@ -64,11 +64,11 @@ namespace BankSystem.BusinessLogic.Model
             {
                 throw new Exception("MiddleName not filled");
             }
+        }
 
-            public void AddAccount()
-            {
+        public void AddAccount()
+        {
 
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using BankSystem.BusinesLogic.BaseConnect;
+﻿using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services

@@ -53,7 +53,7 @@ namespace BankSystem.BusinessLogic.Model
             {
                 throw new Exception("Description not filled");
             }
-            if (Amount == "" & Amount > 0)
+            if (Amount == null & Amount > 0)
             {
                 throw new Exception("Amount not filled");
             }

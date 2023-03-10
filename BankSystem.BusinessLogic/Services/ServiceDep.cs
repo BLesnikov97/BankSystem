@@ -1,4 +1,4 @@
-﻿using BankSystem.BusinesLogic.BaseConnect;
+﻿using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
@@ -9,7 +9,7 @@ namespace BankSystem.BusinesLogic.Services
 
         private IRepository _repository;
 
-        public ServiceDep(IRepository db , IServiceRepository service)
+        public ServiceDep(IRepository db , IService service)
         {
             _service = service;
             _repository = db;
