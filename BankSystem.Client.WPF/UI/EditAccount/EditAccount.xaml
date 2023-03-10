@@ -6,7 +6,39 @@
              xmlns:local="clr-namespace:BankSystem.Client.WPF.UI.EditAccount"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
+
+        <ComboBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Description" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" />
+
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Description}" />
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount}" />
+        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Currency}"  />
+
+        <Label Content="Edit Users: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Edit Account: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Description: " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Amount: " Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <Label Content="Currency: " Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+
+        <Button Grid.Row="5" Grid.Column="1" Content="Edit Account" Command="{Binding EditAccount}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+
     </Grid>
 </UserControl>
