@@ -24,5 +24,6 @@ namespace BankSystem.Client.WPF.UI.AddAccount
         {
             InitializeComponent();
         }
+
     }
 }
