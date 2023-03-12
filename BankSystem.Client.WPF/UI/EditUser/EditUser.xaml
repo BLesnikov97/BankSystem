@@ -6,6 +6,8 @@
              xmlns:gend="clr-namespace:BankSystem.BusinessLogic.Model;assembly=BankSystem.BusinessLogic"
              xmlns:sys="clr-namespace:System;assembly=mscorlib" 
              xmlns:local="clr-namespace:BankSystem.Client.WPF.UI.EditUser"
+             xmlns:er="clr-namespace:BankSystem.Client.WPF.Command.Ruls"
+             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -18,6 +20,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,10 +39,37 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding LastName}" />
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding FirstName}" />
-        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding MiddleName}"/>
+
+        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+            <TextBox.Text>
+                <Binding Path="lastname" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <er:MinimumCharacterRule MinimumCharacters="3" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+            
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" >
+            <TextBox.Text>
+                <Binding Path="FristName" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <er:MinimumCharacterRule MinimumCharacters="3" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" >
+            <TextBox.Text>
+                <Binding Path="MiddleName" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <er:MinimumCharacterRule MinimumCharacters="3" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
         <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Birthday}" />
 
         <ComboBox Name="myComboBox" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}" />
