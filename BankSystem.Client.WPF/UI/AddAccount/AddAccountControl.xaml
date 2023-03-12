@@ -24,7 +24,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" >
+    
+        </ComboBox>
 
         <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
             <TextBox.Text>
@@ -36,8 +38,24 @@
             </TextBox.Text>
         </TextBox>
 
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount}" />
-        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Currency}"  />
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" >
+            <TextBox.Text>
+                <Binding Path="Amount" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <er:MinimumCharacterRule MinimumCharacters="3" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" >
+            <TextBox.Text>
+                <Binding Path="Currency" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <er:MinimumCharacterRule MinimumCharacters="3" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>   
+        </TextBox>
 
         <Label Content="Users: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
         <Label Content="Description: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
