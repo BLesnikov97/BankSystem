@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
         <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" >
-    
+         
         </ComboBox>
 
         <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
