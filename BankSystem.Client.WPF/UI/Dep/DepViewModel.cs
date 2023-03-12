@@ -20,7 +20,7 @@ namespace BankSystem.Client.WPF.UI.Dep
 
         private RelayCommand depCommand;
 
-        public DepViewModel(IRepository db, IService serviceRepository, IServiceDep dep)
+        public DepViewModel(IRepository db, IServiceDep dep)
         {
             _dep = dep;
             _users = db.GetUsersList();

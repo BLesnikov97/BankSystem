@@ -20,13 +20,10 @@ namespace BankSystem.Client.WPF.UI.AddAccount
 
         private IService _service;
 
-        private IRepository _repository;
-
         public AddAccountViewModel(IService serviceRepository, IRepository repository)
         {
             _service = serviceRepository;
-            _repository = repository;
-            _users = _repository.GetUsersList();
+            _users = repository.GetUsersList();
         }
 
 
@@ -40,8 +37,6 @@ namespace BankSystem.Client.WPF.UI.AddAccount
                     (addAccount = new RelayCommand(obj =>
                     {
                         _service.AddAccount(SelectedUser, Description, Amount, Currency);
-
-                        _repository.Save();
                     }));
             }
         }

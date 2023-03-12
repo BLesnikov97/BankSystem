@@ -21,13 +21,11 @@ namespace BankSystem.Client.WPF.UI.Transfer
         private Account _toAccount;
 
         private IServiceTransfer _serviceTransfer;
-        private IRepository _repository;
 
         public TransferViewModel(IRepository repository, IServiceTransfer serviceTransfer)
         {
             _serviceTransfer = serviceTransfer;
-            _repository = repository;
-            _users = _repository.GetUsersList();
+            _users = repository.GetUsersList();
         }
 
         private RelayCommand transferCommand;
@@ -40,7 +38,6 @@ namespace BankSystem.Client.WPF.UI.Transfer
                     (transferCommand = new RelayCommand(obj =>
                     {   
                         _serviceTransfer.Transfer(FromAccount, ToAccount, Sum);
-                        _repository.Save();
                     }));
             }
         }

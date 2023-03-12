@@ -22,16 +22,13 @@ namespace BankSystem.Client.WPF.UI.EditAccount
 
         private string _currency;
 
-        private IRepository _repository;
-
         private IService _service;
 
         public EditAccountViewModel(IRepository repository, IService service)
         {
-            _repository = repository;
             _service = service;
 
-            _users = _repository.GetUsersList();
+            _users = repository.GetUsersList();
         }
 
 

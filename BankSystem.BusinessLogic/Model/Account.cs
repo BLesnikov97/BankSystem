@@ -66,7 +66,7 @@ namespace BankSystem.BusinessLogic.Model
 
         public void AddAmount(Account account, double sum)
         {
-            account.Amount -= sum;
+            account.Amount += sum;
             account.ModifiedDate = DateTime.Now.ToUniversalTime();
         }
 
