@@ -22,9 +22,13 @@
 
         <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" DisplayMemberPath="LastName" SelectedItem="{Binding SelectedUser}" ItemsSource="{Binding Users}"/>
         <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" DisplayMemberPath="Description" SelectedItem="{Binding SelectedAccount}" ItemsSource="{Binding Accounts}"/>
-        <Button Grid.Row="2" Grid.Column="1" x:Name="Add" Content="Add 100$" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding AddCashCommand}" />
-        <Button Grid.Row="2" Grid.Column="2" x:Name="Take" Content="Take 100$" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding TakeCashCommand}" />
+        <TextBox VerticalAlignment="Bottom" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Sum}" />
+        
+        <Button Grid.Row="2" Grid.Column="1" x:Name="Add" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding AddCashCommand}" />
+        <Button Grid.Row="2" Grid.Column="2" x:Name="Take" Content="Take" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding TakeCashCommand}" />
+        
         <Label Content="User:" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Account:" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Center"/>
+        <Label Content="Sum:" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

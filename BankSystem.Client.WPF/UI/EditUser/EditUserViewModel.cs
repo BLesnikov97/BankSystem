@@ -24,9 +24,9 @@ namespace BankSystem.Client.WPF.UI.EditUser
 
         private IService _service;
 
-        public EditUserViewModel(IService serviceRepository)
+        public EditUserViewModel(IService service)
         {
-            _service = serviceRepository;
+            _service = service;
         }
 
         private RelayCommand editUser;
@@ -38,7 +38,7 @@ namespace BankSystem.Client.WPF.UI.EditUser
                 return editUser ??
                     (editUser = new RelayCommand(obj =>
                     {
-                    
+                        _service.EditUser(SelectedUser, LastName, FirstName, MiddleName, Birthday);   
                     }));
             }
         }

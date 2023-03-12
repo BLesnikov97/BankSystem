@@ -64,15 +64,20 @@ namespace BankSystem.BusinessLogic.Model
                 
         }
 
-        public void AddAmount_100(Account account)
+        public void AddAmount(Account account, double sum)
         {
-            account.Amount = account.Amount + 100;
+            account.Amount -= sum;
             account.ModifiedDate = DateTime.Now.ToUniversalTime();
         }
 
-        public void TakeAmount_100(Account account)
+        public void TakeAmount(Account account, double sum)
         {
-            account.Amount = account.Amount - 100;
+            if (account.Amount < sum)
+            {
+                throw new Exception("Amount not filled");
+            }
+
+            account.Amount -= sum;
             account.ModifiedDate = DateTime.Now.ToUniversalTime();
         }
     }

@@ -19,9 +19,9 @@ namespace BankSystem.Client.WPF.UI.AddUser
 
         private IService _service;
 
-        public AddUserViewModel(IService serviceRepository)
+        public AddUserViewModel(IService service)
         {
-            _service = serviceRepository;
+            _service = service;
         }
 
         private RelayCommand addUser;

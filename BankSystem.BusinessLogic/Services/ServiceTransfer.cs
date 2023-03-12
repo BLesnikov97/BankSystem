@@ -7,19 +7,19 @@ namespace BankSystem.BusinesLogic.Services
     {
         private IRepository _repository;
 
-        public ServiceTransfer(IRepository db)
+        public ServiceTransfer(IRepository repository)
         {
-            _repository = db;
+            _repository = repository;
         }
 
-        public void Transfer(Account forAccount, Account toAccount)
+        public void Transfer(Account forAccount, Account toAccount, double sum)
         {
-            if (forAccount.Amount >= 100 & toAccount.IsBlocked != true & forAccount.Id != toAccount.Id)
+            if (forAccount.Amount >= sum & toAccount.IsBlocked != true & forAccount.Id != toAccount.Id)
             {
-                toAccount.Amount = toAccount.Amount + 100;
+                toAccount.Amount += sum;
                 toAccount.ModifiedDate = DateTime.Now.ToUniversalTime();
 
-                forAccount.Amount = forAccount.Amount - 100;
+                forAccount.Amount -= sum;
                 forAccount.ModifiedDate = DateTime.Now.ToUniversalTime();
 
                 _repository.Save();

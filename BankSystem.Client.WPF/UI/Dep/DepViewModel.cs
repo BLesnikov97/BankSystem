@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BankSystem.BusinesLogic.BaseConnect;
+using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
@@ -20,7 +20,7 @@ namespace BankSystem.Client.WPF.UI.Dep
 
         private RelayCommand depCommand;
 
-        public DepViewModel(IRepository db, IServiceRepository serviceRepository, IServiceDep dep)
+        public DepViewModel(IRepository db, IService serviceRepository, IServiceDep dep)
         {
             _dep = dep;
             _users = db.GetUsersList();

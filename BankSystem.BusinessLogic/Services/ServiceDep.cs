@@ -9,10 +9,10 @@ namespace BankSystem.BusinesLogic.Services
 
         private IRepository _repository;
 
-        public ServiceDep(IRepository db , IService service)
+        public ServiceDep(IRepository repository, IService service)
         {
             _service = service;
-            _repository = db;
+            _repository = repository;
         }
 
         public void Dep(User selectedUser, Account selectedAccount)
@@ -24,6 +24,8 @@ namespace BankSystem.BusinesLogic.Services
             string Currency = selectedAccount.Currency;
 
             _service.AddAccount(selectedUser, Description, Amount, Currency);
+
+            _repository.Save();
         }
     }
 }

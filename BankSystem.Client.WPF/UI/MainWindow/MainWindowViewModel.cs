@@ -155,5 +155,37 @@ namespace BankSystem.Client.WPF.UI.MainWindow
                     }));
             }
         }
+
+        private RelayCommand _editAccount;
+
+        public RelayCommand EditAccount
+        {
+            get
+            {
+                return _editAccount ??
+                    (_editAccount = new RelayCommand(obj =>
+                    {
+                        EditAccountViewModel editAccountViewModel = container.Resolve<EditAccountViewModel>();
+
+                        _windowManager.WindowShow(editAccountViewModel);
+                    }));
+            }
+        }
+
+        private RelayCommand _editUser;
+
+        public RelayCommand EditUser
+        {
+            get
+            {
+                return _editUser ??
+                    (_editUser = new RelayCommand(obj =>
+                    {
+                        EditUserViewModel editUserViewModel = container.Resolve<EditUserViewModel>();
+
+                        _windowManager.WindowShow(editUserViewModel);
+                    }));
+            }
+        }
     }
 }

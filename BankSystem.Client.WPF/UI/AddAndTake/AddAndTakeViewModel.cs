@@ -1,4 +1,4 @@
-﻿using BankSystem.BusinesLogic.BaseConnect;
+﻿using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
@@ -14,16 +14,15 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
         private List<User> _users;
         private User _selectedUser;
 
-        private IRepository _db;
+        private double _sum;
 
-        private IServiceRepository _service;
+        private IRepository _repository;
 
-        public AddAndTakeViewModel(IRepository db, IServiceRepository service)
+        public AddAndTakeViewModel(IRepository repository, IService service)
         {
-            _db = db;
-            _service = service;
+            _repository = repository;
 
-            _users = db.GetUsersList();
+            _users = repository.GetUsersList();
         }
 
         private RelayCommand addCashCommand;
@@ -35,9 +34,9 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                 return addCashCommand ??
                     (addCashCommand = new RelayCommand(obj =>
                     {
-                        SelectedAccount.AddAmount_100(SelectedAccount);
+                        SelectedAccount.AddAmount(SelectedAccount, Sum);
 
-                        _db.Save();
+                        _repository.Save();
                     }));
             }
         }
@@ -51,14 +50,9 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                 return takeCashCommand ??
                     (takeCashCommand = new RelayCommand(user =>
                     {
-                        _service.CheckCash(SelectedAccount);
+                        SelectedAccount.TakeAmount(SelectedAccount, Sum);
 
-                        if (SelectedAccount.Amount >= 100)
-                        {
-                            SelectedAccount.TakeAmount_100(SelectedAccount);
-                        }
-
-                        _db.Save();
+                        _repository.Save();
                     }));
             }
         }
@@ -102,6 +96,17 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             {
                 _users = value;
                 OnPropertyChanged("Users");
+            }
+
+        }
+
+        public double Sum
+        {
+            get { return _sum; }
+            set
+            {
+                _sum = value;
+                OnPropertyChanged("Sum");
             }
 
         }

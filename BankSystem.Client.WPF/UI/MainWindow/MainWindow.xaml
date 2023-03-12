@@ -31,6 +31,8 @@
         <Button Grid.Row="3" Grid.Column="2" Content="Deposit" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding DepCommand}" />
         <Button Grid.Row="3" Grid.Column="1" x:Name="StatusAccaunt" Content="Status account" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding StausAccauntCommand}" />
         <Button Grid.Column="1" Content="Add account" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Command="{Binding AddAccount}" />
+        <Button Grid.Row="4" Grid.Column="1" Content="Edit User" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding EditUser}" />
+        <Button Grid.Row="5" Grid.Column="1" Content="Edit Account" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding EditAccount}" />
 
     </Grid>
     

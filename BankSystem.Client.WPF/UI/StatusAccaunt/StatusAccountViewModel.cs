@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BankSystem.Client.WPF.Util;
-using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinessLogic.Model;
+using BankSystem.BusinesLogic.Repositories;
 
 namespace BankSystem.Client.WPF.UI.StatusAccaunt
 {
@@ -12,14 +11,15 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
 
         private Account _selectedAccount;
         private ICollection<Account> _accounts;
+
         private List<User> _users;
         private User _selectedUser;
 
         private RelayCommand statusCommand;
 
-        public StatusAccountViewModel(IRepository db)
+        public StatusAccountViewModel(IRepository repository)
         {
-            _users = db.GetUsersList();
+            _users = repository.GetUsersList();
         }
 
         public RelayCommand StatusCommand

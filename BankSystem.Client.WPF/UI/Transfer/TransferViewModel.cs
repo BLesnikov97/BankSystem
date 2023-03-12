@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using BankSystem.Client.WPF.Util;
 using BankSystem.BusinesLogic.Services;
-using BankSystem.BusinesLogic.BaseConnect;
 using BankSystem.BusinessLogic.Model;
+using BankSystem.BusinesLogic.Repositories;
 
 namespace BankSystem.Client.WPF.UI.Transfer
 {
     public class TransferViewModel : BaseViewModel
     {
+        private double _sum;
+
         private List<User> _users;
         private User _fromUser;
         private User _toUser;
@@ -19,13 +21,13 @@ namespace BankSystem.Client.WPF.UI.Transfer
         private Account _toAccount;
 
         private IServiceTransfer _serviceTransfer;
-        private IRepository _db;
+        private IRepository _repository;
 
-        public TransferViewModel(IRepository db, IServiceTransfer serviceTransfer)
+        public TransferViewModel(IRepository repository, IServiceTransfer serviceTransfer)
         {
             _serviceTransfer = serviceTransfer;
-            _db = db;
-            _users = db.GetUsersList();
+            _repository = repository;
+            _users = _repository.GetUsersList();
         }
 
         private RelayCommand transferCommand;
@@ -37,8 +39,8 @@ namespace BankSystem.Client.WPF.UI.Transfer
                 return transferCommand ??
                     (transferCommand = new RelayCommand(obj =>
                     {   
-                        _serviceTransfer.Transfer(FromAccount, ToAccount);
-                        _db.Save();
+                        _serviceTransfer.Transfer(FromAccount, ToAccount, Sum);
+                        _repository.Save();
                     }));
             }
         }
@@ -113,6 +115,17 @@ namespace BankSystem.Client.WPF.UI.Transfer
                 _toAccounts = value;
                 OnPropertyChanged("ToAccounts");
             }
-        }      
+        }
+
+        public double Sum
+        {
+            get { return _sum; }
+            set
+            {
+                _sum = value;
+                OnPropertyChanged("Sum");
+            }
+
+        }
     }
 }

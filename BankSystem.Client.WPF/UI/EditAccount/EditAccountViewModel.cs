@@ -22,15 +22,16 @@ namespace BankSystem.Client.WPF.UI.EditAccount
 
         private string _currency;
 
+        private IRepository _repository;
+
         private IService _service;
 
-        private IRepository _db;
-
-        public EditAccountViewModel(IService serviceRepository, IRepository repository)
+        public EditAccountViewModel(IRepository repository, IService service)
         {
-            _service = serviceRepository;
-            _db = repository;
-            _users = _db.GetUsersList();
+            _repository = repository;
+            _service = service;
+
+            _users = _repository.GetUsersList();
         }
 
 
@@ -43,7 +44,7 @@ namespace BankSystem.Client.WPF.UI.EditAccount
                 return editAccount ??
                     (editAccount = new RelayCommand(obj =>
                     {
-
+                        _service.EditAccount(SelectedAccount, Description, Amount, Currency);   
                     }));
             }
         }
