@@ -7,6 +7,8 @@
              xmlns:t="clr-namespace:BankSystem.Client.WPF.UI.Transfer"
              xmlns:au="clr-namespace:BankSystem.Client.WPF.UI.AddUser"
              xmlns:aa="clr-namespace:BankSystem.Client.WPF.UI.AddAccount"
+             xmlns:eu="clr-namespace:BankSystem.Client.WPF.UI.EditUser"
+             xmlns:ea="clr-namespace:BankSystem.Client.WPF.UI.EditAccount"
              StartupUri="UI\MainWindow\MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -41,6 +43,14 @@
 
                     <DataTemplate DataType = "{x:Type aa:AddAccountViewModel}">
                         <aa:AddAccountControl/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType = "{x:Type eu:EditUserViewModel}">
+                        <eu:EditUser/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType = "{x:Type ea:EditAccountViewModel}">
+                        <ea:EditAccount/>
                     </DataTemplate>
 
                 </ResourceDictionary>

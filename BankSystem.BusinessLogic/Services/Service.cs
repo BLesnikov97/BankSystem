@@ -21,7 +21,7 @@ namespace BankSystem.BusinesLogic.Services
 
         public void AddAccount(User user, string description, double amount, string currency)
         {
-            user.Accounts.Add(new Account(user, description, amount, currency));         
+            user.AddAccount(user, description, amount, currency);       
 
             _repository.Save();
         }

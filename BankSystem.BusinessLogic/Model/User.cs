@@ -65,5 +65,10 @@ namespace BankSystem.BusinessLogic.Model
                 throw new Exception("MiddleName not filled");
             }
         }
+
+        public void AddAccount(User user, string description, double amount, string currency)
+        {
+            Accounts.Add(new Account(user, description, amount, currency));
+        }
     }
 }
