@@ -3,10 +3,11 @@ using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BankSystem.Client.WPF.UI.AddAccount
 {
-    public class AddAccountViewModel : BaseViewModel
+    public class AddAccountViewModel : BaseViewModel, IDataErrorInfo
     {
         private List<User> _users;
 
@@ -25,6 +26,11 @@ namespace BankSystem.Client.WPF.UI.AddAccount
             _service = serviceRepository;
             _users = repository.GetUsersList();
         }
+
+
+        public string Error => throw new System.NotImplementedException();
+
+        public string this[string columnName] => throw new System.NotImplementedException();
 
 
         private RelayCommand addAccount;
