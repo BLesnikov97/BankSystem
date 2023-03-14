@@ -51,7 +51,7 @@ namespace BankSystem.Client.WPF.UI.AddAccount
                             error = "Currency cannot be empty.";
                         break;
                     case nameof(Amount):
-                        if (Amount == 0 & Amount < 0)
+                        if (Convert.ToString(Amount) == null)
                             error = "Amount cannot be empty.";
                         break;
                     case nameof(SelectedUser):
