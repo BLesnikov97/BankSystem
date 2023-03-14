@@ -3,10 +3,11 @@ using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BankSystem.Client.WPF.UI.EditAccount
 {
-    public class EditAccountViewModel : BaseViewModel
+    public class EditAccountViewModel : BaseViewModel, IDataErrorInfo
     {
         private List<User> _users;
 
@@ -29,6 +30,46 @@ namespace BankSystem.Client.WPF.UI.EditAccount
             _service = service;
 
             _users = repository.GetUsersList();
+        }
+
+        public string Error => string.Empty;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+
+                switch (columnName)
+                {
+                    case nameof(SelectedUser):
+                        if (SelectedUser == null)
+                            error = "Selected user cannot be empty.";
+                        break;
+
+                    case nameof(SelectedAccount):
+                        if (SelectedAccount == null)
+                            error = "Selected account cannot be empty.";
+                        break;
+                    case nameof(Description):
+                        if (string.IsNullOrWhiteSpace(Description))
+                            error = "Description cannot be empty.";
+                        if (Description?.Length > 50)
+                            error = "Description than 50 characters.";
+                        break;
+
+                    case nameof(Currency):
+                        if (string.IsNullOrWhiteSpace(Currency))
+                            error = "Currency cannot be empty.";
+                        break;
+                    case nameof(Amount):
+                        if (Amount == 0 & Amount < 0)
+                            error = "Amount cannot be empty.";
+                        break;
+                }
+
+                return error;
+            }
         }
 
 

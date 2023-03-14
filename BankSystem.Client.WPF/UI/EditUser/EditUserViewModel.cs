@@ -3,10 +3,11 @@ using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BankSystem.Client.WPF.UI.EditUser
 {
-    public class EditUserViewModel : BaseViewModel
+    public class EditUserViewModel : BaseViewModel , IDataErrorInfo
     {
         private List<User> _users;
 
@@ -27,6 +28,51 @@ namespace BankSystem.Client.WPF.UI.EditUser
         public EditUserViewModel(IService service)
         {
             _service = service;
+        }
+
+        public string Error => string.Empty;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+
+                DateTime currentDate = DateTime.Now;
+
+                switch (columnName)
+                {
+                    case nameof(LastName):
+                        if (string.IsNullOrWhiteSpace(LastName))
+                            error = "Description cannot be empty.";
+                        if (LastName?.Length > 50)
+                            error = "LastName than 50 characters.";
+                        break;
+
+                    case nameof(FirstName):
+                        if (string.IsNullOrWhiteSpace(FirstName))
+                            error = "FirstName cannot be empty.";
+                        if (FirstName?.Length > 50)
+                            error = "FirstName than 50 characters.";
+                        break;
+
+                    case nameof(MiddleName):
+                        if (string.IsNullOrWhiteSpace(MiddleName))
+                            error = "MiddleName cannot be empty.";
+                        if (MiddleName?.Length > 50)
+                            error = "MiddleName than 50 characters.";
+                        break;
+
+                    case nameof(Birthday):
+                        if (Birthday == null)
+                            error = "Birthday cannot be empty.";
+                        if (Birthday > currentDate.AddYears(-100))
+                            error = "Cannot be more than 100 years old.";
+                        break;
+                }
+
+                return error;
+            }
         }
 
         private RelayCommand editUser;

@@ -38,35 +38,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" >
-            <TextBox.Text>
-                <Binding Path="lastName" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <er:MinimumCharacterRule MinimumCharacters="3" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text ="{Binding LastName, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
-        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
-            <TextBox.Text>
-                <Binding Path="FirstName" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <er:MinimumCharacterRule MinimumCharacters="3" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" >
-            <TextBox.Text>
-                <Binding Path="MiddleName" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <er:MinimumCharacterRule MinimumCharacters="3" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Birthday}" />
+        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text ="{Binding FirstName, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text ="{Binding MiddleName, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Birthday, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <ComboBox Name="myComboBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" SelectedValue="{Binding Gender}" ItemsSource="{Binding Source={StaticResource GenderDataSource}}" />
 

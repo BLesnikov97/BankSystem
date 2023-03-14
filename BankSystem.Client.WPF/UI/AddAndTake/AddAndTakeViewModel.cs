@@ -3,10 +3,11 @@ using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BankSystem.Client.WPF.UI.AddAndTake
 {
-    public class AddAndTakeViewModel : BaseViewModel
+    public class AddAndTakeViewModel : BaseViewModel, IDataErrorInfo
     {
         private Account _selectedAccount;
         private ICollection<Account> _accounts;
@@ -23,6 +24,34 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             _repository = repository;
 
             _users = repository.GetUsersList();
+        }
+
+        public string Error => string.Empty;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+
+                switch (columnName)
+                {
+                    case nameof(Sum):
+                        if (Sum == 0)
+                            error = "Sum cannot be empty.";
+                        break;
+                    case nameof(SelectedUser):
+                        if (SelectedUser == null)
+                            error = "User cannot be empty.";
+                        break;
+                    case nameof(SelectedAccount):
+                        if (SelectedAccount == null)
+                            error = "Account cannot be empty.";
+                        break;
+                }                
+
+                return error;
+            }
         }
 
         private RelayCommand addCashCommand;

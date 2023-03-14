@@ -28,21 +28,19 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
-        <ComboBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Description" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" />
+        <ComboBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="Description" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" >
-            <TextBox.Text>
-                <Binding Path="Description" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <er:MinimumCharacterRule MinimumCharacters="3" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount}" />
-        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Currency}"  />
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Description, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Currency, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <Label Content="Edit Users: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
         <Label Content="Edit Account: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />

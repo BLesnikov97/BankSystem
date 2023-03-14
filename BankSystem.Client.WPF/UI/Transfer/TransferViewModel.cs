@@ -3,10 +3,12 @@ using BankSystem.Client.WPF.Util;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.BusinesLogic.Repositories;
+using System.ComponentModel;
+using System;
 
 namespace BankSystem.Client.WPF.UI.Transfer
 {
-    public class TransferViewModel : BaseViewModel
+    public class TransferViewModel : BaseViewModel, IDataErrorInfo
     {
         private double _sum;
 
@@ -26,6 +28,44 @@ namespace BankSystem.Client.WPF.UI.Transfer
         {
             _serviceTransfer = serviceTransfer;
             _users = repository.GetUsersList();
+        }
+
+        public string Error => string.Empty;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+
+                switch (columnName)
+                {
+                    case nameof(FromUser):
+                        if (FromUser == null)
+                            error = "From user cannot be empty.";
+                        break;
+
+                    case nameof(ToUser):
+                        if (ToUser == null)
+                            error = "To user cannot be empty.";
+                        break;
+                    case nameof(FromAccount):
+                        if (FromAccount == null)
+                            error = "From account cannot be empty.";
+                        break;
+
+                    case nameof(ToAccount):
+                        if (ToAccount == null)
+                            error = "To account cannot be empty.";
+                        break;
+                    case nameof(Sum):
+                        if (Sum == 0 & Sum < 0)
+                            error = "Must not be 0 or less than 0.";
+                        break;
+                }
+
+                return error;
+            }
         }
 
         private RelayCommand transferCommand;

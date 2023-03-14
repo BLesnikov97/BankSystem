@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
@@ -6,7 +8,7 @@ using BankSystem.Client.WPF.Util;
 
 namespace BankSystem.Client.WPF.UI.Dep
 {
-    public class DepViewModel : BaseViewModel
+    public class DepViewModel : BaseViewModel, IDataErrorInfo
     {
         private User _selectedUser;
 
@@ -24,6 +26,31 @@ namespace BankSystem.Client.WPF.UI.Dep
         {
             _dep = dep;
             _users = db.GetUsersList();
+        }
+
+        public string Error => string.Empty;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+
+                switch (columnName)
+                {
+                    case nameof(SelectedUser):
+                        if (SelectedUser == null)
+                            error = "Selected user cannot be empty.";
+                        break;
+
+                    case nameof(SelectedAccount):
+                        if (SelectedAccount == null)
+                            error = "Selected account cannot be empty.";
+                        break;
+                }
+
+                return error;
+            }
         }
 
         public RelayCommand DepCommand
