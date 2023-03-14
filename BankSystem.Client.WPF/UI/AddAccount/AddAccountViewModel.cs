@@ -2,6 +2,7 @@
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -28,9 +29,40 @@ namespace BankSystem.Client.WPF.UI.AddAccount
         }
 
 
-        public string Error => throw new System.NotImplementedException();
+        public string Error => string.Empty;
 
-        public string this[string columnName] => throw new System.NotImplementedException();
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+
+                switch (columnName)
+                {
+                    case nameof(Description):
+                        if (string.IsNullOrWhiteSpace(Description))
+                            error = "Description cannot be empty.";
+                        if (Description?.Length > 50)
+                            error = "Description than 50 characters.";
+                        break;
+
+                    case nameof(Currency):
+                        if (string.IsNullOrWhiteSpace(Currency))
+                            error = "Currency cannot be empty.";
+                        break;
+                    case nameof(Amount):
+                        if (Amount == 0)
+                            error = "Amount cannot be empty.";
+                        break;
+                    case nameof(SelectedUser):
+                        if (SelectedUser == null)
+                            error = "User cannot be empty.";
+                        break;
+                }
+
+                return error;
+            }
+        }
 
 
         private RelayCommand addAccount;
