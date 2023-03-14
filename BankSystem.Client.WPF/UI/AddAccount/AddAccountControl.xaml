@@ -28,7 +28,7 @@
             UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Description, Mode=TwoWay,
-            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" PreviewLostKeyboardFocus="TextBox_PreviewLostKeyboardFocus" />
 
         <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount, Mode=TwoWay,
             UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
