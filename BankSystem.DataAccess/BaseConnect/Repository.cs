@@ -25,23 +25,25 @@ namespace BankSystem.DataAccess.BaseConnect
             Save();
         }
 
-        public void Delete(int id)
+        public void DeleteUser(User user)
         {
-            User user = _db.Users.Find(id);
+            Account userSearch = _db.Accounts.FirstOrDefault(x => x.Id == user.Id);
 
-            if (user != null)
+            if (userSearch != null)
             {
-                _db.Remove(user);
+                _db.Remove(userSearch);
             }
+            Save();
         }
 
-        public void DeleteAccount(User id)
+        public void DeleteAccount(User user)
         {
-            Account account = _db.Accounts.Find(id);
-            if (account != null)
+            Account accountSearch = _db.Accounts.FirstOrDefault(x => x.Id == user.Id);
+            if (accountSearch != null)
             {
-                _db.Remove(account);
+                _db.Remove(accountSearch);
             }
+            Save();
         }
 
         public List<Account> GetAccountsList()

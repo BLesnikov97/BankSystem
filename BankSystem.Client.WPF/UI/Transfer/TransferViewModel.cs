@@ -5,6 +5,9 @@ using BankSystem.BusinessLogic.Model;
 using BankSystem.BusinesLogic.Repositories;
 using System.ComponentModel;
 using System;
+using ControlzEx.Standard;
+using System.Security.Principal;
+using System.Windows.Input;
 
 namespace BankSystem.Client.WPF.UI.Transfer
 {
@@ -24,47 +27,36 @@ namespace BankSystem.Client.WPF.UI.Transfer
 
         private IServiceTransfer _serviceTransfer;
 
+        protected Dictionary<string, string> ValidationErrors = new Dictionary<string, string>();
+
         public TransferViewModel(IRepository repository, IServiceTransfer serviceTransfer)
         {
             _serviceTransfer = serviceTransfer;
             _users = repository.GetUsersList();
         }
+        public string Error
+        {
+            get
+            {
+                if (ValidationErrors.Count > 0)
+                {
+                    return string.Empty;
+                }
 
-        public string Error => string.Empty;
+                return null;
+            }
+        }
 
         public string this[string columnName]
         {
             get
             {
-                string error = string.Empty;
-
-                switch (columnName)
+                if (ValidationErrors.ContainsKey(columnName))
                 {
-                    case nameof(FromUser):
-                        if (FromUser == null)
-                            error = "From user cannot be empty.";
-                        break;
-
-                    case nameof(ToUser):
-                        if (ToUser == null)
-                            error = "To user cannot be empty.";
-                        break;
-                    case nameof(FromAccount):
-                        if (FromAccount == null)
-                            error = "From account cannot be empty.";
-                        break;
-
-                    case nameof(ToAccount):
-                        if (ToAccount == null)
-                            error = "To account cannot be empty.";
-                        break;
-                    case nameof(Sum):
-                        if (Sum == 0 & Sum < 0)
-                            error = "Must not be 0 or less than 0.";
-                        break;
+                    return ValidationErrors[columnName];
                 }
 
-                return error;
+                return null;
             }
         }
 
@@ -76,7 +68,9 @@ namespace BankSystem.Client.WPF.UI.Transfer
             {
                 return transferCommand ??
                     (transferCommand = new RelayCommand(obj =>
-                    {   
+                    {
+                        Validate();
+
                         _serviceTransfer.Transfer(FromAccount, ToAccount, Sum);
                     }));
             }
@@ -98,7 +92,8 @@ namespace BankSystem.Client.WPF.UI.Transfer
             set
             {
                 _fromUser = value;
-                OnPropertyChanged("FromUser");
+                Validate();
+                OnPropertyChanged("");
                 FromAccounts = FromUser.Accounts;
             }
         }
@@ -109,7 +104,8 @@ namespace BankSystem.Client.WPF.UI.Transfer
             set
             {
                 _toUser = value;
-                OnPropertyChanged("ToUser");
+                Validate();
+                OnPropertyChanged("");
                 ToAccounts = ToUser.Accounts;
             }
         }
@@ -120,7 +116,8 @@ namespace BankSystem.Client.WPF.UI.Transfer
             set
             {
                 _fromAccount = value;
-                OnPropertyChanged("FromAccount");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -130,7 +127,8 @@ namespace BankSystem.Client.WPF.UI.Transfer
             set
             {
                 _toAccount = value;
-                OnPropertyChanged("ToAccount");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -160,9 +158,30 @@ namespace BankSystem.Client.WPF.UI.Transfer
             set
             {
                 _sum = value;
-                OnPropertyChanged("Sum");
+                Validate();
+                OnPropertyChanged("");
             }
 
+        }
+
+        private void Validate()
+        {
+            ValidationErrors.Clear();
+
+            DateTime currentDate = DateTime.Now;
+
+            if (FromUser == null)
+                ValidationErrors.Add(nameof(FromUser), "From user cannot be empty.");
+            if (ToUser == null)
+                ValidationErrors.Add(nameof(ToUser), "To user cannot be empty.");
+            if (FromAccount == null)
+                ValidationErrors.Add(nameof(FromAccount), "From account cannot be empty.");
+            if (ToAccount == null)
+                ValidationErrors.Add(nameof(ToAccount), "To account cannot be empty.");
+            if (Sum == 0 && Sum < 0)
+                ValidationErrors.Add(nameof(Sum), "Must not be 0 or less than 0.");
+
+            OnPropertyChanged("");
         }
     }
 }

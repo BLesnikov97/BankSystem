@@ -24,17 +24,13 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser, Mode=TwoWay,
-            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayMemberPath="FirstName" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser, Mode=TwoWay, ValidatesOnDataErrors=True}" />
 
-        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Description, Mode=TwoWay,
-            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" PreviewLostKeyboardFocus="TextBox_PreviewLostKeyboardFocus" />
+        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Description, Mode=TwoWay, ValidatesOnDataErrors=True}" />
 
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount, Mode=TwoWay,
-            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Amount, Mode=TwoWay, ValidatesOnDataErrors=True}" />
 
-        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Currency, Mode=TwoWay,
-            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Currency, Mode=TwoWay, ValidatesOnDataErrors=True}" />
 
         <Label Content="Users: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
         <Label Content="Description: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />

@@ -24,8 +24,5 @@ namespace BankSystem.Client.WPF.UI.AddAccount
         {
             InitializeComponent();
         }
-
-        private void TextBox_PreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) =>
-            e.Handled = Validation.GetHasError((TextBox)sender);
     }
 }

@@ -19,6 +19,8 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
 
         private IRepository _repository;
 
+        protected Dictionary<string, string> ValidationErrors = new Dictionary<string, string>();
+
         public AddAndTakeViewModel(IRepository repository, IService service)
         {
             _repository = repository;
@@ -26,31 +28,29 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             _users = repository.GetUsersList();
         }
 
-        public string Error => string.Empty;
+        public string Error
+        {
+            get
+            {
+                if (ValidationErrors.Count > 0)
+                {
+                    return string.Empty;
+                }
+
+                return null;
+            }
+        }
 
         public string this[string columnName]
         {
             get
             {
-                string error = string.Empty;
-
-                switch (columnName)
+                if (ValidationErrors.ContainsKey(columnName))
                 {
-                    case nameof(Sum):
-                        if (Sum == 0)
-                            error = "Sum cannot be empty.";
-                        break;
-                    case nameof(SelectedUser):
-                        if (SelectedUser == null)
-                            error = "User cannot be empty.";
-                        break;
-                    case nameof(SelectedAccount):
-                        if (SelectedAccount == null)
-                            error = "Account cannot be empty.";
-                        break;
-                }                
+                    return ValidationErrors[columnName];
+                }
 
-                return error;
+                return null;
             }
         }
 
@@ -63,6 +63,8 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                 return addCashCommand ??
                     (addCashCommand = new RelayCommand(obj =>
                     {
+                        Validate();
+
                         SelectedAccount.AddAmount(SelectedAccount, Sum);
 
                         _repository.Save();
@@ -79,6 +81,8 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                 return takeCashCommand ??
                     (takeCashCommand = new RelayCommand(user =>
                     {
+                        Validate();
+
                         SelectedAccount.TakeAmount(SelectedAccount, Sum);
 
                         _repository.Save();
@@ -92,7 +96,8 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             set
             {
                 _selectedAccount = value;
-                OnPropertyChanged("SelectedAccount");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -113,7 +118,8 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             set
             {
                 _selectedUser = value;
-                OnPropertyChanged("SelectedUser");
+                Validate();
+                OnPropertyChanged("");
                 Accounts = SelectedUser.Accounts;
             }
         }
@@ -135,9 +141,24 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
             set
             {
                 _sum = value;
-                OnPropertyChanged("Sum");
+                Validate();
+                OnPropertyChanged("");
             }
 
+        }
+
+        private void Validate()
+        {
+            ValidationErrors.Clear();
+
+            if (SelectedAccount == null)
+                ValidationErrors.Add(nameof(SelectedAccount), "Account cannot be empty.");
+            if (Sum <= 0)
+                ValidationErrors.Add(nameof(Sum), "Sum cannot be empty.");
+            if (SelectedUser == null)
+                ValidationErrors.Add(nameof(SelectedUser), "User cannot be empty.");
+
+            OnPropertyChanged("");
         }
     }
 }

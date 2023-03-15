@@ -14,7 +14,7 @@ namespace BankSystem.BusinesLogic.Services
 
         public void Transfer(Account forAccount, Account toAccount, double sum)
         {
-            if (forAccount.Amount >= sum & toAccount.IsBlocked != true & forAccount.Id != toAccount.Id)
+            if (forAccount.Amount >= sum && toAccount.IsBlocked != true && forAccount.Id != toAccount.Id)
             {
                 toAccount.Amount += sum;
                 toAccount.ModifiedDate = DateTime.Now.ToUniversalTime();

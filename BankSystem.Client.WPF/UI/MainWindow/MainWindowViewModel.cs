@@ -40,14 +40,14 @@ namespace BankSystem.Client.WPF.UI.MainWindow
                                                                          ConfigurationManager.AppSettings.Get("Password"));
                 return new ApplicationContext(connectionConfig); } ));
 
-            container.Register(Component.For<AddAndTakeViewModel>());
-            container.Register(Component.For<TransferViewModel>());
-            container.Register(Component.For<DepViewModel>());
+            container.Register(Component.For<AddAndTakeViewModel>().LifeStyle.Transient);
+            container.Register(Component.For<TransferViewModel>().LifeStyle.Transient);
+            container.Register(Component.For<DepViewModel>().LifeStyle.Transient);
             container.Register(Component.For<StatusAccountViewModel>().LifeStyle.Transient);
-            container.Register(Component.For<AddUserViewModel>());
-            container.Register(Component.For<AddAccountViewModel>());
-            container.Register(Component.For<EditUserViewModel>());
-            container.Register(Component.For<EditAccountViewModel>());
+            container.Register(Component.For<AddUserViewModel>().LifeStyle.Transient);
+            container.Register(Component.For<AddAccountViewModel>().LifeStyle.Transient);
+            container.Register(Component.For<EditUserViewModel>().LifeStyle.Transient);
+            container.Register(Component.For<EditAccountViewModel>().LifeStyle.Transient);
 
             container.Register(Component.For<User>());
             container.Register(Component.For<Account>());

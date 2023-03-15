@@ -25,6 +25,8 @@ namespace BankSystem.Client.WPF.UI.EditAccount
 
         private IService _service;
 
+        protected Dictionary<string, string> ValidationErrors = new Dictionary<string, string>();
+
         public EditAccountViewModel(IRepository repository, IService service)
         {
             _service = service;
@@ -32,43 +34,29 @@ namespace BankSystem.Client.WPF.UI.EditAccount
             _users = repository.GetUsersList();
         }
 
-        public string Error => string.Empty;
+        public string Error
+        {
+            get
+            {
+                if (ValidationErrors.Count > 0)
+                {
+                    return string.Empty;
+                }
+
+                return null;
+            }
+        }
 
         public string this[string columnName]
         {
             get
             {
-                string error = string.Empty;
-
-                switch (columnName)
+                if (ValidationErrors.ContainsKey(columnName))
                 {
-                    case nameof(SelectedUser):
-                        if (SelectedUser == null)
-                            error = "Selected user cannot be empty.";
-                        break;
-
-                    case nameof(SelectedAccount):
-                        if (SelectedAccount == null)
-                            error = "Selected account cannot be empty.";
-                        break;
-                    case nameof(Description):
-                        if (string.IsNullOrWhiteSpace(Description))
-                            error = "Description cannot be empty.";
-                        if (Description?.Length > 50)
-                            error = "Description than 50 characters.";
-                        break;
-
-                    case nameof(Currency):
-                        if (string.IsNullOrWhiteSpace(Currency))
-                            error = "Currency cannot be empty.";
-                        break;
-                    case nameof(Amount):
-                        if (Amount == 0 & Amount < 0)
-                            error = "Amount cannot be empty.";
-                        break;
+                    return ValidationErrors[columnName];
                 }
 
-                return error;
+                return null;
             }
         }
 
@@ -82,6 +70,8 @@ namespace BankSystem.Client.WPF.UI.EditAccount
                 return editAccount ??
                     (editAccount = new RelayCommand(obj =>
                     {
+                        Validate();
+
                         _service.EditAccount(SelectedAccount, Description, Amount, Currency);   
                     }));
             }
@@ -93,7 +83,8 @@ namespace BankSystem.Client.WPF.UI.EditAccount
             set
             {
                 _description = value;
-                OnPropertyChanged("Description");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -103,7 +94,8 @@ namespace BankSystem.Client.WPF.UI.EditAccount
             set
             {
                 _amount = value;
-                OnPropertyChanged("Amount");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -113,7 +105,8 @@ namespace BankSystem.Client.WPF.UI.EditAccount
             set
             {
                 _currency = value;
-                OnPropertyChanged("Currency");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -133,7 +126,8 @@ namespace BankSystem.Client.WPF.UI.EditAccount
             set
             {
                 _selectedUser = value;
-                OnPropertyChanged("SelectedUser");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -153,8 +147,29 @@ namespace BankSystem.Client.WPF.UI.EditAccount
             set
             {
                 _selectedAccount = value;
-                OnPropertyChanged("SelectedAccount");
+                Validate();
+                OnPropertyChanged("");
             }
+        }
+
+        private void Validate()
+        {
+            ValidationErrors.Clear();
+
+            if (string.IsNullOrWhiteSpace(Description))
+                ValidationErrors.Add(nameof(Description), "Description cannot be empty.");
+            if (Description?.Length > 50)
+                ValidationErrors.Add(nameof(Description), "Description than 50 characters.");
+            if (string.IsNullOrWhiteSpace(Currency))
+                ValidationErrors.Add(nameof(Currency), "Currency cannot be empty.");
+            if (Amount <= 0)
+                ValidationErrors.Add(nameof(Amount), "Amount cannot be empty or negative.");
+            if (SelectedUser == null)
+                ValidationErrors.Add(nameof(SelectedUser), "User cannot be empty.");
+            if (SelectedAccount == null)
+                ValidationErrors.Add(nameof(SelectedAccount), "User cannot be empty.");
+
+            OnPropertyChanged("");
         }
     }
 }

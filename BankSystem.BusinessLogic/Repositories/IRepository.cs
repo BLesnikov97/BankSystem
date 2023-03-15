@@ -6,12 +6,12 @@ namespace BankSystem.BusinesLogic.Repositories
     {
         List<User> GetUsersList();
         void CreateUser(User user);
-        void Delete(int id);
+        void DeleteUser(User user);
         void Save();
 
         List<Account> GetAccountsList();
         void CreateAccount(Account account);
-        void DeleteAccount(User id);
+        void DeleteAccount(User user);
     }
 }
 

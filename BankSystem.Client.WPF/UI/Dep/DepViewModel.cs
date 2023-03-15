@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Controls;
 using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
+using ControlzEx.Standard;
 
 namespace BankSystem.Client.WPF.UI.Dep
 {
@@ -20,6 +22,8 @@ namespace BankSystem.Client.WPF.UI.Dep
 
         private IServiceDep _dep;
 
+        protected Dictionary<string, string> ValidationErrors = new Dictionary<string, string>();
+
         private RelayCommand depCommand;
 
         public DepViewModel(IRepository db, IServiceDep dep)
@@ -28,28 +32,29 @@ namespace BankSystem.Client.WPF.UI.Dep
             _users = db.GetUsersList();
         }
 
-        public string Error => string.Empty;
+        public string Error
+        {
+            get
+            {
+                if (ValidationErrors.Count > 0)
+                {
+                    return string.Empty;
+                }
+
+                return null;
+            }
+        }
 
         public string this[string columnName]
         {
             get
             {
-                string error = string.Empty;
-
-                switch (columnName)
+                if (ValidationErrors.ContainsKey(columnName))
                 {
-                    case nameof(SelectedUser):
-                        if (SelectedUser == null)
-                            error = "Selected user cannot be empty.";
-                        break;
-
-                    case nameof(SelectedAccount):
-                        if (SelectedAccount == null)
-                            error = "Selected account cannot be empty.";
-                        break;
+                    return ValidationErrors[columnName];
                 }
 
-                return error;
+                return null;
             }
         }
 
@@ -60,6 +65,7 @@ namespace BankSystem.Client.WPF.UI.Dep
                 return depCommand ??
                     (depCommand = new RelayCommand(user =>
                     {
+                        Validate();
                         _dep.Dep(SelectedUser, SelectedAccount);
                     }));
             }
@@ -81,7 +87,8 @@ namespace BankSystem.Client.WPF.UI.Dep
             set
             {
                 _selectedUser = value;
-                OnPropertyChanged("SelectedUser");
+                Validate();
+                OnPropertyChanged("");
                 Accounts = _selectedUser.Accounts;
             }
         }
@@ -102,8 +109,21 @@ namespace BankSystem.Client.WPF.UI.Dep
             set
             {
                 _selectedAccount = value;
-                OnPropertyChanged("SelectedAccount");
+                Validate();
+                OnPropertyChanged("");
             }
+        }
+
+        private void Validate()
+        {
+            ValidationErrors.Clear();
+
+            if (SelectedAccount == null)
+                ValidationErrors.Add(nameof(SelectedAccount), "Account cannot be empty.");
+            if (SelectedUser == null)
+                ValidationErrors.Add(nameof(SelectedUser), "User cannot be empty.");
+
+            OnPropertyChanged("");
         }
     }
 }

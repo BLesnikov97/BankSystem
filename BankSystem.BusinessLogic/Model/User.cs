@@ -38,6 +38,19 @@ namespace BankSystem.BusinessLogic.Model
 
         public User(string lastName, string firstName, string middleName, DateTime birthday, Gender gender) : this()
         {
+            if (LastName == "")
+            {
+                throw new Exception("LastName not filled");
+            }
+            if (FirstName == "")
+            {
+                throw new Exception("FirstName not filled");
+            }
+            if (MiddleName == "")
+            {
+                throw new Exception("MiddleName not filled");
+            }
+
             Random Id = new Random();
 
             int value = Id.Next(0, 99999);
@@ -51,24 +64,11 @@ namespace BankSystem.BusinessLogic.Model
             this.CreatedDate = DateTime.Now.ToUniversalTime();
             this.ModifiedDate = DateTime.Now.ToUniversalTime();
             this.IsBlocked = false;
-
-            if (LastName == "")
-            {
-                throw new Exception("LastName not filled");
-            }
-            if (FirstName == "")
-            {
-                throw new Exception("FirstName not filled");
-            }
-            if (MiddleName == "")
-            {
-                throw new Exception("MiddleName not filled");
-            }
         }
 
         public void AddAccount(User user, string description, double amount, string currency)
         {
-            Accounts.Add(new Account(user, description, amount, currency));
+            Accounts.Add(new Account(this, description, amount, currency));
         }
     }
 }

@@ -2,10 +2,12 @@
 using BankSystem.Client.WPF.Util;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.BusinesLogic.Repositories;
+using System.ComponentModel;
+using ControlzEx.Standard;
 
 namespace BankSystem.Client.WPF.UI.StatusAccaunt
 {
-    public class StatusAccountViewModel : BaseViewModel
+    public class StatusAccountViewModel : BaseViewModel, IDataErrorInfo
     {
         private double _сheckСash;
 
@@ -14,6 +16,8 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
 
         private List<User> _users;
         private User _selectedUser;
+
+        protected Dictionary<string, string> ValidationErrors = new Dictionary<string, string>();
 
         private RelayCommand statusCommand;
 
@@ -29,15 +33,43 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
                 return statusCommand ??
                     (statusCommand = new RelayCommand(user =>
                     {
+                        Validate();
+
                         СheckAmount = SelectedAccount.Amount;
                     }));
             }
 
             set
-            {
-                
+            {              
             }
         }
+
+        public string Error
+        {
+            get
+            {
+                if (ValidationErrors.Count > 0)
+                {
+                    return string.Empty;
+                }
+
+                return null;
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (ValidationErrors.ContainsKey(columnName))
+                {
+                    return ValidationErrors[columnName];
+                }
+
+                return null;
+            }
+        }
+
         public ICollection<Account> Accounts
         {
             get { return _accounts; }
@@ -54,7 +86,8 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
             set
             {
                 _selectedAccount = value;
-                OnPropertyChanged("SelectedAccount");
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -87,10 +120,23 @@ namespace BankSystem.Client.WPF.UI.StatusAccaunt
             set
             {
                 _selectedUser = value;
-                OnPropertyChanged("SelectedAccount");
+                Validate();
+                OnPropertyChanged("");
 
                 Accounts = SelectedUser.Accounts;
             }
+        }
+
+        private void Validate()
+        {
+            ValidationErrors.Clear();
+
+            if (SelectedAccount == null)
+                ValidationErrors.Add(nameof(SelectedAccount), "Account cannot be empty.");
+            if (SelectedUser == null)
+                ValidationErrors.Add(nameof(SelectedUser), "User cannot be empty.");
+
+            OnPropertyChanged("");
         }
     }
 }

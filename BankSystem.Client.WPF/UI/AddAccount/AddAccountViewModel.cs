@@ -22,46 +22,38 @@ namespace BankSystem.Client.WPF.UI.AddAccount
 
         private IService _service;
 
-        public AddAccountViewModel(IService serviceRepository, IRepository repository)
+        protected Dictionary<string, string> ValidationErrors = new Dictionary<string, string>();
+
+        public string Error
         {
-            _service = serviceRepository;
-            _users = repository.GetUsersList();
+            get
+            {
+                if (ValidationErrors.Count > 0)
+                {
+                    return string.Empty;
+                }
+
+                return null;
+            }
         }
-
-
-        public string Error => string.Empty;
 
         public string this[string columnName]
         {
             get
             {
-                string error = string.Empty;
-
-                switch (columnName)
+                if (ValidationErrors.ContainsKey(columnName))
                 {
-                    case nameof(Description):
-                        if (string.IsNullOrWhiteSpace(Description))
-                            error = "Description cannot be empty.";
-                        if (Description?.Length > 50)
-                            error = "Description than 50 characters.";
-                        break;
-
-                    case nameof(Currency):
-                        if (string.IsNullOrWhiteSpace(Currency))
-                            error = "Currency cannot be empty.";
-                        break;
-                    case nameof(Amount):
-                        if (Convert.ToString(Amount) == null)
-                            error = "Amount cannot be empty.";
-                        break;
-                    case nameof(SelectedUser):
-                        if (SelectedUser == null)
-                            error = "User cannot be empty.";
-                        break;
+                    return ValidationErrors[columnName];
                 }
 
-                return error;
+                return null;
             }
+        }
+
+        public AddAccountViewModel(IService serviceRepository, IRepository repository)
+        {
+            _service = serviceRepository;
+            _users = repository.GetUsersList();
         }
 
 
@@ -74,6 +66,9 @@ namespace BankSystem.Client.WPF.UI.AddAccount
                 return addAccount ??
                     (addAccount = new RelayCommand(obj =>
                     {
+                        Validate();
+
+                        if(ValidationErrors.Count == 0)
                         _service.AddAccount(SelectedUser, Description, Amount, Currency);
                     }));
             }
@@ -85,7 +80,9 @@ namespace BankSystem.Client.WPF.UI.AddAccount
             set
             {
                 _description = value;
-                OnPropertyChanged("Description");
+
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -95,7 +92,9 @@ namespace BankSystem.Client.WPF.UI.AddAccount
             set
             {
                 _amount = value;
-                OnPropertyChanged("Amount");
+
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -105,7 +104,9 @@ namespace BankSystem.Client.WPF.UI.AddAccount
             set
             {
                 _currency = value;
-                OnPropertyChanged("Currency");
+
+                Validate();
+                OnPropertyChanged("");
             }
         }
 
@@ -125,8 +126,28 @@ namespace BankSystem.Client.WPF.UI.AddAccount
             set
             {
                 _selectedUser = value;
-                OnPropertyChanged("SelectedUser");
+
+                Validate();
+                OnPropertyChanged("");
             }
+        }
+
+        private void Validate()
+        {
+            ValidationErrors.Clear();
+
+            if (string.IsNullOrWhiteSpace(Description))
+                ValidationErrors.Add(nameof(Description), "Description cannot be empty.");
+            if (Description?.Length > 50)
+            ValidationErrors.Add(nameof(Description), "Description than 50 characters.");
+            if (string.IsNullOrWhiteSpace(Currency))
+                ValidationErrors.Add(nameof(Currency),"Currency cannot be empty.");
+            if (Amount <= 0)
+                ValidationErrors.Add(nameof(Amount), "Amount cannot be empty or negative.");
+            if (SelectedUser == null)
+                ValidationErrors.Add(nameof(SelectedUser), "User cannot be empty.");
+
+            OnPropertyChanged("");
         }
     }
 }

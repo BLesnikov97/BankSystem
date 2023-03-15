@@ -35,16 +35,6 @@ namespace BankSystem.BusinessLogic.Model
 
         public Account(User owner, string description, double amount, string currency)
         {
-            UserId = owner.Id;
-
-            Owner = owner;
-            this.Description = description;
-            this.Amount = amount;
-            this.Currency = currency;
-            this.CreatedDate = DateTime.Now.ToUniversalTime(); 
-            this.ModifiedDate = DateTime.Now.ToUniversalTime();
-            this.IsBlocked = false;
-
             if (Owner == null)
             {
                 throw new Exception("Owner is empty");
@@ -61,7 +51,16 @@ namespace BankSystem.BusinessLogic.Model
             {
                 throw new Exception("Currency not filled");
             }
-                
+
+            UserId = owner.Id;
+
+            Owner = owner;
+            this.Description = description;
+            this.Amount = amount;
+            this.Currency = currency;
+            this.CreatedDate = DateTime.Now.ToUniversalTime(); 
+            this.ModifiedDate = DateTime.Now.ToUniversalTime();
+            this.IsBlocked = false;               
         }
 
         public void AddAmount(Account account, double sum)

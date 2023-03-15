@@ -21,11 +21,11 @@
         </Grid.ColumnDefinitions>
 
         <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" DisplayMemberPath="LastName" 
-                  SelectedItem="{Binding SelectedUser}" ItemsSource="{Binding Users, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                  SelectedItem="{Binding SelectedUser}" ItemsSource="{Binding Users, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
         <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" DisplayMemberPath="Description"
-                  SelectedItem="{Binding SelectedAccount}" ItemsSource="{Binding Accounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                  SelectedItem="{Binding SelectedAccount}" ItemsSource="{Binding Accounts, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
         <TextBox VerticalAlignment="Bottom" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" 
-                 Text="{Binding Sum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                 Text="{Binding Sum, Mode=TwoWay, ValidatesOnDataErrors=True}" />
         
         <Button Grid.Row="2" Grid.Column="1" x:Name="Add" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding AddCashCommand}" />
         <Button Grid.Row="2" Grid.Column="2" x:Name="Take" Content="Take" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding TakeCashCommand}" />
