@@ -4,6 +4,7 @@ using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace BankSystem.Client.WPF.UI.EditAccount
 {
@@ -11,7 +12,7 @@ namespace BankSystem.Client.WPF.UI.EditAccount
     {
         private List<User> _users;
 
-        private List<Account> _accounts;
+        private ICollection<Account> _accounts;
 
         private Account _selectedAccount;
 
@@ -128,10 +129,12 @@ namespace BankSystem.Client.WPF.UI.EditAccount
                 _selectedUser = value;
                 Validate();
                 OnPropertyChanged("");
+
+                Accounts = SelectedUser.Accounts;
             }
         }
 
-        public List<Account> Accounts
+        public ICollection<Account> Accounts
         {
             get { return _accounts; }
             set

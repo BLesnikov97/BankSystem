@@ -1,4 +1,5 @@
-﻿using BankSystem.BusinesLogic.Services;
+﻿using BankSystem.BusinesLogic.Repositories;
+using BankSystem.BusinesLogic.Services;
 using BankSystem.BusinessLogic.Model;
 using BankSystem.Client.WPF.Util;
 using System;
@@ -27,9 +28,11 @@ namespace BankSystem.Client.WPF.UI.EditUser
 
         protected Dictionary<string, string> ValidationErrors = new Dictionary<string, string>();
 
-        public EditUserViewModel(IService service)
+        public EditUserViewModel(IService service, IRepository repository)
         {
             _service = service;
+
+            _users = repository.GetUsersList();
         }
 
         public string Error

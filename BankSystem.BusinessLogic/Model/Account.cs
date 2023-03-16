@@ -35,7 +35,7 @@ namespace BankSystem.BusinessLogic.Model
 
         public Account(User owner, string description, double amount, string currency)
         {
-            if (Owner == null)
+            if (owner == null)
             {
                 throw new Exception("Owner is empty");
             }
