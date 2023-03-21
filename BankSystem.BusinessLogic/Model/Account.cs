@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankSystem.BusinessLogic.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,19 +38,19 @@ namespace BankSystem.BusinessLogic.Model
         {
             if (owner == null)
             {
-                throw new Exception("Owner is empty");
+                throw new Exception(ExceptionMessages.ExceptionOwner);
             }
             if (Description == "")
             {
-                throw new Exception("Description not filled");
+                throw new Exception(ExceptionMessages.ExceptionDescription);
             }
             if (Amount == null & Amount > 0)
             {
-                throw new Exception("Amount not filled");
+                throw new Exception(ExceptionMessages.ExceptionAmount);
             }
             if (Currency == "")
             {
-                throw new Exception("Currency not filled");
+                throw new Exception(ExceptionMessages.ExceptionCurrency);
             }
 
             UserId = owner.Id;

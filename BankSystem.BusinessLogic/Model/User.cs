@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankSystem.BusinessLogic.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -40,19 +41,19 @@ namespace BankSystem.BusinessLogic.Model
         {
             if (LastName == "")
             {
-                throw new Exception("LastName not filled");
+                throw new Exception(ExceptionMessages.ExceptionLastName);
             }
             if (FirstName == "")
             {
-                throw new Exception("FirstName not filled");
+                throw new Exception(ExceptionMessages.ExceptionFirstName);
             }
             if (MiddleName == "")
             {
-                throw new Exception("MiddleName not filled");
+                throw new Exception(ExceptionMessages.ExceptionMiddleName);
             }
             if (birthday >= DateTime.Now.AddYears(-14))
             {
-                throw new Exception("Age under 14");
+                throw new Exception(ExceptionMessages.ExceptionMinimumAge);
             }
 
             Random Id = new Random();
