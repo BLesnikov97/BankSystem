@@ -10,7 +10,7 @@ namespace BankSystem.BusinessLogic.Model
 {
     public class User
     {
-        public int Id { get; set; }
+        public int Id { get; protected set; }
 
         public string LastName { get; set; }
 
@@ -22,13 +22,13 @@ namespace BankSystem.BusinessLogic.Model
 
         public Gender Gender { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; protected set; }
 
-        public Nullable<DateTime> ModifiedDate { get; set; }
+        public Nullable<DateTime> ModifiedDate { get; protected set; }
 
-        public bool IsBlocked { get; set; }
+        public bool IsBlocked { get; protected set; }
 
-        public ICollection<Account> Accounts { get; set; }
+        public ICollection<Account> Accounts { get; protected set; }
 
 
         protected User()
@@ -50,6 +50,10 @@ namespace BankSystem.BusinessLogic.Model
             {
                 throw new Exception("MiddleName not filled");
             }
+            if (birthday >= DateTime.Now.AddYears(-14))
+            {
+                throw new Exception("Age under 14");
+            }
 
             Random Id = new Random();
 
@@ -66,7 +70,7 @@ namespace BankSystem.BusinessLogic.Model
             this.IsBlocked = false;
         }
 
-        public void AddAccount(User user, string description, double amount, string currency)
+        public void AddAccount(string description, double amount, string currency)
         {
             Accounts.Add(new Account(this, description, amount, currency));
         }
