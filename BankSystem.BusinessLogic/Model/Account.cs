@@ -9,19 +9,19 @@ namespace BankSystem.BusinessLogic.Model
 {
     public class Account
     {   
-        public int Id { get; set; }
+        public int Id { get; protected set; }
 
-        public int UserId { get; set; }
+        public int UserId { get; protected set; }
 
-        public User Owner { get; set; }
+        public User Owner { get; protected set; }
 
-        public string Description { get; set; }
+        public string Description { get; protected set; }
 
         public double Amount { get; set; }
 
-        public string Currency { get; set; }
+        public string Currency { get; protected set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; protected set; }
 
         public Nullable<DateTime> ModifiedDate { get; set; }
 

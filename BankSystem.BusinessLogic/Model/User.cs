@@ -13,15 +13,15 @@ namespace BankSystem.BusinessLogic.Model
     {
         public int Id { get; protected set; }
 
-        public string LastName { get; set; }
+        public string LastName { get; protected set; }
 
-        public string FirstName { get; set; }
+        public string FirstName { get; protected set; }
 
-        public string MiddleName { get; set; }
+        public string MiddleName { get; protected set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday { get; protected set; }
 
-        public Gender Gender { get; set; }
+        public Gender Gender { get; protected set; }
 
         public DateTime CreatedDate { get; protected set; }
 
