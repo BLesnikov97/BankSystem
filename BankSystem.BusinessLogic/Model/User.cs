@@ -13,15 +13,15 @@ namespace BankSystem.BusinessLogic.Model
     {
         public int Id { get; protected set; }
 
-        public string LastName { get; protected set; }
+        public string LastName { get; set; }
 
-        public string FirstName { get; protected set; }
+        public string FirstName { get; set; }
 
-        public string MiddleName { get; protected set; }
+        public string MiddleName { get; set; }
 
-        public DateTime Birthday { get; protected set; }
+        public DateTime Birthday { get; set; }
 
-        public Gender Gender { get; protected set; }
+        public Gender Gender { get; set; }
 
         public DateTime CreatedDate { get; protected set; }
 
@@ -39,15 +39,15 @@ namespace BankSystem.BusinessLogic.Model
 
         public User(string lastName, string firstName, string middleName, DateTime birthday, Gender gender) : this()
         {
-            if (LastName == "")
+            if (lastName == "")
             {
                 throw new Exception(ExceptionMessages.ExceptionLastName);
             }
-            if (FirstName == "")
+            if (firstName == "")
             {
                 throw new Exception(ExceptionMessages.ExceptionFirstName);
             }
-            if (MiddleName == "")
+            if (middleName == "")
             {
                 throw new Exception(ExceptionMessages.ExceptionMiddleName);
             }

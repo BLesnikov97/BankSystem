@@ -15,11 +15,11 @@ namespace BankSystem.BusinessLogic.Model
 
         public User Owner { get; protected set; }
 
-        public string Description { get; protected set; }
+        public string Description { get; set; }
 
         public double Amount { get; set; }
 
-        public string Currency { get; protected set; }
+        public string Currency { get; set; }
 
         public DateTime CreatedDate { get; protected set; }
 
