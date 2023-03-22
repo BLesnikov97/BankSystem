@@ -15,17 +15,17 @@ namespace BankSystem.BusinessLogic.Model
 
         public User Owner { get; protected set; }
 
-        public string Description { get; set; }
+        public string Description { get; protected set; }
 
-        public double Amount { get; set; }
+        public double Amount { get; protected set; }
 
-        public string Currency { get; set; }
+        public string Currency { get; protected set; }
 
         public DateTime CreatedDate { get; protected set; }
 
-        public Nullable<DateTime> ModifiedDate { get; set; }
+        public Nullable<DateTime> ModifiedDate { get; protected set; }
 
-        public bool IsBlocked { get; set; }
+        public bool IsBlocked { get; protected set; }
 
         protected Account()
         {

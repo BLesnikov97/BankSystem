@@ -13,15 +13,15 @@ namespace BankSystem.BusinessLogic.Model
     {
         public int Id { get; protected set; }
 
-        public string LastName { get; set; }
+        public string LastName { get; protected set; }
 
-        public string FirstName { get; set; }
+        public string FirstName { get; protected set; }
 
-        public string MiddleName { get; set; }
+        public string MiddleName { get; protected set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday { get; protected set; }
 
-        public Gender Gender { get; set; }
+        public Gender Gender { get; protected set; }
 
         public DateTime CreatedDate { get; protected set; }
 
@@ -74,6 +74,19 @@ namespace BankSystem.BusinessLogic.Model
         public void AddAccount(string description, double amount, string currency)
         {
             Accounts.Add(new Account(this, description, amount, currency));
+        }
+
+        public void EditLastname(string lastName)
+        {
+            if (IsBlocked)
+                throw new Exception("User is blocked");
+
+            if (string.IsNullOrEmpty(lastName))
+                throw new Exception("LastName not filled");
+
+            LastName = lastName;
+
+            ModifiedDate = DateTime.Now.ToUniversalTime();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace BankSystem.BusinesLogic.Services
             }
 
 
-            user.LastName = lastName;
+            user.EditLastname(lastName);
             user.FirstName = firstName;
             user.MiddleName = middleName;
             user.Birthday = birthday.ToUniversalTime();
