@@ -323,6 +323,25 @@ namespace BankSystem.Testing
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, middleName);
         }
+
+        [Fact]
+        public void Attempt_To_Edit_LastName_With_Value_Normal_With_ModifiedDate()
+        {
+            string lastName = "Petrov";
+            string editLastName = "Popov";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            user.EditLastname(editLastName);
+
+            Assert.Equal(user.LastName, editLastName);
+            Assert.Equal(user.FirstName, firstName);
+            Assert.Equal(user.MiddleName, middleName);
+            Assert.NotEqual(user.CreatedDate, user.ModifiedDate);
+        }
     }
 
 }
