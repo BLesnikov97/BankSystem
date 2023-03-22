@@ -104,9 +104,9 @@ namespace BankSystem.Testing
         {
             // arrange
 
-            string lastName = string.Empty;
-            string firstName = string.Empty;
-            string middleName = string.Empty;
+            string lastName = "Petrov";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
             DateTime dateTime = DateTime.Now.AddYears(-13);
             Gender genderMale = Gender.Male;
 
@@ -129,7 +129,7 @@ namespace BankSystem.Testing
             string currency = "RUB";
             string lastName = "Petrov";
             string firstName = "Petr";
-            string middleName = string.Empty;
+            string middleName = "Petrovich";
             DateTime dateTime = new DateTime(1987, 7, 20);
             Gender genderMale = Gender.Male;
             User addUser = new User(lastName, firstName, middleName, dateTime, genderMale);
@@ -156,7 +156,7 @@ namespace BankSystem.Testing
             string currency = "RUB";          
             string lastName = "Petrov";
             string firstName = "Petr";
-            string middleName = string.Empty;
+            string middleName = "Petrovich";
             DateTime dateTime = new DateTime(1987, 7, 20);
             Gender genderMale = Gender.Male;
 
@@ -186,7 +186,7 @@ namespace BankSystem.Testing
             string currency = "RUB";
             string lastName = "Petrov";
             string firstName = "Petr";
-            string middleName = string.Empty;
+            string middleName = "Petrovich";
             DateTime dateTime = new DateTime(1987, 7, 20);
             Gender genderMale = Gender.Male;
 
@@ -212,7 +212,7 @@ namespace BankSystem.Testing
             string currency = "RUB";
             string lastName = "Petrov";
             string firstName = "Petr";
-            string middleName = string.Empty;
+            string middleName = "Petrovich";
             DateTime dateTime = new DateTime(1987, 7, 20);
             Gender genderMale = Gender.Male;
 
@@ -238,7 +238,7 @@ namespace BankSystem.Testing
             string currency = string.Empty;
             string lastName = "Petrov";
             string firstName = "Petr";
-            string middleName = string.Empty;
+            string middleName = "Petrovich";
             DateTime dateTime = new DateTime(1987, 7, 20);
             Gender genderMale = Gender.Male;
 
@@ -252,6 +252,76 @@ namespace BankSystem.Testing
             var resultExcaption = Assert.Throws<Exception>(() => new Account(user, description, amount, currency));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionCurrency);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_LastName_Is_Blocked_User()
+        {
+            string lastName = "Petrov";
+            string editLastName = "Popov";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            user.BlockedUser();
+
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastname(editLastName));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionUserIsBlocked);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_LastName_With_Value_Null()
+        {
+            string lastName = "Petrov";
+            string editLastName = null;
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastname(editLastName));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionLastName);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_LastName_With_Value_Empty()
+        {
+            string lastName = "Petrov";
+            string editLastName = string.Empty;
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastname(editLastName));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionLastName);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_LastName_With_Value_Normal()
+        {
+            string lastName = "Petrov";
+            string editLastName = "Popov";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            user.EditLastname(editLastName);
+
+            Assert.Equal(user.LastName, editLastName);
+            Assert.Equal(user.FirstName, firstName);
+            Assert.Equal(user.MiddleName, middleName);
         }
     }
 

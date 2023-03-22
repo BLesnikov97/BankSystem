@@ -1,4 +1,5 @@
 ﻿using BankSystem.BusinesLogic.Repositories;
+using BankSystem.BusinessLogic.Exceptions;
 using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
@@ -15,19 +16,14 @@ namespace BankSystem.BusinesLogic.Services
         public void Transfer(Account forAccount, Account toAccount, double sum)
         {
             if (forAccount.Amount >= sum && toAccount.IsBlocked != true && forAccount.Id != toAccount.Id)
-            {
-                toAccount.Amount += sum;
-                toAccount.ModifiedDate = DateTime.Now.ToUniversalTime();
-
-                forAccount.Amount -= sum;
-                forAccount.ModifiedDate = DateTime.Now.ToUniversalTime();
+            {   
+                toAccount.AddAmount(toAccount, sum);
+                forAccount.TakeAmount(forAccount, sum);
 
                 _repository.Save();
             }
             else
-            {
-                throw new Exception("Insufficient funds or transfer to yourself");
-            }
+                throw new Exception(ExceptionMessages.ExceptionInsufficientAmount);
         }
     }
 }

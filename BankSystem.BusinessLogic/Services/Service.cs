@@ -28,58 +28,19 @@ namespace BankSystem.BusinesLogic.Services
 
        public void EditUser(User user, string lastName, string firstName, string middleName, DateTime birthday)
        {
-            if (user.IsBlocked == true)
-            {
-                throw new Exception("User is blocked");
-            }
-            if (lastName == "")
-            {
-                throw new Exception("LastName not filled");
-            }
-            if (firstName == "")
-            {
-                throw new Exception("FirstName not filled");
-            }
-            if (middleName == "")
-            {
-                throw new Exception("MiddleName not filled");
-            }
-            if (birthday == null)
-            {
-                throw new Exception("Birthday not filled");
-            }
-
-
             user.EditLastname(lastName);
-            user.FirstName = firstName;
-            user.MiddleName = middleName;
-            user.Birthday = birthday.ToUniversalTime();
+            user.EditFirstName(firstName);
+            user.EditMiddleName(middleName);
+            user.EditBirthday(birthday);
 
             _repository.Save();
         }
 
         public void EditAccount(Account account, string description, double amount, string currency)
         {
-            if (account.IsBlocked == true)
-            {
-                throw new Exception("Account is blocked");
-            }
-            if (description == "")
-            {
-                throw new Exception("Description not filled");
-            }
-            if (amount == null & amount > 0)
-            {
-                throw new Exception("Amount not filled");
-            }
-            if (currency == "")
-            {
-                throw new Exception("Currency not filled");
-            }
-
-            account.Description = description;
-            account.Amount = amount;
-            account.Currency = currency;
+            account.EditDescription(description);
+            account.EditAmount(amount);
+            account.EditCurrency(currency);
 
             _repository.Save();
         }

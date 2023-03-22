@@ -40,15 +40,15 @@ namespace BankSystem.BusinessLogic.Model
             {
                 throw new Exception(ExceptionMessages.ExceptionOwner);
             }
-            if (Description == "")
+            if (string.IsNullOrEmpty(description))
             {
                 throw new Exception(ExceptionMessages.ExceptionDescription);
             }
-            if (Amount == null & Amount > 0)
+            if (amount <= 0)
             {
                 throw new Exception(ExceptionMessages.ExceptionAmount);
             }
-            if (Currency == "")
+            if (string.IsNullOrEmpty(currency))
             {
                 throw new Exception(ExceptionMessages.ExceptionCurrency);
             }
@@ -74,11 +74,50 @@ namespace BankSystem.BusinessLogic.Model
         {
             if (account.Amount < sum)
             {
-                throw new Exception("Amount not filled");
+                throw new Exception(ExceptionMessages.ExceptionAmount);
             }
 
             account.Amount -= sum;
             account.ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void EditDescription(string description)
+        {
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+
+            if (string.IsNullOrEmpty(description))
+                throw new Exception(ExceptionMessages.ExceptionDescription);
+
+            Description = description;
+
+            ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void EditAmount(double amount)
+        {
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+
+            if (amount < 0)
+                throw new Exception(ExceptionMessages.ExceptionAmount);
+
+            Amount = amount;
+
+            ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void EditCurrency(string currency)
+        {
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+
+            if (string.IsNullOrEmpty(currency))
+                throw new Exception(ExceptionMessages.ExceptionCurrency);
+
+            Currency = currency;
+
+            ModifiedDate = DateTime.Now.ToUniversalTime();
         }
     }
 }

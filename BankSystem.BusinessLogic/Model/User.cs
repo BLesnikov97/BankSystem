@@ -39,15 +39,15 @@ namespace BankSystem.BusinessLogic.Model
 
         public User(string lastName, string firstName, string middleName, DateTime birthday, Gender gender) : this()
         {
-            if (lastName == "")
+            if (string.IsNullOrEmpty(lastName))
             {
                 throw new Exception(ExceptionMessages.ExceptionLastName);
             }
-            if (firstName == "")
+            if (string.IsNullOrEmpty(firstName))
             {
                 throw new Exception(ExceptionMessages.ExceptionFirstName);
             }
-            if (middleName == "")
+            if (string.IsNullOrEmpty(middleName))
             {
                 throw new Exception(ExceptionMessages.ExceptionMiddleName);
             }
@@ -79,14 +79,77 @@ namespace BankSystem.BusinessLogic.Model
         public void EditLastname(string lastName)
         {
             if (IsBlocked)
-                throw new Exception("User is blocked");
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
 
             if (string.IsNullOrEmpty(lastName))
-                throw new Exception("LastName not filled");
+                throw new Exception(ExceptionMessages.ExceptionLastName);
 
             LastName = lastName;
 
             ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void EditFirstName(string firstName) 
+        {
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+
+            if (string.IsNullOrEmpty(firstName))
+                throw new Exception(ExceptionMessages.ExceptionFirstName);
+
+            FirstName = firstName;
+
+            ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void EditMiddleName(string middleName)
+        {
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+
+            if (string.IsNullOrEmpty(middleName))
+                throw new Exception(ExceptionMessages.ExceptionMiddleName);
+
+            MiddleName = middleName;
+
+            ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void EditBirthday(DateTime birthday)
+        {
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+
+            if (birthday >= DateTime.Now.AddYears(-14))
+                throw new Exception(ExceptionMessages.ExceptionMinimumAge);
+
+            birthday = birthday;
+
+            ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void BlockedUser()
+        {
+            if (IsBlocked == false)
+            {
+                IsBlocked = true;
+
+                ModifiedDate = DateTime.Now.ToUniversalTime();
+            }
+            else
+                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+        }
+
+        public void DeployUser()
+        {
+            if (IsBlocked == true)
+            {
+                IsBlocked = false;
+
+                ModifiedDate = DateTime.Now.ToUniversalTime();
+            }
+            else
+                throw new Exception(ExceptionMessages.ExceptionUserNotBlocked);
         }
     }
 }
