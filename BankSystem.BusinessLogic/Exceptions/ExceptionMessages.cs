@@ -22,5 +22,7 @@ namespace BankSystem.BusinessLogic.Exceptions
         public const string ExceptionAmount = "Amount not filled";
         public const string ExceptionCurrency = "Currency not filled";
         public const string ExceptionInsufficientAmount = "Insufficient funds or transfer to yourself";
+        public const string ExceptionAccountIsBlocked = "Account is blocked";
+        public const string ExceptionAccountNotBlocked = "Account is not blocked";
     }
 }

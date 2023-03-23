@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace BankSystem.Testing
+namespace BankSystem.UnitTests.ModelTests
 {
     public class UserModelTest
     {
@@ -33,10 +33,11 @@ namespace BankSystem.Testing
             Assert.Equal(addUser.LastName, lastName);
             Assert.Equal(addUser.FirstName, firstName);
             Assert.Equal(addUser.MiddleName, middleName);
+            Assert.Equal(addUser.Birthday, dateTime);
         }
 
-        [Fact]   
-        
+        [Fact]
+
         public void Attempt_To_Create_A_User_Empty_LastName()
         {
             // arrange
@@ -50,10 +51,10 @@ namespace BankSystem.Testing
             // act
 
             // assert
-            
+
             var resultExcaption = Assert.Throws<Exception>(() => new User(lastName, firstName, middleName, dateTime, genderMale));
             Assert.NotNull(resultExcaption);
-            Assert.Equal(resultExcaption.Message,ExceptionMessages.ExceptionLastName);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionLastName);
         }
 
         [Fact]
@@ -117,141 +118,6 @@ namespace BankSystem.Testing
             var resultExcaption = Assert.Throws<Exception>(() => new User(lastName, firstName, middleName, dateTime, genderMale));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionMinimumAge);
-        }
-
-        [Fact]
-        public void Attempt_To_Create_An_Account_With_Filled_Fields_Through_The_User_Method()
-        {
-            // arrange
-
-            string description = "Deposit account";
-            double amount = 100.00D;
-            string currency = "RUB";
-            string lastName = "Petrov";
-            string firstName = "Petr";
-            string middleName = "Petrovich";
-            DateTime dateTime = new DateTime(1987, 7, 20);
-            Gender genderMale = Gender.Male;
-            User addUser = new User(lastName, firstName, middleName, dateTime, genderMale);
-
-            // act
-
-            addUser.AddAccount(description, amount, currency);
-            var resultUser = addUser.Accounts.FirstOrDefault();
-            // assert
-
-            Assert.NotEmpty(addUser.Accounts);
-            Assert.Equal(resultUser.Description, description);
-            Assert.Equal(resultUser.Amount, amount);
-            Assert.Equal(resultUser.Currency, currency);
-        }
-
-        [Fact]
-        public void Attempt_To_Create_An_Account_With_Fields_Filled_In()
-        {
-            // arrange
-
-            string description = "Deposit account";
-            double amount = 100.00D;
-            string currency = "RUB";          
-            string lastName = "Petrov";
-            string firstName = "Petr";
-            string middleName = "Petrovich";
-            DateTime dateTime = new DateTime(1987, 7, 20);
-            Gender genderMale = Gender.Male;
-
-            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
-
-            Account account = Substitute.For<Account>();
-
-            // act
-
-            account = new Account(user, description, amount, currency);
-
-            // assert
-
-            Assert.NotNull(account);
-            Assert.Equal(account.Description, description);
-            Assert.Equal(account.Amount, amount);
-            Assert.Equal(account.Currency, currency);
-        }
-
-        [Fact]
-        public void Attempt_To_Create_An_Account_With_Empty_Description()
-        {
-            // arrange
-
-            string description = string.Empty;
-            double amount = 0;
-            string currency = "RUB";
-            string lastName = "Petrov";
-            string firstName = "Petr";
-            string middleName = "Petrovich";
-            DateTime dateTime = new DateTime(1987, 7, 20);
-            Gender genderMale = Gender.Male;
-
-            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
-            Account account = Substitute.For<Account>();
-
-            // act
-
-            // assert
-
-            var resultExcaption = Assert.Throws<Exception>(() => new Account(user, description, amount, currency));
-            Assert.NotNull(resultExcaption);
-            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionDescription);
-        }
-
-        [Fact]
-        public void Attempt_To_Create_An_Account_With_Empty_Amount()
-        {
-            // arrange
-
-            string description = "Deposit";
-            double amount = 0;
-            string currency = "RUB";
-            string lastName = "Petrov";
-            string firstName = "Petr";
-            string middleName = "Petrovich";
-            DateTime dateTime = new DateTime(1987, 7, 20);
-            Gender genderMale = Gender.Male;
-
-            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
-            Account account = Substitute.For<Account>();
-
-            // act
-
-            // assert
-
-            var resultExcaption = Assert.Throws<Exception>(() => new Account(user, description, amount, currency));
-            Assert.NotNull(resultExcaption);
-            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionAmount);
-        }
-
-        [Fact]
-        public void Attempt_To_Create_An_Account_With_Empty_Currency()
-        {
-            // arrange
-
-            string description = "Deposit";
-            double amount = 100;
-            string currency = string.Empty;
-            string lastName = "Petrov";
-            string firstName = "Petr";
-            string middleName = "Petrovich";
-            DateTime dateTime = new DateTime(1987, 7, 20);
-            Gender genderMale = Gender.Male;
-
-            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
-            Account account = Substitute.For<Account>();
-
-            // act
-
-            // assert
-
-            var resultExcaption = Assert.Throws<Exception>(() => new Account(user, description, amount, currency));
-            Assert.NotNull(resultExcaption);
-            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionCurrency);
         }
 
         [Fact]
@@ -322,6 +188,7 @@ namespace BankSystem.Testing
             Assert.Equal(user.LastName, editLastName);
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, middleName);
+            Assert.Equal(user.Birthday, dateTime);
         }
 
         [Fact]
@@ -340,6 +207,7 @@ namespace BankSystem.Testing
             Assert.Equal(user.LastName, editLastName);
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, middleName);
+            Assert.Equal(user.Birthday, dateTime);
             Assert.NotEqual(user.CreatedDate, user.ModifiedDate);
         }
 
@@ -429,6 +297,7 @@ namespace BankSystem.Testing
             Assert.Equal(user.LastName, lastName);
             Assert.Equal(user.FirstName, editFirstName);
             Assert.Equal(user.MiddleName, middleName);
+            Assert.Equal(user.Birthday, dateTime);
         }
 
         [Fact]
@@ -447,6 +316,7 @@ namespace BankSystem.Testing
             Assert.Equal(user.LastName, lastName);
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, editMiddleName);
+            Assert.Equal(user.Birthday, dateTime);
         }
     }
 

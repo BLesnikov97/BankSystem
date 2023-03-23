@@ -65,7 +65,7 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                     {
                         Validate();
 
-                        SelectedAccount.AddAmount(SelectedAccount, Sum);
+                        SelectedAccount.AddAmount(Sum);
 
                         _repository.Save();
                     }));
@@ -83,7 +83,7 @@ namespace BankSystem.Client.WPF.UI.AddAndTake
                     {
                         Validate();
 
-                        SelectedAccount.TakeAmount(SelectedAccount, Sum);
+                        SelectedAccount.TakeAmount(Sum);
 
                         _repository.Save();
                     }));

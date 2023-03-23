@@ -17,8 +17,8 @@ namespace BankSystem.BusinesLogic.Services
         {
             if (forAccount.Amount >= sum && toAccount.IsBlocked != true && forAccount.Id != toAccount.Id)
             {   
-                toAccount.AddAmount(toAccount, sum);
-                forAccount.TakeAmount(forAccount, sum);
+                toAccount.AddAmount(sum);
+                forAccount.TakeAmount(sum);
 
                 _repository.Save();
             }

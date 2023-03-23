@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankSystem.DataAccess", "Ba
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankSystem.BusinessLogic", "BankSystem.BusinessLogic\BankSystem.BusinessLogic.csproj", "{B4100E04-E3E4-4A69-95CD-0EABB935FEEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystem.Testing", "BankSystem.Testing\BankSystem.Testing.csproj", "{BC318682-5C45-40F3-A47F-8056BF826DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankSystem.UnitTests", "BankSystem.Testing\BankSystem.UnitTests.csproj", "{BC318682-5C45-40F3-A47F-8056BF826DDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

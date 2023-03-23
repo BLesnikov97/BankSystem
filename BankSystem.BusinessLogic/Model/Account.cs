@@ -64,27 +64,34 @@ namespace BankSystem.BusinessLogic.Model
             this.IsBlocked = false;               
         }
 
-        public void AddAmount(Account account, double sum)
+        public void AddAmount(double sum)
         {
-            account.Amount += sum;
-            account.ModifiedDate = DateTime.Now.ToUniversalTime();
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionAccountIsBlocked);
+
+            if(sum <= 0.00D)
+                throw new Exception(ExceptionMessages.ExceptionAmount);
+
+            Amount += sum;
+            ModifiedDate = DateTime.Now.ToUniversalTime();
         }
 
-        public void TakeAmount(Account account, double sum)
+        public void TakeAmount(double sum)
         {
-            if (account.Amount < sum)
-            {
-                throw new Exception(ExceptionMessages.ExceptionAmount);
-            }
+            if (IsBlocked)
+                throw new Exception(ExceptionMessages.ExceptionAccountIsBlocked);
 
-            account.Amount -= sum;
-            account.ModifiedDate = DateTime.Now.ToUniversalTime();
+            if (Amount < sum)
+                throw new Exception(ExceptionMessages.ExceptionAmount);
+
+            Amount -= sum;
+            ModifiedDate = DateTime.Now.ToUniversalTime();
         }
 
         public void EditDescription(string description)
         {
             if (IsBlocked)
-                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+                throw new Exception(ExceptionMessages.ExceptionAccountIsBlocked);
 
             if (string.IsNullOrEmpty(description))
                 throw new Exception(ExceptionMessages.ExceptionDescription);
@@ -97,7 +104,7 @@ namespace BankSystem.BusinessLogic.Model
         public void EditAmount(double amount)
         {
             if (IsBlocked)
-                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+                throw new Exception(ExceptionMessages.ExceptionAccountIsBlocked);
 
             if (amount < 0)
                 throw new Exception(ExceptionMessages.ExceptionAmount);
@@ -110,7 +117,7 @@ namespace BankSystem.BusinessLogic.Model
         public void EditCurrency(string currency)
         {
             if (IsBlocked)
-                throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
+                throw new Exception(ExceptionMessages.ExceptionAccountIsBlocked);
 
             if (string.IsNullOrEmpty(currency))
                 throw new Exception(ExceptionMessages.ExceptionCurrency);
@@ -118,6 +125,30 @@ namespace BankSystem.BusinessLogic.Model
             Currency = currency;
 
             ModifiedDate = DateTime.Now.ToUniversalTime();
+        }
+
+        public void BlockedAccount()
+        {
+            if (IsBlocked == false)
+            {
+                IsBlocked = true;
+
+                ModifiedDate = DateTime.Now.ToUniversalTime();
+            }
+            else
+                throw new Exception(ExceptionMessages.ExceptionAccountIsBlocked);
+        }
+
+        public void DeployAccount()
+        {
+            if (IsBlocked == true)
+            {
+                IsBlocked = false;
+
+                ModifiedDate = DateTime.Now.ToUniversalTime();
+            }
+            else
+                throw new Exception(ExceptionMessages.ExceptionAccountNotBlocked);
         }
     }
 }
