@@ -267,7 +267,7 @@ namespace BankSystem.Testing
             User user = new User(lastName, firstName, middleName, dateTime, genderMale);
             user.BlockedUser();
 
-            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastname(editLastName));
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastName(editLastName));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionUserIsBlocked);
         }
@@ -284,7 +284,7 @@ namespace BankSystem.Testing
 
             User user = new User(lastName, firstName, middleName, dateTime, genderMale);
 
-            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastname(editLastName));
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastName(editLastName));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionLastName);
         }
@@ -301,7 +301,7 @@ namespace BankSystem.Testing
 
             User user = new User(lastName, firstName, middleName, dateTime, genderMale);
 
-            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastname(editLastName));
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditLastName(editLastName));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionLastName);
         }
@@ -317,7 +317,7 @@ namespace BankSystem.Testing
             Gender genderMale = Gender.Male;
 
             User user = new User(lastName, firstName, middleName, dateTime, genderMale);
-            user.EditLastname(editLastName);
+            user.EditLastName(editLastName);
 
             Assert.Equal(user.LastName, editLastName);
             Assert.Equal(user.FirstName, firstName);
@@ -335,12 +335,118 @@ namespace BankSystem.Testing
             Gender genderMale = Gender.Male;
 
             User user = new User(lastName, firstName, middleName, dateTime, genderMale);
-            user.EditLastname(editLastName);
+            user.EditLastName(editLastName);
 
             Assert.Equal(user.LastName, editLastName);
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, middleName);
             Assert.NotEqual(user.CreatedDate, user.ModifiedDate);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_FirstName_Is_Blocked_User()
+        {
+            string lastName = "Petrov";
+            string editfirstName = "Andrey";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            user.BlockedUser();
+
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditFirstName(editfirstName));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionUserIsBlocked);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_MiddleName_Is_Blocked_User()
+        {
+            string lastName = "Petrov";
+            string editMiddleName = "Andreyevich";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            user.BlockedUser();
+
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditMiddleName(editMiddleName));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionUserIsBlocked);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_FirstName_With_Value_Null()
+        {
+            string lastName = "Petrov";
+            string editFirstName = null;
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditFirstName(editFirstName));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionFirstName);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_MiddleName_With_Value_Null()
+        {
+            string lastName = "Petrov";
+            string editMiddleName = null;
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+
+            var resultExcaption = Assert.Throws<Exception>(() => user.EditMiddleName(editMiddleName));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionMiddleName);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_FirstName_With_Value_Normal()
+        {
+            string lastName = "Petrov";
+            string editFirstName = "Andrey";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            user.EditFirstName(editFirstName);
+
+            Assert.Equal(user.LastName, lastName);
+            Assert.Equal(user.FirstName, editFirstName);
+            Assert.Equal(user.MiddleName, middleName);
+        }
+
+        [Fact]
+        public void Attempt_To_Edit_MiddleName_With_Value_Normal()
+        {
+            string lastName = "Petrov";
+            string editMiddleName = "Andreevich";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            user.EditMiddleName(editMiddleName);
+
+            Assert.Equal(user.LastName, lastName);
+            Assert.Equal(user.FirstName, firstName);
+            Assert.Equal(user.MiddleName, editMiddleName);
         }
     }
 

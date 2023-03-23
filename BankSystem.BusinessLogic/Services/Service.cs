@@ -28,7 +28,7 @@ namespace BankSystem.BusinesLogic.Services
 
        public void EditUser(User user, string lastName, string firstName, string middleName, DateTime birthday)
        {
-            user.EditLastname(lastName);
+            user.EditLastName(lastName);
             user.EditFirstName(firstName);
             user.EditMiddleName(middleName);
             user.EditBirthday(birthday);

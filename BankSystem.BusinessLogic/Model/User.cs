@@ -76,7 +76,7 @@ namespace BankSystem.BusinessLogic.Model
             Accounts.Add(new Account(this, description, amount, currency));
         }
 
-        public void EditLastname(string lastName)
+        public void EditLastName(string lastName)
         {
             if (IsBlocked)
                 throw new Exception(ExceptionMessages.ExceptionUserIsBlocked);
