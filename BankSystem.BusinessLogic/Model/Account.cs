@@ -81,7 +81,7 @@ namespace BankSystem.BusinessLogic.Model
             if (IsBlocked)
                 throw new Exception(ExceptionMessages.ExceptionAccountIsBlocked);
 
-            if (Amount < sum)
+            if (sum >= Amount && sum <= 0)
                 throw new Exception(ExceptionMessages.ExceptionAmount);
 
             Amount -= sum;
