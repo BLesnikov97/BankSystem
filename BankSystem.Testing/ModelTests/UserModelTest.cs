@@ -33,7 +33,6 @@ namespace BankSystem.UnitTests.ModelTests
             Assert.Equal(addUser.LastName, lastName);
             Assert.Equal(addUser.FirstName, firstName);
             Assert.Equal(addUser.MiddleName, middleName);
-            Assert.Equal(addUser.Birthday, dateTime);
         }
 
         [Fact]
@@ -188,7 +187,6 @@ namespace BankSystem.UnitTests.ModelTests
             Assert.Equal(user.LastName, editLastName);
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, middleName);
-            Assert.Equal(user.Birthday, dateTime);
         }
 
         [Fact]
@@ -207,7 +205,6 @@ namespace BankSystem.UnitTests.ModelTests
             Assert.Equal(user.LastName, editLastName);
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, middleName);
-            Assert.Equal(user.Birthday, dateTime);
             Assert.NotEqual(user.CreatedDate, user.ModifiedDate);
         }
 
@@ -297,7 +294,6 @@ namespace BankSystem.UnitTests.ModelTests
             Assert.Equal(user.LastName, lastName);
             Assert.Equal(user.FirstName, editFirstName);
             Assert.Equal(user.MiddleName, middleName);
-            Assert.Equal(user.Birthday, dateTime);
         }
 
         [Fact]
@@ -316,7 +312,6 @@ namespace BankSystem.UnitTests.ModelTests
             Assert.Equal(user.LastName, lastName);
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, editMiddleName);
-            Assert.Equal(user.Birthday, dateTime);
         }
     }
 

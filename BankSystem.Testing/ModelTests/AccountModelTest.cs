@@ -103,7 +103,6 @@ namespace BankSystem.UnitTests.ModelTests
 
             Assert.NotNull(account);
             Assert.Equal(account.Description, description);
-            Assert.Equal(account.Amount, amount);
             Assert.Equal(account.Currency, currency);
             Assert.NotEqual(account.Amount, amount);
         }
@@ -124,7 +123,6 @@ namespace BankSystem.UnitTests.ModelTests
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Amount, amount);
             Assert.Equal(account.Currency, currency);
-            Assert.NotEqual(account.Amount, amount);
             Assert.NotEqual(account.CreatedDate, account.ModifiedDate);
             var resultExcaption = Assert.Throws<Exception>(() => account.AddAmount(age));
             Assert.NotNull(resultExcaption);
