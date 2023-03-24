@@ -204,6 +204,23 @@ namespace BankSystem.UnitTests.ModelTests
         }
 
         [Fact]
+        public void Attempt_To_TakeAmount_Is_Value_Max()
+        {
+            string description = "Deposit";
+            double amount = 100.00D;
+            string currency = "RUB";
+            double age = 150.00D;
+            var user = Substitute.For<User>();
+
+            var account = new Account(user, description, amount, currency);
+
+
+            var resultExcaption = Assert.Throws<Exception>(() => account.TakeAmount(age));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionAmount);
+        }
+
+        [Fact]
         public void Attempt_To_EditDescription_Correct_value()
         {
             string description = "Deposit";
