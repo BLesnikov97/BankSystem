@@ -9,9 +9,9 @@ namespace BankSystem.BusinessLogic.Model
 {
     public class Account
     {   
-        public int Id { get; protected set; }
+        public int Id { get; set; }
 
-        public int UserId { get; protected set; }
+        public int UserId { get; set; }
 
         public User Owner { get; protected set; }
 

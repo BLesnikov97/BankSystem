@@ -313,6 +313,30 @@ namespace BankSystem.UnitTests.ModelTests
             Assert.Equal(user.FirstName, firstName);
             Assert.Equal(user.MiddleName, editMiddleName);
         }
+
+        [Fact]
+        public void Attempt_To_Create_An_Account_With_Filled_Fields_Through_The_User_Method()
+        {
+            string description = "Deposit account";
+            double amount = 100.00D;
+            string currency = "RUB";
+            string lastName = "Petrov";
+            string editMiddleName = "Andreevich";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+            var addUser = new User(lastName, firstName, middleName, dateTime, genderMale);
+
+            addUser.AddAccount(description, amount, currency);
+            var resultUser = addUser.Accounts.FirstOrDefault();
+
+            Assert.NotNull(resultUser);
+            Assert.NotEmpty(addUser.Accounts);
+            Assert.Equal(resultUser.Description, description);
+            Assert.Equal(resultUser.Amount, amount);
+            Assert.Equal(resultUser.Currency, currency);
+        }
     }
 
 }

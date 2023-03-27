@@ -9,21 +9,25 @@ namespace BankSystem.BusinesLogic.Services
         private IRepository _repository;
 
         public ServiceTransfer(IRepository repository)
-        {
-            _repository = repository;
+        {   
+            if(repository != null)
+                _repository = repository;
+
+            else
+                throw new Exception(ExceptionMessages.ExceptionRepository);
         }
 
         public void Transfer(Account forAccount, Account toAccount, double sum)
         {
-            if (forAccount.Amount >= sum && toAccount.IsBlocked != true && forAccount.Id != toAccount.Id)
-            {   
-                toAccount.AddAmount(sum);
-                forAccount.TakeAmount(sum);
+                if (forAccount.Amount >= sum && sum > 0.00D && toAccount.IsBlocked != true && forAccount.Id != toAccount.Id && forAccount != null && toAccount != null)
+                {
+                    toAccount.AddAmount(sum);
+                    forAccount.TakeAmount(sum);
 
-                _repository.Save();
-            }
-            else
-                throw new Exception(ExceptionMessages.ExceptionInsufficientAmount);
+                    _repository.Save();
+                }
+                else              
+                    throw new Exception(ExceptionMessages.ExceptionInsufficientAmount);        
         }
     }
 }

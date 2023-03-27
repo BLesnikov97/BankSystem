@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankSystem.BusinessLogic.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,14 @@ namespace BankSystem.BusinessLogic.Exceptions
         public const string ExceptionDescription = "Description not filled";
         public const string ExceptionAmount = "Amount not filled";
         public const string ExceptionCurrency = "Currency not filled";
-        public const string ExceptionInsufficientAmount = "Insufficient funds or transfer to yourself";
+        public const string ExceptionInsufficientAmount = "Not the correctness of the completed accounts or the amount";
         public const string ExceptionAccountIsBlocked = "Account is blocked";
         public const string ExceptionAccountNotBlocked = "Account is not blocked";
+        public const string ExceptionNullAccount = "Account is empty";
+
+        //Exception_Service
+        public const string ExceptionRepository = "No connect repository";
+        public const string ExceptionService = "No connect service";
+        public const string ExceptionUserAndAccount = "User or account not value";
     }
 }

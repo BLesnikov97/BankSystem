@@ -23,27 +23,14 @@ namespace BankSystem.UnitTests.ModelTests
             Account account = new Account(user, description, amount, currency);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Amount, amount);
             Assert.Equal(account.Currency, currency);
-        }
 
-        [Fact]
-        public void Attempt_To_Create_An_Account_With_Filled_Fields_Through_The_User_Method()
-        {
-            string description = "Deposit account";
-            double amount = 100.00D;
-            string currency = "RUB";
-            var addUser = Substitute.For<User>();
-
-            addUser.AddAccount(description, amount, currency);
-            var resultUser = addUser.Accounts.FirstOrDefault();
-
-            Assert.NotNull(resultUser);
-            Assert.NotEmpty(addUser.Accounts);
-            Assert.Equal(resultUser.Description, description);
-            Assert.Equal(resultUser.Amount, amount);
-            Assert.Equal(resultUser.Currency, currency);
         }
 
         [Fact]
@@ -102,9 +89,13 @@ namespace BankSystem.UnitTests.ModelTests
             account.AddAmount(age);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
-            Assert.NotEqual(account.Amount, amount);
+            Assert.Equal(account.Amount, amount + age);
         }
 
         [Fact]
@@ -120,6 +111,10 @@ namespace BankSystem.UnitTests.ModelTests
             account.BlockedAccount();
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.True(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Amount, amount);
             Assert.Equal(account.Currency, currency);
@@ -159,9 +154,13 @@ namespace BankSystem.UnitTests.ModelTests
             account.TakeAmount(age);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
-            Assert.NotEqual(account.Amount, amount);
+            Assert.Equal(account.Amount, amount - age);
         }
 
         [Fact]
@@ -177,6 +176,10 @@ namespace BankSystem.UnitTests.ModelTests
             account.BlockedAccount();
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.True(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Amount, amount);
             Assert.Equal(account.Currency, currency);
@@ -233,6 +236,11 @@ namespace BankSystem.UnitTests.ModelTests
             account.EditDescription(editDescription);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
+            Assert.NotEqual(account.CreatedDate, account.ModifiedDate);
             Assert.Equal(account.Description, editDescription);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -251,6 +259,10 @@ namespace BankSystem.UnitTests.ModelTests
             account.BlockedAccount();
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.True(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -271,6 +283,10 @@ namespace BankSystem.UnitTests.ModelTests
             var account = new Account(user, description, amount, currency);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -291,6 +307,10 @@ namespace BankSystem.UnitTests.ModelTests
             var account = new Account(user, description, amount, currency);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -312,6 +332,10 @@ namespace BankSystem.UnitTests.ModelTests
             account.EditCurrency(editCurrency);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, editCurrency);
             Assert.Equal(account.Amount, amount);
@@ -330,6 +354,10 @@ namespace BankSystem.UnitTests.ModelTests
             account.BlockedAccount();
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.True(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -350,6 +378,10 @@ namespace BankSystem.UnitTests.ModelTests
             var account = new Account(user, description, amount, currency);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -370,6 +402,10 @@ namespace BankSystem.UnitTests.ModelTests
             var account = new Account(user, description, amount, currency);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -391,6 +427,10 @@ namespace BankSystem.UnitTests.ModelTests
             account.EditAmount(editAmount);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, editAmount);
@@ -408,6 +448,10 @@ namespace BankSystem.UnitTests.ModelTests
             var account = new Account(user, description, amount, currency);
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.False(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);
@@ -429,6 +473,10 @@ namespace BankSystem.UnitTests.ModelTests
             account.BlockedAccount();
 
             Assert.NotNull(account);
+            Assert.NotNull(account.CreatedDate);
+            Assert.NotNull(account.ModifiedDate);
+            Assert.True(account.IsBlocked);
+            Assert.Equal(account.Id, user.Id);
             Assert.Equal(account.Description, description);
             Assert.Equal(account.Currency, currency);
             Assert.Equal(account.Amount, amount);

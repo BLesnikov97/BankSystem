@@ -1,4 +1,5 @@
 ﻿using BankSystem.BusinesLogic.Repositories;
+using BankSystem.BusinessLogic.Exceptions;
 using BankSystem.BusinessLogic.Model;
 
 namespace BankSystem.BusinesLogic.Services
@@ -11,21 +12,37 @@ namespace BankSystem.BusinesLogic.Services
 
         public ServiceDep(IRepository repository, IService service)
         {
-            _service = service;
-            _repository = repository;
+            if (repository != null)
+            {
+                if (service != null)
+                {
+                    _service = service;
+                    _repository = repository;
+                }
+                else
+                    throw new Exception(ExceptionMessages.ExceptionService);
+            }
+            else
+                throw new Exception(ExceptionMessages.ExceptionRepository);
+
         }
 
         public void Dep(User selectedUser, Account selectedAccount)
         {
-            string Description = "Deposit 5%";
+            if (selectedUser != null && selectedAccount != null)
+            {
+                string Description = "Deposit 5%";
 
-            double Amount = selectedAccount.Amount / 100 * 5;
+                double Amount = selectedAccount.Amount / 100 * 5;
 
-            string Currency = selectedAccount.Currency;
+                string Currency = selectedAccount.Currency;
 
-            _service.AddAccount(selectedUser, Description, Amount, Currency);
+                _service.AddAccount(selectedUser, Description, Amount, Currency);
 
-            _repository.Save();
+                _repository.Save();
+            }
+            else
+                throw new Exception(ExceptionMessages.ExceptionUserAndAccount);
         }
     }
 }
