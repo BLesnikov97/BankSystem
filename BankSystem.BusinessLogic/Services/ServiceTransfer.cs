@@ -19,7 +19,9 @@ namespace BankSystem.BusinesLogic.Services
 
         public void Transfer(Account forAccount, Account toAccount, double sum)
         {
-                if (forAccount.Amount >= sum && sum > 0.00D && toAccount.IsBlocked != true && forAccount.Id != toAccount.Id && forAccount != null && toAccount != null)
+                if (forAccount.Amount >= sum 
+                && sum > 0.00D 
+                && toAccount.IsBlocked != true && forAccount.Id != toAccount.Id && forAccount != null && toAccount != null)
                 {
                     toAccount.AddAmount(sum);
                     forAccount.TakeAmount(sum);

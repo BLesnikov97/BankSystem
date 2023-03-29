@@ -11,7 +11,7 @@ namespace BankSystem.BusinessLogic.Model
     {   
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public int UserId { get; protected set; }
 
         public User Owner { get; protected set; }
 

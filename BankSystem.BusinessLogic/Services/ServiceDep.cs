@@ -35,7 +35,7 @@ namespace BankSystem.BusinesLogic.Services
 
                 double Amount = selectedAccount.Amount / 100 * 5;
 
-                string Currency = selectedAccount.Currency;
+                string Currency = selectedAccount.Currency; //
 
                 _service.AddAccount(selectedUser, Description, Amount, Currency);
 

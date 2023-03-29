@@ -87,9 +87,21 @@ namespace BankSystem.UnitTests.ServiceTests
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionNullAccount);
         }
 
+        public class AccountStub : Account
+        {
+            public AccountStub(User owner, string description, double amount, string currency) : base (owner, description, amount, currency)
+            {
+                
+            }
+            public void EditId(int id)
+            {
+                UserId = id;
+            }
+        }
+
         [Fact]
         public void Attempt_To_Transfer_Age_Zero()
-        {
+        {   
             var accountFor = Substitute.For<Account>();
             accountFor.Id = 123;
             accountFor.AddAmount(100);

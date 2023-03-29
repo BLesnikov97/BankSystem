@@ -48,6 +48,7 @@ namespace BankSystem.UnitTests.ServiceTests
 
             service.AddUser(lastName, firstName, middleName, dateTime, genderMale);
 
+            
         }
 
         [Fact]
@@ -266,7 +267,7 @@ namespace BankSystem.UnitTests.ServiceTests
         {
             var account = Substitute.For<Account>();
             string description = "Deposit";
-            double amount = 0.00D;
+            double amount = 100.00D;
             string currency = string.Empty;
             var repository = Substitute.For<IRepository>();
             Service service = new Service(repository);
