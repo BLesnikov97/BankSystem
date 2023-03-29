@@ -47,6 +47,7 @@ namespace BankSystem.UnitTests.ServiceTests
             Service service = new Service(repository);
 
             service.AddUser(lastName, firstName, middleName, dateTime, genderMale);
+
         }
 
         [Fact]
@@ -61,6 +62,11 @@ namespace BankSystem.UnitTests.ServiceTests
             Service service = new Service(repository);
 
             service.EditUser(user, lastName, firstName, middleName, dateTime);
+
+            Assert.NotNull(user);
+            Assert.True(user.LastName == lastName);
+            Assert.True(user.FirstName == firstName);
+            Assert.True(user.MiddleName == middleName);
         }
 
         [Fact]
@@ -74,6 +80,11 @@ namespace BankSystem.UnitTests.ServiceTests
             Service service = new Service(repository);
 
             service.AddAccount(user, description, amount, currency);
+
+            Assert.NotNull(user.Accounts);
+            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Description == description));
+            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Amount == amount));
+            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Currency == currency));
         }
 
         [Fact]
@@ -87,6 +98,11 @@ namespace BankSystem.UnitTests.ServiceTests
             Service service = new Service(repository);
 
             service.EditAccount(account, description, amount, currency);
+
+            Assert.NotNull(account);
+            Assert.True(account.Description == description);
+            Assert.True(account.Amount == amount);
+            Assert.True(account.Currency == currency);
         }
 
         [Fact]
