@@ -63,15 +63,11 @@ namespace BankSystem.UnitTests.ServiceTests
             User user = new User(lastName, firstName, middleName, dateTime, genderMale);
             Account account = new Account(user, description, amount, currency);
             ServiceDep serviceDep = new ServiceDep(repository, service);
+            double fiveProcentDeposit = amount / 100 * 5;
 
             serviceDep.Dep(user, account);
-
-            Assert.NotNull(repository);
-            Assert.NotNull(service);
-            Assert.NotNull(account);
-            Assert.NotNull(serviceDep);
-            Assert.NotNull(user.Accounts);
-            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Description == "Deposit 5%"));
+            repository.Received().Save();
+            service.Received().AddAccount(user, ServiceDep.DepositDescription,fiveProcentDeposit , currency);
         }
 
         [Fact]

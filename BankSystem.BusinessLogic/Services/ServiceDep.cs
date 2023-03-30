@@ -6,6 +6,8 @@ namespace BankSystem.BusinesLogic.Services
 {
     public class ServiceDep : IServiceDep
     {
+        public const string DepositDescription = "Deposit 5%";
+
         private IService _service;
 
         private IRepository _repository;
@@ -31,10 +33,9 @@ namespace BankSystem.BusinesLogic.Services
             if (selectedAccount == null)
                 throw new Exception(ExceptionMessages.ExceptionNullAccount);
 
-            string Description = "Deposit 5%";
             double Amount = selectedAccount.Amount / 100 * 5;
 
-            _service.AddAccount(selectedUser, Description, Amount, selectedAccount.Currency);
+            _service.AddAccount(selectedUser, DepositDescription, Amount, selectedAccount.Currency);
 
             _repository.Save();
 
