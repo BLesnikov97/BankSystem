@@ -12,37 +12,32 @@ namespace BankSystem.BusinesLogic.Services
 
         public ServiceDep(IRepository repository, IService service)
         {
-            if (repository != null)
-            {
-                if (service != null)
-                {
-                    _service = service;
-                    _repository = repository;
-                }
-                else
-                    throw new Exception(ExceptionMessages.ExceptionService);
-            }
-            else
+            if (repository == null)
                 throw new Exception(ExceptionMessages.ExceptionRepository);
+
+            if (service == null)
+                throw new Exception(ExceptionMessages.ExceptionService);
+
+            _service = service;
+            _repository = repository;
 
         }
 
         public void Dep(User selectedUser, Account selectedAccount)
         {
-            if (selectedUser != null && selectedAccount != null)
-            {
-                string Description = "Deposit 5%";
+            if (selectedUser == null)
+                throw new Exception(ExceptionMessages.ExceptionNullUser);
+              
+            if (selectedAccount == null)
+                throw new Exception(ExceptionMessages.ExceptionNullAccount);
 
-                double Amount = selectedAccount.Amount / 100 * 5;
+            string Description = "Deposit 5%";
+            double Amount = selectedAccount.Amount / 100 * 5;
 
-                string Currency = selectedAccount.Currency; //
+            _service.AddAccount(selectedUser, Description, Amount, selectedAccount.Currency);
 
-                _service.AddAccount(selectedUser, Description, Amount, Currency);
+            _repository.Save();
 
-                _repository.Save();
-            }
-            else
-                throw new Exception(ExceptionMessages.ExceptionUserAndAccount);
         }
     }
 }

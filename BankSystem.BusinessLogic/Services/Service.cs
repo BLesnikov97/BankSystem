@@ -1,6 +1,7 @@
 ﻿using BankSystem.BusinesLogic.Repositories;
 using BankSystem.BusinessLogic.Exceptions;
 using BankSystem.BusinessLogic.Model;
+using System.Security.Principal;
 
 namespace BankSystem.BusinesLogic.Services
 {
@@ -9,12 +10,11 @@ namespace BankSystem.BusinesLogic.Services
         private IRepository _repository;
 
         public Service(IRepository repository)
-        {   
-            if(repository != null)
-                _repository = repository;
-
-            else
+        {
+            if (repository == null)
                 throw new Exception(ExceptionMessages.ExceptionRepository);
+
+            _repository = repository;
         }
 
         public void AddUser(string lastName, string firstName, string middleName, DateTime birthday, Gender gender)
@@ -26,6 +26,9 @@ namespace BankSystem.BusinesLogic.Services
 
         public void AddAccount(User user, string description, double amount, string currency)
         {
+            if (user == null)
+                throw new Exception(ExceptionMessages.ExceptionNullUser);
+
             user.AddAccount(description, amount, currency);       
 
             _repository.Save();
@@ -33,6 +36,9 @@ namespace BankSystem.BusinesLogic.Services
 
        public void EditUser(User user, string lastName, string firstName, string middleName, DateTime birthday)
        {
+            if (user == null)
+                throw new Exception(ExceptionMessages.ExceptionNullUser);
+
             user.EditLastName(lastName);
             user.EditFirstName(firstName);
             user.EditMiddleName(middleName);

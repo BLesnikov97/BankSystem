@@ -52,17 +52,26 @@ namespace BankSystem.UnitTests.ServiceTests
         {
             var repository = Substitute.For<IRepository>();
             var service = Substitute.For<IService>();
-            var user = Substitute.For<User>();
-            var account = Substitute.For<Account>();
-            account.AddAmount(1000);
+            string description = "Deposit";
+            double amount = 100.00D;
+            string currency = "RUB";
+            string lastName = "Petrov";
+            string firstName = "Petr";
+            string middleName = "Petrovich";
+            DateTime dateTime = new DateTime(1987, 7, 20);
+            Gender genderMale = Gender.Male;
+            User user = new User(lastName, firstName, middleName, dateTime, genderMale);
+            Account account = new Account(user, description, amount, currency);
             ServiceDep serviceDep = new ServiceDep(repository, service);
 
             serviceDep.Dep(user, account);
-            var res = user.Accounts.FirstOrDefault();
+
             Assert.NotNull(repository);
             Assert.NotNull(service);
+            Assert.NotNull(account);
             Assert.NotNull(serviceDep);
-            Assert.Equal(user.Accounts.Count, 2);
+            Assert.NotNull(user.Accounts);
+            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Description == "Deposit 5%"));
         }
 
         [Fact]
@@ -79,7 +88,7 @@ namespace BankSystem.UnitTests.ServiceTests
             Assert.NotNull(serviceDep);
             var resultExcaption = Assert.Throws<Exception>(() => serviceDep.Dep(user, account));
             Assert.NotNull(resultExcaption);
-            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionNullAccount);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionNullUser);
         }
 
         [Fact]
