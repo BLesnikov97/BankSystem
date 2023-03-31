@@ -52,7 +52,6 @@ namespace BankSystem.UnitTests.ServiceTests
         {
             var repository = Substitute.For<IRepository>();
             var service = Substitute.For<IService>();
-            string description = "Deposit";
             double amount = 100.00D;
             string currency = "RUB";
             string lastName = "Petrov";
@@ -61,7 +60,7 @@ namespace BankSystem.UnitTests.ServiceTests
             DateTime dateTime = new DateTime(1987, 7, 20);
             Gender genderMale = Gender.Male;
             User user = new User(lastName, firstName, middleName, dateTime, genderMale);
-            Account account = new Account(user, description, amount, currency);
+            Account account = new Account(user, "Deposit", amount, currency);
             ServiceDep serviceDep = new ServiceDep(repository, service);
             double fiveProcentDeposit = amount / 100 * 5;
 
@@ -79,9 +78,6 @@ namespace BankSystem.UnitTests.ServiceTests
             var account = Substitute.For<Account>();
             ServiceDep serviceDep = new ServiceDep(repository, service);
 
-            Assert.NotNull(repository);
-            Assert.NotNull(service);
-            Assert.NotNull(serviceDep);
             var resultExcaption = Assert.Throws<Exception>(() => serviceDep.Dep(user, account));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionNullUser);
@@ -96,9 +92,6 @@ namespace BankSystem.UnitTests.ServiceTests
             Account account = null;
             ServiceDep serviceDep = new ServiceDep(repository, service);
 
-            Assert.NotNull(repository);
-            Assert.NotNull(service);
-            Assert.NotNull(serviceDep);
             var resultExcaption = Assert.Throws<Exception>(() => serviceDep.Dep(user, account));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionNullAccount);

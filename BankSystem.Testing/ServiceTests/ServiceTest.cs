@@ -11,6 +11,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using static BankSystem.UnitTests.ServiceTests.ServiceTransferTest;
 
 namespace BankSystem.UnitTests.ServiceTests
 {
@@ -31,6 +32,7 @@ namespace BankSystem.UnitTests.ServiceTests
             IRepository repository = null;
 
             var resultExcaption = Assert.Throws<Exception>(() => new Service(repository));
+
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionRepository);
         }
@@ -48,7 +50,7 @@ namespace BankSystem.UnitTests.ServiceTests
 
             service.AddUser(lastName, firstName, middleName, dateTime, genderMale);
 
-            
+            repository.Received().CreateUser(Arg.Any<User>());
         }
 
         [Fact]
@@ -64,10 +66,11 @@ namespace BankSystem.UnitTests.ServiceTests
 
             service.EditUser(user, lastName, firstName, middleName, dateTime);
 
-            Assert.NotNull(user);
-            Assert.True(user.LastName == lastName);
-            Assert.True(user.FirstName == firstName);
-            Assert.True(user.MiddleName == middleName);
+            repository.Received().Save();
+            user.Received().EditFirstName(firstName);
+            user.Received().EditLastName(lastName);
+            user.Received().EditMiddleName(middleName);
+            user.Received().EditBirthday(dateTime);
         }
 
         [Fact]
@@ -82,10 +85,8 @@ namespace BankSystem.UnitTests.ServiceTests
 
             service.AddAccount(user, description, amount, currency);
 
-            Assert.NotNull(user.Accounts);
-            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Description == description));
-            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Amount == amount));
-            Assert.NotNull(user.Accounts.FirstOrDefault(x => x.Currency == currency));
+            repository.Received().Save();
+            user.Received().AddAccount(description, amount, currency);
         }
 
         [Fact]
@@ -100,10 +101,10 @@ namespace BankSystem.UnitTests.ServiceTests
 
             service.EditAccount(account, description, amount, currency);
 
-            Assert.NotNull(account);
-            Assert.True(account.Description == description);
-            Assert.True(account.Amount == amount);
-            Assert.True(account.Currency == currency);
+            repository.Received().Save();
+            account.Received().EditDescription(description);
+            account.Received().EditAmount(amount);
+            account.Received().EditCurrency(currency);
         }
     }
 }

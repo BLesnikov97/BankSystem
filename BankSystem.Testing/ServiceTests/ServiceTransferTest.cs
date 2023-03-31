@@ -59,9 +59,6 @@ namespace BankSystem.UnitTests.ServiceTests
 
             serviceTransfer.Transfer(accountFor, accountTo, age);
 
-            Assert.NotNull(serviceTransfer);
-            Assert.NotNull(accountFor);
-            Assert.NotNull(accountTo);
             Assert.Equal(accountFor.Amount, 900.00D);
             Assert.Equal(accountTo.Amount, 200.00D);
         }
@@ -75,8 +72,6 @@ namespace BankSystem.UnitTests.ServiceTests
             double age = 10.00D;
             ServiceTransfer serviceTransfer = new ServiceTransfer(repository);
 
-            Assert.NotNull(serviceTransfer);
-            Assert.NotNull(accountTo);
             var resultExcaption = Assert.Throws<Exception>(() => serviceTransfer.Transfer(accountFor, accountTo, age));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionWithdrawal);
@@ -91,8 +86,6 @@ namespace BankSystem.UnitTests.ServiceTests
             double age = 10.00D;
             ServiceTransfer serviceTransfer = new ServiceTransfer(repository);
 
-            Assert.NotNull(serviceTransfer);
-            Assert.NotNull(accountFor);
             var resultExcaption = Assert.Throws<Exception>(() => serviceTransfer.Transfer(accountFor, accountTo, age));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionUp);
@@ -100,40 +93,53 @@ namespace BankSystem.UnitTests.ServiceTests
 
         [Fact]
         public void Attempt_To_Transfer_Age_Zero()
-        {   
-            var accountFor = Substitute.For<Account>();
-            var accountTo = Substitute.For<Account>();
+        {
+            var user = Substitute.For<User>();
+            var accountFor = new AccountStub(user, "DepositFor", 100.00D, "RUB");
+            accountFor.EditId();
+            var accountTo = new AccountStub(user, "DepositTo", 100.00D, "RUB");
+            accountTo.EditId();
             var repository = Substitute.For<IRepository>();
             double age = 0.00D;
             ServiceTransfer serviceTransfer = new ServiceTransfer(repository);
 
-            serviceTransfer.Transfer(accountFor, accountTo, age);
-
-            Assert.NotNull(serviceTransfer);
-            Assert.NotNull(accountFor);
-            Assert.NotNull(accountTo);
             var resultExcaption = Assert.Throws<Exception>(() => serviceTransfer.Transfer(accountFor, accountTo, age));
             Assert.NotNull(resultExcaption);
-            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionMinAmount);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionAmount);
         }
 
         [Fact]
         public void Attempt_To_Transfer_Age_Negative()
         {
-            Account accountFor = Substitute.For<Account>();
-            var accountTo = Substitute.For<Account>();
+            var user = Substitute.For<User>();
+            var accountFor = new AccountStub(user, "DepositFor", 100.00D, "RUB");
+            accountFor.EditId();
+            var accountTo = new AccountStub(user, "DepositTo", 100.00D, "RUB");
+            accountTo.EditId();
             var repository = Substitute.For<IRepository>();
             double age = -10.00D;
             ServiceTransfer serviceTransfer = new ServiceTransfer(repository);
 
-            serviceTransfer.Transfer(accountFor, accountTo, age);
-
-            Assert.NotNull(serviceTransfer);
-            Assert.NotNull(accountFor);
-            Assert.NotNull(accountTo);
             var resultExcaption = Assert.Throws<Exception>(() => serviceTransfer.Transfer(accountFor, accountTo, age));
             Assert.NotNull(resultExcaption);
             Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionAmount);
+        }
+
+        [Fact]
+        public void Attempt_To_Transfer_Amount_Less_Age()
+        {
+            var user = Substitute.For<User>();
+            var accountFor = new AccountStub(user, "DepositFor", 100.00D, "RUB");
+            accountFor.EditId();
+            var accountTo = new AccountStub(user, "DepositTo", 100.00D, "RUB");
+            accountTo.EditId();
+            var repository = Substitute.For<IRepository>();
+            double age = 200.00D;
+            ServiceTransfer serviceTransfer = new ServiceTransfer(repository);
+
+            var resultExcaption = Assert.Throws<Exception>(() => serviceTransfer.Transfer(accountFor, accountTo, age));
+            Assert.NotNull(resultExcaption);
+            Assert.Equal(resultExcaption.Message, ExceptionMessages.ExceptionMinAmount);
         }
     }
 }
